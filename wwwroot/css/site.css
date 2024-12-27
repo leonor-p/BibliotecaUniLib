@@ -1,22 +1,61 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+    padding: 0 0 50px;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Ajustes para a barra de navegação */
+.custom-navbar {
+    background-color: #a11010; /* Cor vermelha */
+}
+
+    .custom-navbar .nav-link {
+        color: white; /* Links em branco */
+    }
+
+        .custom-navbar .nav-link:hover {
+            color: white; /* Cor dourada ao passar o mouse */
+        }
+
+    .custom-navbar .navbar-brand {
+        color: white; /* Texto da marca em branco */
+    }
+
+    .custom-navbar .navbar-toggler-icon {
+        background-color: #a11010; /* Ícone da barra em branco */
+    }
+
+.card img {
+    width: 150px;
+    height: auto;
+    border-radius: 5px; /* Opcional */
+    object-fit: cover;
 }

@@ -2,7 +2,103 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Virtual UNILIB</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="logo">
+                <h1>UNILIB</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#destaques">Livros em Destaque</a></li>
+                    <li><a href="#adicionados">Adicionados Recentemente</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Secção Inicial -->
+        <section id="inicio" class="hero">
+            <h2>Bem-vindo à Biblioteca Digital UNILIB</h2>
+            <p>Descubra um mundo de conhecimento ao seu alcance.</p>
+            <a href="#destaques" class="btn">Explorar</a>
+        </section>
+
+        <!-- Livros em Destaque -->
+        <section id="destaques" class="destaques">
+            <h2>Livros em Destaque</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="/imagens/heartstopper.jpeg" alt="Capa do livro Heartstopper">
+                    <h3>Heartstopper</h3>
+                    <p>Alice Oseman</p>
+                </div>
+                <div class="card">
+                    <img src="/imagens/Princepezinhojpeg.jpeg" alt="Capa do livro O Principezinho">
+                    <h3>O Principezinho</h3>
+                    <p>Antoine de Saint-Exupéry</p>
+                </div>
+                <div class="card">
+                    <img src="/imagens/GoT.jpeg" alt="Capa do livro A Guerra dos Tronos">
+                    <h3>A Guerra dos Tronos</h3>
+                    <p>George R. R. Martin</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Adicionados Recentemente -->
+        <section id="adicionados" class="recentes">
+            <h2>Adicionados Recentemente</h2>
+            <div class="grid">
+                <div class="card">
+                    <img class="book-cover" src="/imagens/heartstopper.jpeg" alt="Capa do livro Heartstopper">
+                    <h3>Heartstopper</h3>
+                    <p>Alice Oseman</p>
+                </div>
+                <div class="card">
+                    <img src="/imagens/acriada.jpeg" alt="Capa do livro A Criada">
+                    <h3>A Criada</h3>
+                    <p>Freida McFadden</p>
+                </div>
+                <div class="card">
+                    <img src="/imagens/powerless.jpeg" alt="Capa do livro Powerless">
+                    <h3>Powerless</h3>
+                    <p>Lauren Roberts</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Nós -->
+        <section id="sobre" class="sobre">
+            <h2>Sobre Nós</h2>
+            <p>A UNILIB procura ser um estímulo na construção de uma sociedade baseada no conhecimento, conectando utilizadores a recursos digitais diversificados.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#termos">Termos de Serviço</a>
+            <a href="#privacidade">Política de Privacidade</a>
+        </div>
+        <p>&copy; 2024 UNILIB. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
+
+
+
