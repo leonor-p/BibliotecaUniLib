@@ -34,7 +34,7 @@ footer {
 
 /* Ajustes para a barra de navegação */
 .custom-navbar {
-    background-color: #a11010; /* Cor vermelha */
+    background-color: #5e0606; /* Cor vermelha */
 }
 
     .custom-navbar .nav-link {
@@ -50,8 +50,28 @@ footer {
     }
 
     .custom-navbar .navbar-toggler-icon {
-        background-color: #a11010; /* Ícone da barra em branco */
+        background-color: #5e0606; /* Ícone da barra em branco */
     }
+    .custom-navbar .nav-link {
+        font-size: 16px; /* Tamanho do texto */
+        font-weight: bold; /* Negrito */
+        text-transform: uppercase; /* Transformação em letras maiúsculas */
+    }
+
+    .custom-navbar .navbar-brand {
+        font-size: 20px;
+        font-weight: bold;
+    }
+.custom-navbar {
+    border-bottom: 3px solid #000; /* Borda inferior preta */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+
+    .custom-navbar {
+    border-bottom: 3px solid #000; /* Borda inferior preta */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+}
 
 .card img {
     width: 150px;
@@ -59,3 +79,209 @@ footer {
     border-radius: 5px; /* Opcional */
     object-fit: cover;
 }
+
+.card1 img {
+    width: 15px;
+    height: auto;
+    border-radius: 5px; /* Opcional */
+    object-fit: cover;
+}
+
+
+/*GRID CATEGORIAS*/
+.grid_categoria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Três colunas de tamanhos iguais */
+    gap: 20px; /* Espaçamento entre os itens */
+    margin-top:150px;
+    margin-bottom: 100px; /* Espaçamento no topo */
+}
+
+.card_c {
+    background-color: #f8f9fa; /* Cor de fundo */
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd; /* Borda leve */
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação */
+}
+
+    .card_c:hover {
+        transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+    }
+
+    .card_c img {
+        width: 100%; /* Imagem ocupa toda a largura do contêiner */
+        height: 150px; /* Altura fixa */
+        object-fit: cover; /* Ajuste da imagem */
+        border-radius: 5px; /* Bordas arredondadas */
+        margin-bottom: 10px;
+    }
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/*GRID AUTORES*/
+.grid_autores {
+    display: flex; /* Exibe os elementos lado a lado */
+    gap: 20px; /* Espaçamento entre os itens */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Alinha os itens verticalmente */
+    margin-bottom: 100px;
+}
+
+.card_a {
+    background-color: #f8f9fa; /* Cor de fundo */
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd; /* Borda leve */
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação */
+    max-width: 300px;
+    max-height: 400px;
+}
+
+    .card_a:hover {
+        transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+    }
+
+    .card_a img {
+        width: 100%; /* Imagem ocupa toda a largura do contêiner */
+        height: 150px; /* Altura fixa */
+        object-fit: cover; /* Ajuste da imagem */
+        border-radius: 5px; /* Bordas arredondadas */
+        margin-bottom: 10px;
+    }
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/*GRID LIVROS EM DESTAQUE*/
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 100px;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+}
+
+.card_ld {
+    min-width: 300px;
+    background-color: #f8f9fa;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+    .card_ld img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+.carousel-btn {
+    background-color: #b22222;
+    color: white;
+    font-size: 24px;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+    .carousel-btn.prev {
+        left: 10px;
+    }
+
+    .carousel-btn.next {
+        right: 10px;
+    }
+
+
+/*GRID Adicionados Recentemente*/
+.carousel2 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 100px;
+}
+
+.carousel2-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+}
+
+.card_ad {
+    min-width: 300px;
+    background-color: #f8f9fa;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+    .card_ad img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+.carousel2-btn {
+    background-color: #b22222;
+    color: white;
+    font-size: 24px;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+    .carousel2-btn.prev {
+        left: 10px;
+    }
+
+    .carousel2-btn.next {
+        right: 10px;
+    }
+
+
+
