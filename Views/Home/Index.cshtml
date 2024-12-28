@@ -20,8 +20,8 @@
                 <span style="font-size: 20px; font-weight: bold;">UNILIB</span>
             </a>
             <ul class="navbar-nav" style="list-style: none; display: flex; gap: 15px; margin: 0;">
-                <li><a class="nav-link text-white" href="#Autores">Autores em Destaque</a></li>
-                <li><a class="nav-link text-white" href="#Categorias">Categorias</a></li>
+                <li><a class="nav-link text-white" href="#categorias">Categorias</a></li>
+                <li><a class="nav-link text-white" href="#autores">Autores em Destaque</a></li>
                 <li><a class="nav-link text-white" href="#destaques">Livros em Destaque</a></li>
                 <li><a class="nav-link text-white" href="#adicionados">Adicionados Recentemente</a></li>
             </ul>
@@ -35,7 +35,6 @@
             <p>Descubra um mundo de conhecimento ao seu alcance.</p>
             <a href="#destaques" class="btn" style="background-color: #b22222; color: white; padding: 10px 20px; text-decoration: none;">Explorar</a>
         </div>
-    </header>
     </header>
 
     <!-- categorias em Destaque -->
@@ -94,8 +93,8 @@
     <section id="destaques" class="destaques">
         <h2>Livros em Destaque</h2>
         <div class="carousel">
-            <button class="carousel-btn prev" onclick="scrollCarousel(-1)">&#8249;</button>
-            <div class="carousel-track">
+            <button class="carousel-btn prev">&#8249;</button>
+            <div class="carousel-track" data-current-slide="0">
                 <div class="card_ld">
                     <img src="/imagens/heartstopper.jpeg" alt="Capa do livro Heartstopper">
                     <h3>Heartstopper</h3>
@@ -121,7 +120,7 @@
                     <div class="stars">★★★★★</div>
                 </div>
             </div>
-            <button class="carousel-btn next" onclick="scrollCarousel(1)">&#8250;</button>
+            <button class="carousel-btn next">&#8250;</button>
         </div>
     </section>
 
@@ -130,33 +129,34 @@
     <section id="adicionados" class="recentes">
         <h2>Adicionados Recentemente</h2>
         <div class="carousel2">
-            <button class="carousel2-btn prev" onclick="scrollCarousel2(-1)">&#8249;</button>
-            <div class="carousel2-track">
-                <div class="card_ld">
-                    <img class="book-cover" src="/imagens/heartstopper.jpeg" alt="Capa do livro Heartstopper">
+            <button class="carousel2-btn prev">&#8249;</button>
+            <div class="carousel2-track" data-current-slide="0">
+                <div class="card_ad">
+                    <img src="/imagens/heartstopper.jpeg" alt="Capa do livro Heartstopper">
                     <h3>Heartstopper</h3>
                     <p>Alice Oseman</p>
                     <div class="stars">★★★★★</div>
                 </div>
-                <div class="card_ld">
+                <div class="card_ad">
                     <img src="/imagens/acriada.jpeg" alt="Capa do livro A Criada">
                     <h3>A Criada</h3>
                     <p>Freida McFadden</p>
+                    <div class="stars">★★★★★</div>
                 </div>
-                <div class="card_ld">
+                <div class="card_ad">
                     <img src="/imagens/powerless.jpeg" alt="Capa do livro Powerless">
                     <h3>Powerless</h3>
                     <p>Lauren Roberts</p>
                     <div class="stars">★★★★★</div>
                 </div>
-                <div class="card_ld">
+                <div class="card_ad">
                     <img src="/imagens/morte_no_sanatorio.jpeg" alt="Capa do livro Morte No Sanatório">
                     <h3>Morte No Sanatório</h3>
                     <p> Ragnar Jónasson</p>
                     <div class="stars">★★★★★</div>
                 </div>
             </div>
-            <button class="carousel2-btn next" onclick="scrollCarousel(1)">&#8250;</button>
+            <button class="carousel2-btn next">&#8250;</button>
         </div>
     </section>
 

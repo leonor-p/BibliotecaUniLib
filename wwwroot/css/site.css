@@ -93,7 +93,8 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Três colunas de tamanhos iguais */
     gap: 20px; /* Espaçamento entre os itens */
-    margin-top: 20px; /* Espaçamento no topo */
+    margin-top:150px;
+    margin-bottom: 100px; /* Espaçamento no topo */
 }
 
 .card_c {
@@ -132,6 +133,7 @@ h2 {
     gap: 20px; /* Espaçamento entre os itens */
     justify-content: center; /* Centraliza os itens horizontalmente */
     align-items: center; /* Alinha os itens verticalmente */
+    margin-bottom: 100px;
 }
 
 .card_a {
@@ -174,7 +176,7 @@ h2 {
     overflow: hidden;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin-bottom: 100px;
 }
 
 .carousel-track {
@@ -224,46 +226,6 @@ h2 {
     }
 
 
-/*GRID AUTORES*/
-.grid_autores {
-    display: flex; /* Exibe os elementos lado a lado */
-    gap: 20px; /* Espaçamento entre os itens */
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Alinha os itens verticalmente */
-}
-
-.card_a {
-    background-color: #f8f9fa; /* Cor de fundo */
-    padding: 20px;
-    text-align: center;
-    border: 1px solid #ddd; /* Borda leve */
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação */
-    max-width: 300px;
-    max-height: 400px;
-}
-
-    .card_a:hover {
-        transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
-    }
-
-    .card_a img {
-        width: 100%; /* Imagem ocupa toda a largura do contêiner */
-        height: 150px; /* Altura fixa */
-        object-fit: cover; /* Ajuste da imagem */
-        border-radius: 5px; /* Bordas arredondadas */
-        margin-bottom: 10px;
-    }
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-}
-
 /*GRID Adicionados Recentemente*/
 .carousel2 {
     position: relative;
@@ -272,7 +234,7 @@ h2 {
     overflow: hidden;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin-bottom: 100px;
 }
 
 .carousel2-track {

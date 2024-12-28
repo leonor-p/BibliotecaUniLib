@@ -1,44 +1,40 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// Função genérica para controlar o movimento de carrosséis
+function scrollCarouselGeneric(trackSelector, cardSelector, direction) {
+    const track = document.querySelector(trackSelector);
+    const cards = document.querySelectorAll(`${trackSelector} ${cardSelector}`);
+    const cardWidth = cards[0].offsetWidth + 20; // Largura do card + espaçamento
+    const visibleCards = Math.floor(track.offsetWidth / cardWidth); // Quantos cabem visíveis
+    const totalCards = cards.length;
 
-// Write your JavaScript code.
-let currentSlide = 0;
+    // Pegamos o índice atual do slide
+    let currentSlide = parseInt(track.getAttribute("data-current-slide") || 0);
 
-function scrollCarousel(direction) {
-    const track = document.querySelector(".carousel-track");
-    const cardWidth = document.querySelector(".card").offsetWidth + 20; // Largura do card + espaçamento
-    const totalCards = document.querySelectorAll(".carousel-track .card").length;
-
+    // Atualizamos o índice baseado na direção
     currentSlide += direction;
 
-    // Limita o movimento do carrossel
-    if (currentSlide < 0) currentSlide = 0;
-    if (currentSlide > totalCards - 3) currentSlide = totalCards - 3; // 3 cards visíveis
+    // Limitar os índices para não sair fora
+    currentSlide = Math.max(0, Math.min(currentSlide, totalCards - visibleCards));
 
-    // Calcula a nova posição
+    // Atualizamos o atributo no elemento track
+    track.setAttribute("data-current-slide", currentSlide);
+
+    // Movemos o carrossel
     const newTransform = -currentSlide * cardWidth;
-
     track.style.transform = `translateX(${newTransform}px)`;
 }
 
-let currentSlide = 0;
+// Eventos para o carrossel "Livros em Destaque"
+document.querySelector(".carousel .prev").addEventListener("click", () => {
+    scrollCarouselGeneric(".carousel-track", ".card_ld", -1);
+});
+document.querySelector(".carousel .next").addEventListener("click", () => {
+    scrollCarouselGeneric(".carousel-track", ".card_ld", 1);
+});
 
-function scrollCarousel2(direction) {
-    const track = document.querySelector(".carousel-track");
-    const cardWidth = document.querySelector(".card").offsetWidth + 20; // Largura do card + espaçamento
-    const totalCards = document.querySelectorAll(".carousel-track .card").length;
-
-    currentSlide += direction;
-
-    // Limita o movimento do carrossel
-    if (currentSlide < 0) currentSlide = 0;
-    if (currentSlide > totalCards - 3) currentSlide = totalCards - 3; // 3 cards visíveis
-
-    // Calcula a nova posição
-    const newTransform = -currentSlide * cardWidth;
-
-    track.style.transform = `translateX(${newTransform}px)`;
-}
-
-
-
+// Eventos para o carrossel "Adicionados Recentemente"
+document.querySelector(".carousel2 .prev").addEventListener("click", () => {
+    scrollCarouselGeneric(".carousel2-track", ".card_ad", -1);
+});
+document.querySelector(".carousel2 .next").addEventListener("click", () => {
+    scrollCarouselGeneric(".carousel2-track", ".card_ad", 1);
+});
