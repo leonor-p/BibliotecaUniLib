@@ -30,62 +30,42 @@ footer {
     color: white;
     text-align: center;
     padding: 1rem;
+    margin-bottom: 0;
+}
+.card_logo {
+    padding: 20px;
+    text-align: left;
+    
 }
 
 /* Ajustes para a barra de navegação */
-.custom-navbar {
-    background-color: #5e0606; /* Cor vermelha */
+.navbar {
+    background-color: #5e0606;
+    display: grid;
+    margin-top: 0 px; 
 }
 
-    .custom-navbar .nav-link {
+    .navbar .nav-link {
         color: white; /* Links em branco */
     }
 
-        .custom-navbar .nav-link:hover {
-            color: white; /* Cor dourada ao passar o mouse */
-        }
-
-    .custom-navbar .navbar-brand {
+    .navbar .navbar-brand {
         color: white; /* Texto da marca em branco */
     }
 
-    .custom-navbar .navbar-toggler-icon {
+    .navbar .navbar-toggler-icon {
         background-color: #5e0606; /* Ícone da barra em branco */
     }
-    .custom-navbar .nav-link {
+    .navbar .nav-link {
         font-size: 16px; /* Tamanho do texto */
         font-weight: bold; /* Negrito */
         text-transform: uppercase; /* Transformação em letras maiúsculas */
     }
 
-    .custom-navbar .navbar-brand {
+    .navbar .navbar-brand {
         font-size: 20px;
-        font-weight: bold;
+        font-weight: 100px;
     }
-.custom-navbar {
-    border-bottom: 3px solid #000; /* Borda inferior preta */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
-}
-
-
-    .custom-navbar {
-    border-bottom: 3px solid #000; /* Borda inferior preta */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
-}
-
-.card img {
-    width: 150px;
-    height: auto;
-    border-radius: 5px; /* Opcional */
-    object-fit: cover;
-}
-
-.card1 img {
-    width: 15px;
-    height: auto;
-    border-radius: 5px; /* Opcional */
-    object-fit: cover;
-}
 
 
 /*GRID CATEGORIAS*/
@@ -93,9 +73,20 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Três colunas de tamanhos iguais */
     gap: 20px; /* Espaçamento entre os itens */
-    margin-top:150px;
     margin-bottom: 100px; /* Espaçamento no topo */
 }
+.card_cat {
+    display: inline-block; /* Mantém no mesmo nível do texto */
+    margin-right: 10px;  /*Espaço entre o ícone e o texto */
+    text-align: left;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    display: flex; /* Permite alinhar o ícone e o texto */
+    align-items: center; /* Alinha verticalmente o ícone com o texto */
+}
+    
 
 .card_c {
     background-color: #f8f9fa; /* Cor de fundo */
@@ -121,11 +112,18 @@ footer {
     }
 
 h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    display: flex; /* Permite que o ícone e o texto fiquem alinhados horizontalmente */
+    align-items: center; /* Alinha verticalmente o ícone com o texto */
     font-size: 24px;
     color: #333;
+    margin-bottom: 20px;
+    margin-top: 100px;
 }
+    h2 i {
+        color: #333; /* Cor do ícone */
+        font-size: 24px; /* Mesmo tamanho do texto */
+        margin-right: 15px; /* Espaçamento entre o ícone e o texto */
+    }
 
 /*GRID AUTORES*/
 .grid_autores {
@@ -162,11 +160,18 @@ h2 {
     }
 
 h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    display: flex; /* Permite que o ícone e o texto fiquem alinhados horizontalmente */
+    align-items: center; /* Alinha verticalmente o ícone com o texto */
     font-size: 24px;
     color: #333;
+    margin-bottom: 20px;
 }
+
+    h2 i {
+        color: #333; /* Cor do ícone */
+        font-size: 24px; /* Mesmo tamanho do texto */
+        margin-right: 50px; /* Espaçamento entre o ícone e o texto */
+    }
 
 /*GRID LIVROS EM DESTAQUE*/
 .carousel {
@@ -223,6 +228,20 @@ h2 {
 
     .carousel-btn.next {
         right: 10px;
+    }
+
+h2 {
+    display: flex; /* Permite que o ícone e o texto fiquem alinhados horizontalmente */
+    align-items: center; /* Alinha verticalmente o ícone com o texto */
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+    h2 i {
+        color: #333; /* Cor do ícone */
+        font-size: 24px; /* Mesmo tamanho do texto */
+        margin-right: 15px; /* Espaçamento entre o ícone e o texto */
     }
 
 
@@ -283,5 +302,18 @@ h2 {
         right: 10px;
     }
 
+h2 {
+    display: flex; /* Permite que o ícone e o texto fiquem alinhados horizontalmente */
+    align-items: center; /* Alinha verticalmente o ícone com o texto */
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+    h2 i {
+        color: #333; /* Cor do ícone */
+        font-size: 24px; /* Mesmo tamanho do texto */
+        margin-right: 15px; /* Espaçamento entre o ícone e o texto */
+    }
 
 
