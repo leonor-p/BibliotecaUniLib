@@ -16,8 +16,8 @@
         <h3>Preenche todas as informações para criar uma conta na plataforma</h3>
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <div class="form-group">
-                <label asp-for="Input.UserName">Nome</label>
-                <input asp-for="Input.UserName" class="form-control" placeholder="Coloca o teu nome" />
+                <label asp-for="Input.UserName">Username</label>
+                <input asp-for="Input.UserName" class="form-control" placeholder="Coloca o teu username" />
                 <span asp-validation-for="Input.UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
