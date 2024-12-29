@@ -349,21 +349,19 @@ h2 {
 .register-left h2 {
     margin-top:0px;
     margin-bottom: 20px;
-    align-content:center
+    align-content:center;
+    text-decoration-style:solid;
 }
 
-.image-container div {
-    display: flex;
-    justify-content: center;
-    object-fit: cover;
-}
 
 .image-container img {
-    width: 98%; /* A largura será 80% do contêiner pai */
-    height: 90%; /* A altura será ajustada automaticamente para manter a proporção */
+    width: 390px; 
+    height: 90%; 
     align-items: center;
     border-radius: 10px;
-    justify-content: center; 
+    justify-content: center;
+    display:block;
+    object-fit: cover;
 }
 
 
