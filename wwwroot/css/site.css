@@ -317,3 +317,128 @@ h2 {
     }
 
 
+/*Registe*/
+.register-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f4ebeb;
+    font-family: Arial, sans-serif;
+}
+
+.register-left {
+    flex: 1;
+    background-color: #722222;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.register-left h2 {
+    margin-top:0px;
+    margin-bottom: 20px;
+    align-content:center
+}
+
+.image-container div {
+    display: flex;
+    justify-content: center;
+    object-fit: cover;
+}
+
+.image-container img {
+    width: 98%; /* A largura será 80% do contêiner pai */
+    height: 90%; /* A altura será ajustada automaticamente para manter a proporção */
+    align-items: center;
+    border-radius: 10px;
+    justify-content: center; 
+}
+
+
+.register-right {
+    flex: 2;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .register-right h3 {
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #722222;
+    }
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #722222;
+    }
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #722222;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #722222;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+    .btn-submit:hover {
+        background-color: #5c1a1a;
+    }
+
+.register-right p {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.register-right a {
+    color: #722222;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    .register-right a:hover {
+        text-decoration: underline;
+    }
