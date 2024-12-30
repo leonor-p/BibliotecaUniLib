@@ -67,6 +67,15 @@ footer {
         font-weight: 100px;
     }
 
+    .navbar .container .cardfotoinicial img{
+        height: 750px;
+        width: 100%;
+        align-items: center;
+        border-radius: 10px;
+        justify-content: center;
+        display: block;
+        object-fit: cover;
+    }
 
 /*GRID CATEGORIAS*/
 .grid_categoria {
