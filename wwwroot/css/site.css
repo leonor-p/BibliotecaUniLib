@@ -25,18 +25,46 @@ body {
     padding: 0 0 50px;
 }
 
-footer {
+.footer {
+    display: flex; /* Habilita o Flexbox para alinhamento horizontal */
+    justify-content: space-between; /* Espaço entre as seções */
+    align-items: flex-start; /* Alinha os itens ao topo */
     background-color: #343a40;
     color: white;
-    text-align: center;
     padding: 1rem;
     margin-bottom: 0;
+    flex-wrap: wrap; /* Permite quebra para telas menores */
 }
-.card_logo {
-    padding: 20px;
-    text-align: left;
-    
+    .footer .card_logo {
+        width: 50px; /* Ajusta o tamanho da imagem */
+        height: auto;
+    }
+    .footer .sb {
+        flex: 1; /* Faz com que a seção ocupe espaço proporcional */
+        margin: 0 30px; /* Margem horizontal para espaçamento */
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    .footer .ajuda {
+        flex: 1; /* Faz com que a seção ocupe espaço proporcional */
+        margin: 0 30px; /* Margem horizontal para espaçamento */
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    .footer .sb h3, .footer .ajuda h3 {
+        margin-bottom: 10px;
+        font-size: 1.4rem;
+    }
+
+a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
 }
+
+  
 
 /* Ajustes para a barra de navegação */
 .navbar {
