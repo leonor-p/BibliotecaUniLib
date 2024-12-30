@@ -213,8 +213,8 @@ h2 {
         margin-right: 50px; /* Espaçamento entre o ícone e o texto */
     }
 
-/*GRID LIVROS EM DESTAQUE*/
-.carousel {
+/*GRID LIVROS EM DESTAQUE E ADICIONADOS R*/
+.carousel, .carousel2 {
     position: relative;
     display: flex;
     align-items: center;
@@ -224,14 +224,14 @@ h2 {
     margin-bottom: 100px;
 }
 
-.carousel-track {
+.carousel-track, .carousel2-track {
     display: flex;
     gap: 20px;
     transition: transform 0.5s ease-in-out;
     will-change: transform;
 }
 
-.card_ld {
+.card_ld, .card_ad {
     min-width: 300px;
     background-color: #f8f9fa;
     text-align: center;
@@ -240,14 +240,14 @@ h2 {
     padding: 15px;
 }
 
-    .card_ld img {
+    .card_ld img, .card_ad img {
         width: 100%;
         height: auto;
         border-radius: 10px;
         margin-bottom: 10px;
     }
 
-.carousel-btn {
+.carousel-btn, .carousel2-btn {
     background-color: #b22222;
     color: white;
     font-size: 24px;
@@ -262,130 +262,36 @@ h2 {
     z-index: 10;
 }
 
-    .carousel-btn.prev {
+    .carousel-btn.prev, .carousel2-btn.prev {
         left: 10px;
     }
 
-    .carousel-btn.next {
+    .carousel-btn.next, .carousel2-btn.next {
         right: 10px;
     }
 
 h2 {
-    display: flex; /* Permite que o ícone e o texto fiquem alinhados horizontalmente */
-    align-items: center; /* Alinha verticalmente o ícone com o texto */
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-    h2 i {
-        color: #333; /* Cor do ícone */
-        font-size: 24px; /* Mesmo tamanho do texto */
-        margin-right: 15px; /* Espaçamento entre o ícone e o texto */
-    }
-
-.categorias-header {
-    display: grid;
-    justify-content: space-between; /* Garante que o título e o botão fiquem nas extremidades */
-    align-items: center; /* Alinha verticalmente ao centro */
-    margin-bottom: 60px; /* Espaçamento entre a seção e o conteúdo abaixo */
-}
-
-    .categorias-header h2 {
-        margin: 0;
-        font-size: 1.5rem;
-    }
-
-.ver-mais {
-    margin-left: auto;
-    background-color: #5e0606;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-/*GRID Adicionados Recentemente*/
-.carousel2 {
-    position: relative;
     display: flex;
     align-items: center;
-    overflow: hidden;
-    width: 100%;
-    max-width: 1200px;
-    margin-bottom: 100px;
-}
-
-.carousel2-track {
-    display: flex;
-    gap: 20px;
-    transition: transform 0.5s ease-in-out;
-    will-change: transform;
-}
-
-.card_ad {
-    min-width: 300px;
-    background-color: #f8f9fa;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-}
-
-    .card_ad img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin-bottom: 10px;
-    }
-
-.carousel2-btn {
-    background-color: #b22222;
-    color: white;
-    font-size: 24px;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-}
-
-    .carousel2-btn.prev {
-        left: 10px;
-    }
-
-    .carousel2-btn.next {
-        right: 10px;
-    }
-
-h2 {
-    display: flex; /* Permite que o ícone e o texto fiquem alinhados horizontalmente */
-    align-items: center; /* Alinha verticalmente o ícone com o texto */
     font-size: 24px;
     color: #333;
     margin-bottom: 20px;
 }
 
     h2 i {
-        color: #333; /* Cor do ícone */
-        font-size: 24px; /* Mesmo tamanho do texto */
-        margin-right: 15px; /* Espaçamento entre o ícone e o texto */
+        color: #333;
+        font-size: 24px;
+        margin-right: 15px;
     }
-.Ad-header {
+
+.destaque-header, .Ad-header {
     display: flex;
-    justify-content: space-between; /* Garante que o título e o botão fiquem nas extremidades */
-    align-items: center; /* Alinha verticalmente ao centro */
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1rem;
 }
 
-    .Ad-header h2 {
+    .destaque-header h2, .Ad-header h2 {
         margin: 0;
         font-size: 1.5rem;
     }
@@ -540,13 +446,16 @@ h2 {
 
 h1 {
     text-align: left;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
+    margin-top: 50px;
 }
+
 
 .book-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
+    margin-bottom: 80px;
 }
 
 .book-card {
@@ -600,4 +509,31 @@ h1 {
         background-color: #5e0606;
         color: white;
         border: 1px solid #080808;
+    }
+
+/* Estilo para a seção de termos */
+.termos {
+    display: block; 
+    margin-top: 50px;
+    padding: 20px; 
+}
+
+    .termos h1 {
+        margin-bottom:10px;
+        text-align: left;
+    }
+
+    .termos h2 {
+        margin-top: 10px; 
+    }
+
+    .termos p {
+        text-align: justify;
+        margin-bottom: 10px;
+    }
+    .termos a {
+        text-align: justify;
+        color: black;
+        margin-bottom: 10px;
+        text-decoration: underline;
     }
