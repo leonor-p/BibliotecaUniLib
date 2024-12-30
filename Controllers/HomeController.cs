@@ -18,6 +18,15 @@ namespace Biblioteca_UniLib.Controllers
             return View();
         }
 
+        public IActionResult Livros_em_destaque()
+        {
+            return View();
+        }
+        public IActionResult Adicionados_recentemente()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
