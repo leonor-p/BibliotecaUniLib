@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewData["Title"] = "George_Martin";
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container_ld">
+        <h1>George R. R. Martin</h1>
+        <p>Descobre os livros do escritor George R. R. Martin.</p>
+
+        <div class="book-grid">
+            <div class="book-card">
+                <img src="/imagens/livros/GoT.jpeg" alt="Capa do livro A Guerra dos Tronos">
+                <h3>A Guerra dos Tronos</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="book-card">
+                <img src="/imagens/livros/afuria_reis.jpeg" alt="Capa do livro A Fúria dos Reis">
+                <h3>A Fúria dos Reis</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="book-card">
+                <img src="/imagens/livros/odespertar_magia.jpeg" alt="Capa do livro O Despertar da Magia">
+                <h3>O Despertar da Magia</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="book-card">
+                <img src="/imagens/livros/atormenta_espadas.jpeg" alt="Capa do livro A Tormenta de Espadas">
+                <h3>A Tormenta de Espadas</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="book-card">
+                <img src="/imagens/livros/agloria_traidores.jpeg" alt="Capa do livro A Glória dos Traidores">
+                <h3>A Glória dos Traidores</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="book-card">
+                <img src="/imagens/livros/ofestim_corvos.jpeg" alt="Capa do livro O Festim dos Corvos">
+                <h3>O Festim dos Corvos</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="book-card">
+                <img src="/imagens/livros/omar_ferro.jpeg" alt="Capa do livro O Mar de Ferro">
+                <h3>O Mar de Ferro</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="book-card">
+                <img src="/imagens/livros/amuralha_gelo.jpeg" alt="Capa do livro A Muralha de Gelo">
+                <h3>A Muralha de Gelo</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="book-card">
+                <img src="/imagens/livros/adanca_dragoes.jpeg" alt="Capa do livro A Dança dos Dragões">
+                <h3>A Dança dos Dragões</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="book-card">
+                <img src="/imagens/livros/osreinos_caos.jpeg" alt="Capa do livro Os Reinos do Caos">
+                <h3>Os Reinos do Caos</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="book-card">
+                <img src="/imagens/livros/odragao_gelo.jpeg" alt="Capa do livro O Dragão de Gelo">
+                <h3>O Dragão de Gelo</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="book-card">
+                <img src="/imagens/livros/sanguefogo.jpeg" alt="Capa do livro Sangue e Fogo">
+                <h3>Sangue e Fogo - A História dos Reis Targaryen</h3>
+                <div class="stars">★★★★★</div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="grid footer">
+                <div class="card_logo">
+                    <img src="/imagens/logo200.png" alt="logo UniLib">
+                </div>
+                <div class="grid sb">
+                    <h3>Sobre nós</h3>
+                    <p></p>
+                    <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
+                    <p></p>
+                    <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
+                    <p></p>
+                </div>
+                <div class="grid ajuda">
+                    <h3>Ajuda</h3>
+                    <p></p>
+                    <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
+                </div>
+            </div>
+        </footer>
+</body>
+</html>
+

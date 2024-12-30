@@ -64,52 +64,62 @@
              Autores em Destaque
         </h2>
         <div class="grid grid_autores">
-            <div class="card_a">
-                <img src="/imagens/Freida.jpg" alt="Fraida Mcfadden">
-                <h3>Fraida Mcfadden</h3>
-            </div>
-            <div class="card_a">
-                <img src="/imagens/George.jpg" alt="George R. R. Martin">
-                <h3>George R. R. Martin</h3>
-            </div>
-            <div class="card_a">
-                <img src="/imagens/Alice.jpg" alt="Alice Oseman">
-                <h3>Alice Oseman</h3>
-                
-            </div>
+            <form asp-controller="Home" asp-action="Freida_mcfadden">
+                <button class="card_a">
+                    <img src="/imagens/Freida.jpg" alt="Fraida Mcfadden">
+                    <h3>Freida Mcfadden</h3>
+                </button>
+            </form>
+            <form asp-controller="Home" asp-action="George_Martin">
+                <button class="card_a">
+                    <img src="/imagens/George.jpg" alt="George R. R. Martin">
+                    <h3>George R. R. Martin</h3>
+                </button>
+            </form>
+            <form asp-controller="Home" asp-action="Alice_oseman">
+                <button class="card_a">
+                    <img src="/imagens/Alice.jpg" alt="Alice Oseman">
+                    <h3>Alice Oseman</h3>
+                </button>
+            </form>
         </div>
     </section>
 
 
     <!-- Livros em Destaque -->
     <section id="destaques" class="destaques">
-        <h2>
-            <img src="/imagens/livrolab.png" alt="Símbolo de Livros em Destaque" class="icon-categoria">
-            Livros em Destaque
-        </h2>
+        <div class="destaque-header">
+            <h2>
+                <img src="/imagens/livrolab.png" alt="Símbolo de Livros em Destaque" class="icon-categoria">
+                Livros em Destaque
+            </h2>
+            <form asp-controller="Home" asp-action="Livros_em_destaque">
+                <button type="submit" class="ver-mais">Ver mais</button>
+            </form>
+        </div>
         <div class="carousel">
             <button class="carousel-btn prev">&#8249;</button>
             <div class="carousel-track" data-current-slide="0">
                 <div class="card_ld">
-                    <img src="/imagens/heartstopper.jpeg" alt="Capa do livro Heartstopper">
-                    <h3>Heartstopper</h3>
+                    <img src="/imagens/livros/heartstoppervol1.jpeg" alt="Capa do livro Heartstopper">
+                    <h3>Heartstopper Vol1</h3>
                     <p>Alice Oseman</p>
                     <div class="stars">★★★★★</div>
                 </div>
                 <div class="card_ld">
-                    <img src="/imagens/Princepezinhojpeg.jpeg" alt="Capa do livro O Principezinho">
+                    <img src="/imagens/livros/Princepezinhojpeg.jpeg" alt="Capa do livro O Principezinho">
                     <h3>O Principezinho</h3>
                     <p>Antoine de Saint-Exupéry</p>
                     <div class="stars">★★★★★</div>
                 </div>
                 <div class="card_ld">
-                    <img src="/imagens/GoT.jpeg" alt="Capa do livro A Guerra dos Tronos">
+                    <img src="/imagens/livros/GoT.jpeg" alt="Capa do livro A Guerra dos Tronos">
                     <h3>A Guerra dos Tronos</h3>
                     <p>George R. R. Martin</p>
                     <div class="stars">★★★★★</div>
                 </div>
                 <div class="card_ld">
-                    <img src="/imagens/morte_no_sanatorio.jpeg" alt="Capa do livro Morte No Sanatório">
+                    <img src="/imagens/livros/morte_no_sanatorio.jpeg" alt="Capa do livro Morte No Sanatório">
                     <h3>Morte No Sanatório</h3>
                     <p> Ragnar Jónasson</p>
                     <div class="stars">★★★★★</div>
@@ -119,36 +129,40 @@
         </div>
     </section>
 
-
     <!-- Adicionados Recentemente -->
     <section id="adicionados" class="recentes">
-        <h2>
-            <img src="/imagens/relogiolab.png" alt="Símbolo de Livros Adicionados Recentemente" class="icon-categoria">
-            Adicionados Recentemente
-        </h2>
+        <div class="Ad-header">
+            <h2>
+                <img src="/imagens/relogiolab.png" alt="Símbolo de Livros Adicionados Recentemente" class="icon-categoria">
+                Adicionados Recentemente
+            </h2>
+            <form asp-controller="Home" asp-action="Adicionados_recentemente">
+                <button type="submit" class="ver-mais">Ver mais</button>
+            </form>
+        </div>
         <div class="carousel2">
             <button class="carousel2-btn prev">&#8249;</button>
             <div class="carousel2-track" data-current-slide="0">
                 <div class="card_ad">
-                    <img src="/imagens/heartstopper.jpeg" alt="Capa do livro Heartstopper">
-                    <h3>Heartstopper</h3>
+                    <img src="/imagens/livros/heartstoppervol1.jpeg" alt="Capa do livro Heartstopper Vol 1">
+                    <h3>Heartstopper Vol 1</h3>
                     <p>Alice Oseman</p>
                     <div class="stars">★★★★★</div>
                 </div>
                 <div class="card_ad">
-                    <img src="/imagens/acriada.jpeg" alt="Capa do livro A Criada">
+                    <img src="/imagens/livros/acriada.jpeg" alt="Capa do livro A Criada">
                     <h3>A Criada</h3>
                     <p>Freida McFadden</p>
                     <div class="stars">★★★★★</div>
                 </div>
                 <div class="card_ad">
-                    <img src="/imagens/powerless.jpeg" alt="Capa do livro Powerless">
+                    <img src="/imagens/livros/powerless.jpeg" alt="Capa do livro Powerless">
                     <h3>Powerless</h3>
                     <p>Lauren Roberts</p>
                     <div class="stars">★★★★★</div>
                 </div>
                 <div class="card_ad">
-                    <img src="/imagens/morte_no_sanatorio.jpeg" alt="Capa do livro Morte No Sanatório">
+                    <img src="/imagens/livros/morte_no_sanatorio.jpeg" alt="Capa do livro Morte No Sanatório">
                     <h3>Morte No Sanatório</h3>
                     <p> Ragnar Jónasson</p>
                     <div class="stars">★★★★★</div>
@@ -174,22 +188,20 @@
             </div>
             <div class="grid sb">
                 <h3>Sobre nós</h3>
-                <p>  </p>
-                <a href="#privacidade">Política de Privacidade</a>
-                <p>  </p>
-                <a href="#termos">Termos de Serviço</a>
-                <p>  </p>
+                <p></p>
+                <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
+                <p></p>
+                <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
+                <p></p>
             </div>
             <div class="grid ajuda">
                 <h3>Ajuda</h3>
-                <p>  </p>
-                <a href="#ajuda">Ajuda</a>
+                <p></p>
+                <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
             </div>
         </div>
-       
     </footer>
 </body>
 </html>
-
 
 
