@@ -537,3 +537,50 @@ h1 {
         margin-bottom: 10px;
         text-decoration: underline;
     }
+
+/*AJUDA*/
+.form-container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 70px;
+}
+
+    .form-container h1 {
+        text-align: center;
+    }
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .form-group button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #5c1a1a;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .form-group button:hover {
+            background-color: #a33636;
+        }

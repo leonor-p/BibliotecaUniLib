@@ -1,8 +1,51 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Ajuda";
 }
 
-<h1>Ajuda</h1>
-
-
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Biblioteca Virtual UNILIB</title>
+    <link rel="stylesheet" href="~/css/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Ajuda</h1>
+        <form method="post" action="/Home/EnviarMensagem">
+            <div class="form-group">
+                <label for="assunto">Assunto</label>
+                <input type="text" id="assunto" name="assunto" required>
+            </div>
+            <div class="form-group">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="10" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Enviar Mensagem</button>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <div class="grid footer">
+            <div class="card_logo">
+                <img src="/imagens/logo200.png" alt="logo UniLib">
+            </div>
+            <div class="grid sb">
+                <h3>Sobre nós</h3>
+                <p></p>
+                <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
+                <p></p>
+                <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
+                <p></p>
+            </div>
+            <div class="grid ajuda">
+                <h3>Ajuda</h3>
+                <p></p>
+                <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
