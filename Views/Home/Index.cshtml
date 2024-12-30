@@ -70,15 +70,18 @@
                     <h3>Freida Mcfadden</h3>
                 </button>
             </form>
-            <div class="card_a">
-                <img src="/imagens/George.jpg" alt="George R. R. Martin">
-                <h3>George R. R. Martin</h3>
-            </div>
-            <div class="card_a">
-                <img src="/imagens/Alice.jpg" alt="Alice Oseman">
-                <h3>Alice Oseman</h3>
-                
-            </div>
+            <form asp-controller="Home" asp-action="George_Martin">
+                <button class="card_a">
+                    <img src="/imagens/George.jpg" alt="George R. R. Martin">
+                    <h3>George R. R. Martin</h3>
+                </button>
+            </form>
+            <form asp-controller="Home" asp-action="Alice_oseman">
+                <button class="card_a">
+                    <img src="/imagens/Alice.jpg" alt="Alice Oseman">
+                    <h3>Alice Oseman</h3>
+                </button>
+            </form>
         </div>
     </section>
 

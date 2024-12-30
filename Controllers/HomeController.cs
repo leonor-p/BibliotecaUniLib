@@ -30,6 +30,14 @@ namespace Biblioteca_UniLib.Controllers
         {
             return View();
         }
+        public IActionResult George_Martin()
+        {
+            return View();
+        }
+        public IActionResult Alice_Oseman()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
