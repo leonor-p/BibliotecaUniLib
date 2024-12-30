@@ -284,6 +284,29 @@ h2 {
         margin-right: 15px; /* Espaçamento entre o ícone e o texto */
     }
 
+.categorias-header {
+    display: grid;
+    justify-content: space-between; /* Garante que o título e o botão fiquem nas extremidades */
+    align-items: center; /* Alinha verticalmente ao centro */
+    margin-bottom: 60px; /* Espaçamento entre a seção e o conteúdo abaixo */
+}
+
+    .categorias-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+.ver-mais {
+    margin-left: auto;
+    background-color: #5e0606;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
 
 /*GRID Adicionados Recentemente*/
 .carousel2 {
@@ -355,7 +378,29 @@ h2 {
         font-size: 24px; /* Mesmo tamanho do texto */
         margin-right: 15px; /* Espaçamento entre o ícone e o texto */
     }
+.Ad-header {
+    display: flex;
+    justify-content: space-between; /* Garante que o título e o botão fiquem nas extremidades */
+    align-items: center; /* Alinha verticalmente ao centro */
+    margin-bottom: 1rem;
+}
 
+    .Ad-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+.ver-mais {
+    margin-left: auto;
+    background-color: #5e0606;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
 
 /*Registe*/
 .register-container {
