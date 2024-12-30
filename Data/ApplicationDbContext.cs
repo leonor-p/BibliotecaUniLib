@@ -21,6 +21,7 @@ namespace Biblioteca_UniLib.Data
         public DbSet<ReviewLivro> ReviewsLivros { get; set; }
         public DbSet<Notificacao> Notificacoes { get; set; }
         public DbSet<HistoricoRequisicoes> HistoricoRequisicoes { get; set; }
+        public DbSet<Perfil> Perfis { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -6,7 +6,9 @@
 
 <div class="register-container">
     <div class="register-left">
-        <a href="#" class="back-button">&#8592;</a>
+        <div class="back-button">
+            <a asp-area="Home" asp-page="Index"><img src="~/imagens/seta.png" alt="Seta" /></a>
+        </div>
         <h2>REGISTO</h2>
         <div class="image-container">
             <img src="~/imagens/Register.jpg" alt="Pilha de Livros com óculos em cima">
@@ -14,7 +16,8 @@
     </div>
     <div class="register-right">
         <h3>Preenche todas as informações para criar uma conta na plataforma</h3>
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <form id="registerForm" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-group">
                 <label asp-for="Input.UserName">Username</label>
                 <input asp-for="Input.UserName" class="form-control" placeholder="Coloca o teu username" />
@@ -41,7 +44,7 @@
                 </div>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="btn-submit">REGISTA-TE</button>
+            <button id="registerSubmit" type="submit" class="btn-submit" >REGISTA-TE</button>
         </form>
         <p>Já tem uma conta? <a asp-area="Identity" asp-page="/Account/Login">Iniciar sessão</a></p>
     </div>
