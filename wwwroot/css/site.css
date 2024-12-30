@@ -68,13 +68,12 @@ footer {
     }
 
     .navbar .container .cardfotoinicial img{
-        height: 750px;
+        height: 100%;
         width: 100%;
         align-items: center;
-        border-radius: 10px;
         justify-content: center;
-        display: block;
-        object-fit: cover;
+        display:block;
+        object-fit:fill;
     }
 
 /*GRID CATEGORIAS*/
