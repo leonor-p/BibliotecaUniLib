@@ -26,6 +26,10 @@ namespace Biblioteca_UniLib.Controllers
         {
             return View();
         }
+        public IActionResult Freida_mcfadden()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
