@@ -29,20 +29,20 @@
                 <label asp-for="Input.Password">Password</label>
                 <div class="password-wrapper">
                     <input asp-for="Input.Password" type="password" class="form-control" placeholder="Insere a password" />
-                    <span class="password-eye">&#128065;</span>
+                    
                 </div>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.ConfirmPassword">Repete a password</label>
+                <label asp-for="Input.ConfirmPassword">Confirma a password</label>
                 <div class="password-wrapper">
-                    <input asp-for="Input.ConfirmPassword" type="password" class="form-control" placeholder="Repete a password" />
-                    <span class="password-eye">&#128065;</span>
+                    <input asp-for="Input.ConfirmPassword" type="password" class="form-control" placeholder="Confirma a password" />
+                    
                 </div>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
             <button id="registerSubmit" type="submit" class="btn-submit">REGISTA-TE</button>
         </form>
-        <p>Já tem uma conta? <a href="#">Iniciar sessão</a></p>
+        <p>Já tem uma conta? <a asp-area="Identity" asp-page="/Account/Login">Iniciar sessão</a></p>
     </div>
 </div>

@@ -70,9 +70,11 @@ a {
 .navbar {
     background-color: #5e0606;
     display: grid;
-    margin-top: 0 px; 
+    margin-top: 0 px;
 }
-
+    .navbar .navlink .nav-login {
+        justify-content: end;
+    }
     .navbar .nav-link {
         color: white; /* Links em branco */
     }
@@ -92,7 +94,7 @@ a {
 
     .navbar .navbar-brand {
         font-size: 20px;
-        font-weight: 100px;
+        font-weight: 100%;
     }
 
     .navbar .container .cardfotoinicial img{
@@ -103,6 +105,8 @@ a {
         display:block;
         object-fit:fill;
     }
+
+
 
 /*GRID CATEGORIAS*/
 .grid_categoria {
