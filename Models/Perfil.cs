@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
         
         public int Id { get; set; }
         public string Username { get; set; }
+        
     }
 
 
