@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 
 namespace Biblioteca_UniLib.Controllers
 {
@@ -20,9 +21,37 @@ namespace Biblioteca_UniLib.Controllers
         {
             return View();
         }
+        public IActionResult Livros_em_destaque()
+        {
+            return View();
+        }
+        public IActionResult Adicionados_recentemente()
+        {
+            return View();
+        }
+        public IActionResult Freida_mcfadden()
+        {
+            return View();
+        }
+        public IActionResult George_Martin()
+        {
+            return View();
+        }
+        public IActionResult Alice_Oseman()
+        {
+            return View();
+        }
 
         [AllowAnonymous]
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult Termos()
+        {
+            return View();
+        }
+        public IActionResult Ajuda()
         {
             return View();
         }
@@ -32,7 +61,7 @@ namespace Biblioteca_UniLib.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult OnlyAdmins()
         {
             return View();
@@ -52,8 +81,8 @@ namespace Biblioteca_UniLib.Controllers
         {
             return View();
         }
-        
+
     }
-     
+
 
 }
