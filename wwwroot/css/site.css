@@ -606,3 +606,30 @@ h1 {
         color: white;
         border: 1px solid #080808;
     }
+
+/* Estilos específicos para Detalhes do Livro */
+.container_ld {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .container_ld h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    .container_ld p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 10px 0;
+        color: #555;
+    }
+
+        .container_ld p strong {
+            color: #000;
+        }

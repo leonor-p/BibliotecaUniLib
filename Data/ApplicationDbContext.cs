@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Biblioteca_UniLib.Models;
 
 namespace Biblioteca_UniLib.Data
 {
