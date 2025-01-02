@@ -113,6 +113,42 @@ namespace Biblioteca_UniLib.Controllers
             return View();
         }
 
+        //imagens para fundo das categorias
+        public IActionResult Fantasia()
+        {
+            ViewData["BodyClass"] = "cat-fantasia";
+            return View();
+        }
+
+        public IActionResult Romance()
+        {
+            ViewData["BodyClass"] = "cat-romance";
+            return View();
+        }
+
+        public IActionResult Ficcao()
+        {
+            ViewData["BodyClass"] = "cat-ficcao";
+            return View();
+        }
+
+        public IActionResult Arte()
+        {
+            ViewData["BodyClass"] = "cat-arte";
+            return View();
+        }
+
+        public IActionResult Financas()
+        {
+            ViewData["BodyClass"] = "cat-financas";
+            return View();
+        }
+
+        public IActionResult Comedia()
+        {
+            ViewData["BodyClass"] = "cat-comedia";
+            return View();
+        }
     }
 
 

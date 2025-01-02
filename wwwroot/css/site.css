@@ -72,7 +72,7 @@ a {
 .navbar {
     background-color: #5e0606;
     display: grid;
-    margin-top: 0 px;
+    margin-top: 0px;
 }
     .navbar .navlink .nav-login {
         justify-content: end;
@@ -95,8 +95,9 @@ a {
     }
 
     .navbar .navbar-brand {
+        color:white; /* Cor do texto */
         font-size: 20px;
-        font-weight: 100%;
+        font-weight: bold;
     }
 
     .navbar .container .cardfotoinicial img{
@@ -469,9 +470,20 @@ h1 {
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 10px;
+    background-color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+}
+
+/* BOOkCARD BRANCO*/
+.book-card2 {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
     background-color: #fff;
     text-align: center;
 }
+
+
 
     .book-card img {
         max-width: 100%;
@@ -590,3 +602,150 @@ h1 {
         .form-group button:hover {
             background-color: #a33636;
         }
+
+/*images de fundo das categorias*/
+
+.cat-fantasia {
+    background-image: url(/imagens/hogwarts-in-moonlight.jpg);
+    background-size: cover; /* Faz com que a imagem cubra toda a área */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-attachment: fixed; /* Mantém a imagem fixa durante a rolagem */
+    background-position: center; /* Centraliza a imagem */
+    min-height: 100vh; /* Garante que a div cubra pelo menos 100% da altura da viewport */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+    .cat-fantasia h1 {
+        color: white;
+        font-size: 3em; /* Ajuste o tamanho conforme necessário */
+    }
+
+    .cat-fantasia p {
+        color: white;
+        font-size: 1.5em; /* Ajuste o tamanho conforme necessário */
+    }
+
+
+.cat-arte {
+    background-image: url(/imagens/cat-arte.jpg);
+    background-size: cover; /* Faz com que a imagem cubra toda a área */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-attachment: fixed; /* Mantém a imagem fixa durante a rolagem */
+    background-position: center; /* Centraliza a imagem */
+    min-height: 100vh; /* Garante que a div cubra pelo menos 100% da altura da viewport */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+    .cat-arte h1 {
+        color: white;
+        font-size: 3em; /* Ajuste o tamanho conforme necessário */
+    }
+
+    .cat-arte p {
+        color: white;
+        font-size: 1.5em; /* Ajuste o tamanho conforme necessário */
+    }
+
+.cat-comedia {
+    background-image: url(/imagens/cat-comedia.jpg);
+    background-size: cover; /* Faz com que a imagem cubra toda a área */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-attachment: fixed; /* Mantém a imagem fixa durante a rolagem */
+    background-position: center; /* Centraliza a imagem */
+    min-height: 100vh; /* Garante que a div cubra pelo menos 100% da altura da viewport */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+    .cat-comedia h1 {
+        color: white;
+        font-size: 3em; /* Ajuste o tamanho conforme necessário */
+    }
+
+    .cat-comedia p {
+        color: white;
+        font-size: 1.5em; /* Ajuste o tamanho conforme necessário */
+    }
+
+.cat-ficcao {
+    background-image: url(/imagens/cat-ficcao.jpg);
+    background-size: cover; /* Faz com que a imagem cubra toda a área */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-attachment: fixed; /* Mantém a imagem fixa durante a rolagem */
+    background-position: center; /* Centraliza a imagem */
+    min-height: 100vh; /* Garante que a div cubra pelo menos 100% da altura da viewport */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+    .cat-ficcao h1 {
+        color: white;
+        font-size: 3em; /* Ajuste o tamanho conforme necessário */
+    }
+
+    .cat-ficcao p {
+        color: white;
+        font-size: 1.5em; /* Ajuste o tamanho conforme necessário */
+    }
+
+.cat-financas {
+    background-image: url(/imagens/cat-financas.jpg);
+    background-size: cover; /* Faz com que a imagem cubra toda a área */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-attachment: fixed; /* Mantém a imagem fixa durante a rolagem */
+    background-position: center; /* Centraliza a imagem */
+    min-height: 100vh; /* Garante que a div cubra pelo menos 100% da altura da viewport */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+    .cat-financas h1 {
+        color: white;
+        font-size: 3em; /* Ajuste o tamanho conforme necessário */
+    }
+
+    .cat-financas p {
+        color: white;
+        font-size: 1.5em; /* Ajuste o tamanho conforme necessário */
+    }
+
+.cat-romance {
+    background-image: url(/imagens/cat-romance.jpg);
+    background-size: cover; /* Faz com que a imagem cubra toda a área */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-attachment: fixed; /* Mantém a imagem fixa durante a rolagem */
+    background-position: center; /* Centraliza a imagem */
+    min-height: 100vh; /* Garante que a div cubra pelo menos 100% da altura da viewport */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+    .cat-romance h1 {
+        color: white;
+        font-size: 3em; /* Ajuste o tamanho conforme necessário */
+    }
+
+    .cat-romance p {
+        color: white;
+        font-size: 1.5em; /* Ajuste o tamanho conforme necessário */
+    }
