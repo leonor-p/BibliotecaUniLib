@@ -1,0 +1,20 @@
+﻿
+@model Biblioteca_UniLib.Models.Livro
+
+@{
+    ViewData["Title"] = "Detalhes do Livro";
+}
+
+<h1>@Model.Titulo</h1>
+
+<div>
+    <h4>Autor: @Model.Autor</h4>
+    <h4>Gênero: @Model.Categoria</h4>
+    <!-- Usando ToString("yyyy") para mostrar apenas o ano, garantindo que não seja nulo -->
+    Data de Publicação: @(Model.AnoPublicacao?.ToString("yyyy") ?? "N/A")
+    <h4>ISBN: @Model.ISBN</h4>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Livros">Voltar para a lista</a>
+</div>
