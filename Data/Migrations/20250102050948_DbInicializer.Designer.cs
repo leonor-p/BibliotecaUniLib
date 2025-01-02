@@ -4,6 +4,7 @@ using Biblioteca_UniLib.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,13 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca_UniLib.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250102050948_DbInicializer")]
+    partial class DbInicializer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.0")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -239,6 +242,54 @@ namespace Biblioteca_UniLib.Data.Migrations
                     b.HasKey("LeitorID");
 
                     b.ToTable("Leitores");
+                });
+
+            modelBuilder.Entity("Livro", b =>
+                {
+                    b.Property<int>("LivroID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LivroID"));
+
+                    b.Property<int?>("AnoPublicacao")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Autor")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Categoria")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("CopiasDisponiveis")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Resumo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tema")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("LivroID");
+
+                    b.ToTable("Livros");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -558,7 +609,7 @@ namespace Biblioteca_UniLib.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Biblioteca_UniLib.Models.Livro", "Livro")
+                    b.HasOne("Livro", "Livro")
                         .WithMany()
                         .HasForeignKey("LivroID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -577,7 +628,7 @@ namespace Biblioteca_UniLib.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Biblioteca_UniLib.Models.Livro", "Livro")
+                    b.HasOne("Livro", "Livro")
                         .WithMany()
                         .HasForeignKey("LivroID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -658,7 +709,7 @@ namespace Biblioteca_UniLib.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Biblioteca_UniLib.Models.Livro", "Livro")
+                    b.HasOne("Livro", "Livro")
                         .WithMany()
                         .HasForeignKey("LivroID")
                         .OnDelete(DeleteBehavior.Cascade)

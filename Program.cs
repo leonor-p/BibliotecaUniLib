@@ -17,12 +17,18 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddTransient<DbInitializer>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     SeedRoles.Seed(roleManager);
+
+    var services = scope.ServiceProvider;
+    var initializer = services.GetRequiredService<DbInitializer>();
+    initializer.Run();
 }
 // Apply migrations automatically and seed the database with initial data
 using (var scope = app.Services.CreateScope())
