@@ -11,7 +11,6 @@ namespace Biblioteca_UniLib.Data
         {
         }
 
-
         // Defina DbSets para suas entidades aqui
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Biblioteca> Bibliotecas { get; set; }
@@ -23,7 +22,9 @@ namespace Biblioteca_UniLib.Data
         public DbSet<Notificacao> Notificacoes { get; set; }
         public DbSet<HistoricoRequisicoes> HistoricoRequisicoes { get; set; }
         public DbSet<Perfil> Perfis { get; set; }
-        
+        public DbSet<Biblioteca_UniLib.Models.Category> Category { get; set; } = default!;
+        public DbSet<Biblioteca_UniLib.Models.Course> courses { get; set; } 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -81,9 +82,7 @@ namespace Biblioteca_UniLib.Data
                 .WithMany()
                 .HasForeignKey(h => h.LivroID)
                 .OnDelete(DeleteBehavior.Cascade);
-   
-           
         }
-        public DbSet<Biblioteca_UniLib.Models.Books> Books { get; set; } = default!;
+        /*public DbSet<Biblioteca_UniLib.Models.Category> Category { get; set; } = default!;*/
     }
 }

@@ -10,22 +10,23 @@ using Biblioteca_UniLib.Models;
 
 namespace Biblioteca_UniLib.Controllers
 {
-    public class BooksController : Controller
+    public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public BooksController(ApplicationDbContext context)
+        public CoursesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Books
+        // GET: Courses
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Books.ToListAsync());
+            var applicationDbContext = _context.courses.Include(c => c.Category);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Books/Details/5
+        // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace Biblioteca_UniLib.Controllers
                 return NotFound();
             }
 
-            var books = await _context.Books
+            var course = await _context.courses
+                .Include(c => c.Category)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (books == null)
+            if (course == null)
             {
                 return NotFound();
             }
 
-            return View(books);
+            return View(course);
         }
 
-        // GET: Books/Create
+        // GET: Courses/Create
         public IActionResult Create()
         {
+            ViewData["CategoryID"] = new SelectList(_context.Category, "ID", "Description");
             return View();
         }
 
-        // POST: Books/Create
+        // POST: Courses/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,Description,Author,State")] Books books)
+        public async Task<IActionResult> Create([Bind("ID,Name,Description,Cost,State,CategoryID")] Course course)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(books);
+                _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(books);
+            ViewData["CategoryID"] = new SelectList(_context.Category, "ID", "Description", course.CategoryID);
+            return View(course);
         }
 
-        // GET: Books/Edit/5
+        // GET: Courses/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace Biblioteca_UniLib.Controllers
                 return NotFound();
             }
 
-            var books = await _context.Books.FindAsync(id);
-            if (books == null)
+            var course = await _context.courses.FindAsync(id);
+            if (course == null)
             {
                 return NotFound();
             }
-            return View(books);
+            ViewData["CategoryID"] = new SelectList(_context.Category, "ID", "Description", course.CategoryID);
+            return View(course);
         }
 
-        // POST: Books/Edit/5
+        // POST: Courses/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Description,Author,State")] Books books)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Description,Cost,State,CategoryID")] Course course)
         {
-            if (id != books.ID)
+            if (id != course.ID)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace Biblioteca_UniLib.Controllers
             {
                 try
                 {
-                    _context.Update(books);
+                    _context.Update(course);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BooksExists(books.ID))
+                    if (!CourseExists(course.ID))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace Biblioteca_UniLib.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(books);
+            ViewData["CategoryID"] = new SelectList(_context.Category, "ID", "Description", course.CategoryID);
+            return View(course);
         }
 
-        // GET: Books/Delete/5
+        // GET: Courses/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,34 +130,35 @@ namespace Biblioteca_UniLib.Controllers
                 return NotFound();
             }
 
-            var books = await _context.Books
+            var course = await _context.courses
+                .Include(c => c.Category)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (books == null)
+            if (course == null)
             {
                 return NotFound();
             }
 
-            return View(books);
+            return View(course);
         }
 
-        // POST: Books/Delete/5
+        // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var books = await _context.Books.FindAsync(id);
-            if (books != null)
+            var course = await _context.courses.FindAsync(id);
+            if (course != null)
             {
-                _context.Books.Remove(books);
+                _context.courses.Remove(course);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BooksExists(int id)
+        private bool CourseExists(int id)
         {
-            return _context.Books.Any(e => e.ID == id);
+            return _context.courses.Any(e => e.ID == id);
         }
     }
 }

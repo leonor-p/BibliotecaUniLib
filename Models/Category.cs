@@ -2,7 +2,7 @@
 
 namespace Biblioteca_UniLib.Models
 {
-    public class Books
+    public class Category
     {
         [Key]
         public int ID { get; set; }
@@ -17,5 +17,7 @@ namespace Biblioteca_UniLib.Models
         public string? Author { get; set; }
 
         public bool State { get; set; } = true; //default value
+
+        public ICollection<Course>? courses { get; set; }
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca_UniLib.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250102043623_Firststep")]
-    partial class Firststep
+    [Migration("20250102211851_FixPerfis")]
+    partial class FixPerfis
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,7 +85,7 @@ namespace Biblioteca_UniLib.Data.Migrations
                     b.ToTable("Bibliotecas");
                 });
 
-            modelBuilder.Entity("Biblioteca_UniLib.Models.Books", b =>
+            modelBuilder.Entity("Biblioteca_UniLib.Models.Category", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -111,7 +111,7 @@ namespace Biblioteca_UniLib.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Books");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("Bibliotecario", b =>
@@ -535,7 +535,6 @@ namespace Biblioteca_UniLib.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

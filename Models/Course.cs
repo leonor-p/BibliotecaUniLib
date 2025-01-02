@@ -1,0 +1,26 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Biblioteca_UniLib.Models
+{
+    public class Course
+    {
+        public int ID { get; set; }
+
+        [Required(ErrorMessage = "Required field")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "{0} length must be between {2} and {1}")]
+        public string? Name { get; set; }
+
+        [Required(ErrorMessage = "Required field")]
+        [StringLength(256, ErrorMessage = "length can not exceed {1} characters")]
+        public string? Description { get; set; }
+
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "money")]
+        public Decimal Cost { get; set; }
+        public Boolean State { get; set; } 
+        public int CategoryID { get; set; }
+        public Category? Category { get; set; }
+
+    }
+}

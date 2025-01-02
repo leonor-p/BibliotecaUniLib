@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca_UniLib.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250102050948_DbInicializer")]
-    partial class DbInicializer
+    [Migration("20250102211504_FixAspNetRolesConflict")]
+    partial class FixAspNetRolesConflict
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,7 +85,7 @@ namespace Biblioteca_UniLib.Data.Migrations
                     b.ToTable("Bibliotecas");
                 });
 
-            modelBuilder.Entity("Biblioteca_UniLib.Models.Books", b =>
+            modelBuilder.Entity("Biblioteca_UniLib.Models.Category", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -111,7 +111,7 @@ namespace Biblioteca_UniLib.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Books");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("Bibliotecario", b =>
@@ -534,15 +534,8 @@ namespace Biblioteca_UniLib.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
                     b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
