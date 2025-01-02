@@ -81,6 +81,18 @@ namespace Biblioteca_UniLib.Data
                 .WithMany()
                 .HasForeignKey(h => h.LivroID)
                 .OnDelete(DeleteBehavior.Cascade);
+   
+            // Configuração personalizada para a entidade Perfil (se necessário)
+            modelBuilder.Entity<Perfil>(entity =>
+            {
+                entity.Property(p => p.Username)
+                      .IsRequired() // Torna a coluna obrigatória no banco de dados
+                      .HasMaxLength(50); // Define o tamanho máximo da string
+
+                entity.Property(p => p.Role)
+                      .IsRequired()
+                      .HasMaxLength(20);
+            });
         }
         public DbSet<Biblioteca_UniLib.Models.Books> Books { get; set; } = default!;
     }
