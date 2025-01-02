@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using Biblioteca_UniLib.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +18,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
@@ -29,13 +31,16 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-
+        private readonly ApplicationDbContext _dbcontext;
+        private readonly RoleManager<IdentityRole> _roleManager;
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext dbContext,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -43,6 +48,8 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _dbcontext = dbContext;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -81,7 +88,8 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
-
+            [Required]
+            public string Role {  get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -105,6 +113,7 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            ViewData["roles"] = _roleManager.Roles.ToList();
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -124,6 +133,11 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    await _userManager.AddToRoleAsync(user, Input.Role);
+                    Perfil newPerfil = new Perfil { Username = user.UserName, };
+
+                    _dbcontext.Perfis.Add(newPerfil);
+                    _dbcontext.SaveChanges();
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -153,6 +167,7 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
+            ViewData["roles"] = _roleManager.Roles.ToList();
             return Page();
         }
 

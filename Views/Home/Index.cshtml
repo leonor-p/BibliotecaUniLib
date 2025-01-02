@@ -114,7 +114,7 @@
 
     <!-- Livros em Destaque -->
     <section id="destaques" class="destaques">
-        <div class="categorias-header">
+        <div class="destaque-header">
             <h2>
                 <img src="/imagens/livrolab.png" alt="Símbolo de Livros em Destaque" class="icon-categoria">
                 Livros em Destaque
@@ -122,13 +122,13 @@
             <form asp-controller="Home" asp-action="Livros_em_destaque">
                 <button type="submit" class="ver-mais">Ver mais</button>
             </form>
-            <div />
+        </div>
         <div class="carousel">
             <button class="carousel-btn prev">&#8249;</button>
             <div class="carousel-track" data-current-slide="0">
                 <div class="card_ld">
-                    <img src="/imagens/livros/heartstopper.jpeg" alt="Capa do livro Heartstopper">
-                    <h3>Heartstopper</h3>
+                    <img src="/imagens/livros/heartstoppervol1.jpeg" alt="Capa do livro Heartstopper">
+                    <h3>Heartstopper Vol1</h3>
                     <p>Alice Oseman</p>
                     <div class="stars">★★★★★</div>
                 </div>
@@ -155,7 +155,6 @@
         </div>
     </section>
 
-
     <!-- Adicionados Recentemente -->
     <section id="adicionados" class="recentes">
         <div class="Ad-header">
@@ -171,8 +170,8 @@
             <button class="carousel2-btn prev">&#8249;</button>
             <div class="carousel2-track" data-current-slide="0">
                 <div class="card_ad">
-                    <img src="/imagens/livros/heartstopper.jpeg" alt="Capa do livro Heartstopper">
-                    <h3>Heartstopper</h3>
+                    <img src="/imagens/livros/heartstoppervol1.jpeg" alt="Capa do livro Heartstopper Vol 1">
+                    <h3>Heartstopper Vol 1</h3>
                     <p>Alice Oseman</p>
                     <div class="stars">★★★★★</div>
                 </div>
@@ -215,22 +214,20 @@
             </div>
             <div class="grid sb">
                 <h3>Sobre nós</h3>
-                <p>  </p>
-                <a href="#privacidade">Política de Privacidade</a>
-                <p>  </p>
-                <a href="#termos">Termos de Serviço</a>
-                <p>  </p>
+                <p></p>
+                <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
+                <p></p>
+                <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
+                <p></p>
             </div>
             <div class="grid ajuda">
                 <h3>Ajuda</h3>
-                <p>  </p>
-                <a href="#ajuda">Ajuda</a>
+                <p></p>
+                <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
             </div>
         </div>
-       
     </footer>
 </body>
 </html>
-
 
 

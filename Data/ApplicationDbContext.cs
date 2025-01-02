@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Biblioteca_UniLib.Models;
 
 namespace Biblioteca_UniLib.Data
 {
@@ -22,7 +23,7 @@ namespace Biblioteca_UniLib.Data
         public DbSet<Notificacao> Notificacoes { get; set; }
         public DbSet<HistoricoRequisicoes> HistoricoRequisicoes { get; set; }
         public DbSet<Perfil> Perfis { get; set; }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -80,6 +81,9 @@ namespace Biblioteca_UniLib.Data
                 .WithMany()
                 .HasForeignKey(h => h.LivroID)
                 .OnDelete(DeleteBehavior.Cascade);
+   
+           
         }
+        public DbSet<Biblioteca_UniLib.Models.Books> Books { get; set; } = default!;
     }
 }
