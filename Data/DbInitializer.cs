@@ -22,6 +22,10 @@ namespace Biblioteca_UniLib.Data
             {
                 return;   // DB has been seeded
             }
+            if (_context.courses.Any())
+            {
+                return;   // DB has been seeded
+            }
 
             var categories = new Category[]
             {
@@ -47,14 +51,15 @@ namespace Biblioteca_UniLib.Data
                     Description="Description2",
                     Cost=50,
                     State=true,
-                    CategoryID=categories.Single( c => c.Name == "Category2").ID
+                    Category=categories.Single( c => c.Name == "Category2")
                 },
                 new Course{
                     Name="Course3",
                     Description="Description3",
                     Cost=50,
                     State=true,
-                    CategoryID=categories.Single( c => c.Name == "Category3").ID
+                    Category=categories.Single( c => c.Name == "Category3")
+
                 }
             };
             _context.courses.AddRange(courses);
