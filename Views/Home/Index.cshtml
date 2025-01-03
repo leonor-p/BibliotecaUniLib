@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Biblioteca_UniLib.Models.Course>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -126,30 +127,38 @@
         <div class="carousel">
             <button class="carousel-btn prev">&#8249;</button>
             <div class="carousel-track" data-current-slide="0">
-                <div class="card_ld">
-                    <img src="/imagens/livros/heartstoppervol1.jpeg" alt="Capa do livro Heartstopper">
-                    <h3>Heartstopper Vol1</h3>
-                    <p>Alice Oseman</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ld">
-                    <img src="/imagens/livros/Princepezinhojpeg.jpeg" alt="Capa do livro O Principezinho">
-                    <h3>O Principezinho</h3>
-                    <p>Antoine de Saint-Exupéry</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ld">
-                    <img src="/imagens/livros/GoT.jpeg" alt="Capa do livro A Guerra dos Tronos">
-                    <h3>A Guerra dos Tronos</h3>
-                    <p>George R. R. Martin</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ld">
-                    <img src="/imagens/livros/morte_no_sanatorio.jpeg" alt="Capa do livro Morte No Sanatório">
-                    <h3>Morte No Sanatório</h3>
-                    <p> Ragnar Jónasson</p>
-                    <div class="stars">★★★★★</div>
-                </div>
+            @if (Model == null || !Model.Any())
+             {
+                <p>No courses available.</p>
+             }
+             else
+             {
+                @foreach (var course in Model)
+                {
+                        <div class="card_ld">
+                            <div class="card_l_content">
+                                            @if (course == null)
+                                            {
+                                    <p>Course is null</p>
+                                            }
+                                            else
+                                            {
+                                                @if (!string.IsNullOrEmpty(course.CoverPhoto))
+                                                {
+                                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" />
+                                                    
+                                                }
+                                                else
+                                                {
+                                                    <span>Sem imagem disponível</span>
+                                                }
+                                    <h3>@course.Name</h3>
+                                    <p>@course.Author</p>
+                                            }
+                            </div>
+                        </div>
+                }
+             }
             </div>
             <button class="carousel-btn next">&#8250;</button>
         </div>
