@@ -10,7 +10,7 @@ public class Administrador
 
     [Required]
     [MaxLength(100)]
-    public string Nome { get; set; }
+    public string? Nome { get; set; }
 
     [Required]
     [MaxLength(100)]
