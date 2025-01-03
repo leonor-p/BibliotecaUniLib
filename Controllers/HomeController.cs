@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
+using System.Data;
 
 namespace Biblioteca_UniLib.Controllers
 {
@@ -80,6 +81,17 @@ namespace Biblioteca_UniLib.Controllers
         public IActionResult OnlyAdminsAndBiblio()
         {
             return View();
+        }
+
+        public string TestAjaxForm(string text)
+        {
+            return "<br>Receive " + text + " at <strong> " + DateTime.Now + "</strong>";
+        }
+
+        public string TestAjaxLink()
+        {
+            System.Threading.Thread.Sleep(5000); //simulate time-consuming processing
+            return "executed at <strong> " + DateTime.Now + "</strong>";
         }
 
     }

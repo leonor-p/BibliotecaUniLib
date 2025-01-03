@@ -1,6 +1,31 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+Date: @DateTime.Now
+
+<form asp-action="TestAjaxForm"
+    data-ajax="true" data-ajax-method="post"
+    data-ajax-moode="replace" data-ajax-update="#box">
+
+    <label>Text to Send to server:</label>
+    <input type="text" name="Text" />
+    <input type="submit" value="Send" />
+
+</form>
+
+<div id="box">Original text</div>
+<br />
+
+<hr />
+<a asp-action="TestAjaxLink"
+    data-ajax="true" data-ajax-method="get"
+    data-ajax-loading="#wait">Click me</a>
+
+<div id="target"></div>
+<div id="wait" style="display:none">
+    <img src="~/imagens/loading.gif" />
+</div>
+Date:@DateTime.Now
 
 <!DOCTYPE html>
 <html lang="pt">
