@@ -42,21 +42,21 @@ namespace Biblioteca_UniLib.Data
                 new Course{
                     Name="Course1",
                     Description="Description1",
-                    Cost=50,
+                    Quantidade=50,
                     State=true,
                     CategoryID=categories.Single( c => c.Name == "Category1").ID
                 },
                 new Course{
                     Name="Course2",
                     Description="Description2",
-                    Cost=50,
+                    Quantidade=50,
                     State=true,
                     Category=categories.Single( c => c.Name == "Category2")
                 },
                 new Course{
                     Name="Course3",
                     Description="Description3",
-                    Cost=50,
+                    Quantidade=50,
                     State=true,
                     Category=categories.Single( c => c.Name == "Category3")
 

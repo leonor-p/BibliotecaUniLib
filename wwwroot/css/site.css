@@ -590,3 +590,45 @@ h1 {
         .form-group button:hover {
             background-color: #a33636;
         }
+ /*BOOKS DETALHES*/
+.course-details {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    color: #800000;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.course-content {
+    display: flex;
+    gap: 20px;
+}
+
+.cover-photo img {
+    max-width: 200px;
+    border-radius: 8px;
+}
+
+.cover-photo .no-cover {
+    width: 200px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+    border-radius: 8px;
+}
+
+.info p {
+    margin: 8px 0;
+    font-size: 1.1em;
+}

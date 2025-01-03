@@ -14,12 +14,11 @@ namespace Biblioteca_UniLib.Models
 
         [Required(ErrorMessage = "Required field")]
         [StringLength(256, ErrorMessage = "length can not exceed {1} characters")]
-        public string? Description { get; set; }
-
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "money")]
-        public Decimal Cost { get; set; }
-        public Boolean State { get; set; } 
+        public string Description { get; set; } = string.Empty;
+        public int Quantidade { get; set; }
+        public Boolean State { get; set; }
+        public string? CoverPhoto { get; set; }
+        public string? Document { get; set; }
         public int CategoryID { get; set; }
         public Category? Category { get; set; }
 

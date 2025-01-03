@@ -10,11 +10,11 @@ public class Biblioteca
 
     [Required]
     [MaxLength(100)]
-    public string Nome { get; set; }
+    public string Nome { get; set; } = string.Empty;
 
     [MaxLength(255)]
-    public string Localizacao { get; set; }
+    public string Localizacao { get; set; } = string.Empty;
 
     [MaxLength(20)]
-    public string Telefone { get; set; }
+    public string Telefone { get; set; } = string.Empty;
 }

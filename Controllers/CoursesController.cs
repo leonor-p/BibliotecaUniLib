@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Biblioteca_UniLib.Data;
 using Biblioteca_UniLib.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Biblioteca_UniLib.Controllers
 {
     public class CoursesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context; 
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public CoursesController(ApplicationDbContext context)
+        public CoursesController(ApplicationDbContext context, IWebHostEnvironment enviroment)
         {
             _context = context;
+            _webHostEnvironment=enviroment;
         }
 
         // GET: Courses
@@ -55,19 +58,76 @@ namespace Biblioteca_UniLib.Controllers
         // POST: Courses/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Courses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,Description,Cost,State,CategoryID")] Course course)
+        public async Task<IActionResult> Create([Bind("Name,Description,CoverPhoto,Document,CategoryID")] BookViewModel course)
         {
+            // Validate the extension of the files
+            var photoExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp" };
+            var documentExtensions = new[] { ".pdf", ".doc", ".docx", ".epub" };
+
+            var extension = Path.GetExtension(course.CoverPhoto.FileName).ToLower();
+
+            if (!photoExtensions.Contains(extension))
+            {
+                ModelState.AddModelError("CoverPhoto", "Please, submit a valid image (jpg, jpeg, png, gif, bmp).");
+            }
+
+            extension = Path.GetExtension(course.Document.FileName).ToLower();
+            if (!documentExtensions.Contains(extension))
+            {
+                ModelState.AddModelError("Document", "Please, submit a valid document (pdf, doc, docx, epub).");
+            }
+
             if (ModelState.IsValid)
             {
-                _context.Add(course);
+                var newCourse = new Course
+                {
+                    Name = course.Name,
+                    Description = course.Description, // Adicionando a propriedade Description
+                    CoverPhoto = Path.GetFileName(course.CoverPhoto.FileName), // Salvar nome do arquivo
+                    Document = Path.GetFileName(course.Document.FileName), // Salvar nome do arquivo
+                    CategoryID = course.CategoryID // Certifique-se de que CategoryID está configurado
+                };
+
+                // Certifique-se de que os diretórios existem
+                string coverDirectory = Path.Combine(_webHostEnvironment.WebRootPath, "Cover");
+                if (!Directory.Exists(coverDirectory))
+                {
+                    Directory.CreateDirectory(coverDirectory);
+                }
+
+                string documentsDirectory = Path.Combine(_webHostEnvironment.WebRootPath, "Documents");
+                if (!Directory.Exists(documentsDirectory))
+                {
+                    Directory.CreateDirectory(documentsDirectory);
+                }
+
+                // Salvar o arquivo CoverPhoto na pasta Cover
+                string coverFullPath = Path.Combine(coverDirectory, newCourse.CoverPhoto);
+                using (var stream = new FileStream(coverFullPath, FileMode.Create))
+                {
+                    await course.CoverPhoto.CopyToAsync(stream);
+                }
+
+                // Salvar o arquivo Document na pasta Documents
+                string docFullPath = Path.Combine(documentsDirectory, newCourse.Document);
+                using (var stream = new FileStream(docFullPath, FileMode.Create))
+                {
+                    await course.Document.CopyToAsync(stream);
+                }
+
+                _context.Add(newCourse);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryID"] = new SelectList(_context.Category, "ID", "Description", course.CategoryID);
             return View(course);
         }
+
+
+
+
 
         // GET: Courses/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -91,7 +151,7 @@ namespace Biblioteca_UniLib.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Description,Cost,State,CategoryID")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Description,Quantidade,State,CategoryID")] Course course)
         {
             if (id != course.ID)
             {
