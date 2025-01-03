@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Biblioteca_UniLib.Models;
 
 namespace Biblioteca_UniLib.Data
 {
@@ -9,7 +10,6 @@ namespace Biblioteca_UniLib.Data
             : base(options)
         {
         }
-
 
         // Defina DbSets para suas entidades aqui
         public DbSet<Administrador> Administradores { get; set; }
@@ -22,6 +22,8 @@ namespace Biblioteca_UniLib.Data
         public DbSet<Notificacao> Notificacoes { get; set; }
         public DbSet<HistoricoRequisicoes> HistoricoRequisicoes { get; set; }
         public DbSet<Perfil> Perfis { get; set; }
+        public DbSet<Biblioteca_UniLib.Models.Category> Category { get; set; } = default!;
+        public DbSet<Biblioteca_UniLib.Models.Course> courses { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -81,5 +83,6 @@ namespace Biblioteca_UniLib.Data
                 .HasForeignKey(h => h.LivroID)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+        /*public DbSet<Biblioteca_UniLib.Models.Category> Category { get; set; } = default!;*/
     }
 }

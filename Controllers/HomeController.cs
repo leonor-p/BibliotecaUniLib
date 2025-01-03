@@ -57,6 +57,37 @@ namespace Biblioteca_UniLib.Controllers
             return View();
         }
 
+        //Páginas das categorias
+        public IActionResult cat_fantasia()
+        {
+            return View("Categorias/cat_fantasia");
+        }
+
+        public IActionResult cat_romance()
+        {
+            return View("Categorias/cat_romance");
+        }
+
+        public IActionResult cat_ficcao()
+        {
+            return View("Categorias/cat_ficcao");
+        }
+
+        public IActionResult cat_arte()
+        {
+            return View("Categorias/cat_arte");
+        }
+
+        public IActionResult cat_financas()
+        {
+            return View("Categorias/cat_financas");
+        }
+
+        public IActionResult cat_comedia()
+        {
+            return View("Categorias/cat_comedia");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
     public class Perfil
     {
-        
+    
         public int Id { get; set; }
-        public string Username { get; set; }
+        public string? Username { get; set; }
         
     }
 
