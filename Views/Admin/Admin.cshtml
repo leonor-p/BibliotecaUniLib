@@ -2,21 +2,21 @@
 @using Microsoft.AspNetCore.Identity
 @using System.Collections.Generic
 
-<h2 class="text-center mb-4">Gerir Contas</h2>
+<h2 class="text-center mb-4">Gestão de Utilizadores</h2>
 
 <div class="d-flex justify-content-between mb-3">
-    <a asp-controller="Admin" asp-action="CreateUser" class="btn btn-success">Criar Novo Utilizador</a>
+    <a asp-action="CreateUser" class="btn btn-create">Criar Novo Utilizador</a>
 </div>
 
 <div class="card mb-5">
-    <div class="card-header bg-primary text-white">
+    <div class="card-header bg-main text-white">
         <h4 class="m-0">Contas Ativas</h4>
     </div>
     <div class="card-body">
         @foreach (var role in ViewData["ActiveRoles"] as Dictionary<string, List<IdentityUser>>)
         {
-            <h5 class="mt-4">
-                @if (role.Key == "Librarian")
+            <h5 class="role-title mt-4">
+                @if (role.Key == "Bibliotecario")
                 {
                     @:Bibliotecário
                 }
@@ -24,7 +24,7 @@
                 {
                     @:Administrador
                 }
-                else if (role.Key == "Reader")
+                else if (role.Key == "Leitor")
                 {
                     @:Leitor
                 }
@@ -58,27 +58,27 @@
                                 <td class="text-end">
                                     @if (!isAdmin)
                                     {
-                                        <a asp-action="EditUser" asp-route-id="@user.Id" class="btn btn-primary btn-sm mr-2">Editar</a>
+                                        <a asp-action="EditUser" asp-route-id="@user.Id" class="btn btn-edit">Editar</a>
 
                                         <form asp-action="ToggleAccountBlock" asp-route-id="@user.Id" method="post" style="display:inline;" onsubmit="return confirm('Tem a certeza que deseja alternar o estado de bloqueio?');">
-                                            <button type="submit" class="btn btn-@(isBlocked ? "success" : "warning") btn-sm mr-2">
+                                            <button type="submit" class="btn btn-block">
                                                 @(isBlocked ? "Desbloquear" : "Bloquear")
                                             </button>
                                         </form>
 
                                         <form asp-action="DeleteUser" asp-route-id="@user.Id" method="post" style="display:inline;" onsubmit="return confirm('Tem a certeza que deseja eliminar este utilizador?');">
-                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                            <button type="submit" class="btn btn-delete">Eliminar</button>
                                         </form>
                                     }
                                     else
                                     {
-                                        <button class="btn btn-primary btn-sm mr-2" disabled>Editar</button>
+                                        <button class="btn btn-edit" disabled>Editar</button>
 
-                                        <button class="btn btn-@(isBlocked ? "success" : "warning") btn-sm mr-2" disabled>
+                                        <button class="btn btn-block" disabled>
                                             @(isBlocked ? "Desbloquear" : "Bloquear")
                                         </button>
 
-                                        <button class="btn btn-danger btn-sm" disabled>Eliminar</button>
+                                        <button class="btn btn-delete" disabled>Eliminar</button>
                                     }
                                 </td>
                             </tr>
@@ -97,7 +97,7 @@
     <div class="card-body">
         @foreach (var role in ViewData["InactiveRoles"] as Dictionary<string, List<IdentityUser>>)
         {
-            <h5 class="mt-4">
+            <h5 class="role-title mt-4">
                 @if (role.Key == "Librarian")
                 {
                     @:Bibliotecário
@@ -129,7 +129,7 @@
                             <td>@user.Email</td>
                             <td class="text-end">
                                 <form asp-action="ActivateAccount" asp-route-id="@user.Id" method="post" style="display:inline;" onsubmit="return confirm('Tem a certeza que deseja ativar esta conta?');">
-                                    <button type="submit" class="btn btn-success btn-sm">Ativar</button>
+                                    <button type="submit" class="btn btn-activate">Ativar</button>
                                 </form>
                             </td>
                         </tr>
@@ -140,32 +140,14 @@
     </div>
 </div>
 
-<footer>
-    <div class="grid footer">
-        <div class="card_logo">
-            <img src="/imagens/logo200.png" alt="logo UniLib">
-        </div>
-        <div class="grid sb">
-            <h3>Sobre nós</h3>
-            <p></p>
-            <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
-            <p></p>
-            <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
-            <p></p>
-        </div>
-        <div class="grid ajuda">
-            <h3>Ajuda</h3>
-            <p></p>
-            <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
-        </div>
-    </div>
-</footer>
-
 <style>
-    
-    .bg-primary {
-        --bs-bg-opacity: 1;
-        background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
+    body {
+        background-color: white;
+        color: #5e0606;
+    }
+
+    .bg-main {
+        background-color: #5e0606;
     }
 
     h2 {
@@ -175,37 +157,57 @@
 
     h4 {
         font-size: 1.5rem;
-        color: white;
-    }
-    .btn-success,
-    .btn-primary,
-    .btn-warning,
-    .btn-danger {
-        color: #fff;
-        background-color: #5e0606;
-        border-color: #5e0606;
     }
 
-        .btn-success:hover,
-        .btn-primary:hover,
-        .btn-warning:hover,
-        .btn-danger:hover {
-            background-color: #470404;
-            border-color: #470404;
-        }
-
-    .bg-primary {
-        --bs-bg-opacity: 1;
-        background-color: #5e0606;
-    }
-
-    h5 {
+    h5.role-title {
         font-size: 1.25rem;
         color: #5e0606;
     }
 
-    .bg-secondary {
-        --bs-bg-opacity: 1;
-        background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
+    .btn-create {
+        background-color: #5e0606;
+        color: #fff;
+        border: none;
     }
+
+        .btn-create:hover {
+            background-color: #470404;
+        }
+
+    .btn {
+        color: #fff;
+        border: none;
+    }
+
+    .btn-edit {
+        background-color: #5e0606;
+    }
+
+        .btn-edit:hover {
+            background-color: #470404;
+        }
+
+    .btn-block {
+        background-color: #ffb100;
+    }
+
+        .btn-block:hover {
+            background-color: #e0a000;
+        }
+
+    .btn-delete {
+        background-color: #5e0606;
+    }
+
+        .btn-delete:hover {
+            background-color: #470404;
+        }
+
+    .btn-activate {
+        background-color: #5e0606;
+    }
+
+        .btn-activate:hover {
+            background-color: #470404;
+        }
 </style>

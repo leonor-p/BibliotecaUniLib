@@ -98,6 +98,17 @@ namespace Biblioteca_UniLib.Controllers
             var isBlocked = entry.Property<bool>("AccBlocked").CurrentValue;
             entry.Property("AccBlocked").CurrentValue = !isBlocked;
 
+            // Atualiza o estado do usuário no UserManager
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View("Error");
+            }
+
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
