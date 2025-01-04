@@ -85,7 +85,7 @@ namespace Biblioteca_UniLib.Controllers
             _context.Update(request);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(ManageRequests));
+            return RedirectToAction(nameof(Gerirrequisicoes));
         }
 
         // GET: Requests/ReturnRequest/{id}
@@ -105,20 +105,14 @@ namespace Biblioteca_UniLib.Controllers
             _context.Update(request);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(ManageRequests));
+            return RedirectToAction(nameof(Gerirrequisicoes));
         }
 
         // GET: Requests/ManageRequests
-        public async Task<IActionResult> ManageRequests()
-        {
-            var requests = await _context.BookRequests.ToListAsync();
-            return View(requests);
-        }
-
         public async Task<IActionResult> Gerirrequisicoes()
         {
-            var bookRequests = await _context.BookRequests.ToListAsync();
-            return View(bookRequests);
+            var Requests = await _context.BookRequests.ToListAsync();
+            return View(Requests);
         }
     }   
 }

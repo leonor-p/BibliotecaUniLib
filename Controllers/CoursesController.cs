@@ -205,7 +205,7 @@ namespace Biblioteca_UniLib.Controllers
         }
 
         // GET: Requests/ManageRequests
-        public async Task<IActionResult> ManageRequests()
+        public async Task<IActionResult> Gerirrequisicoes()
         {
             var requests = await _context.BookRequests.ToListAsync();
             return View(requests);
@@ -232,6 +232,11 @@ namespace Biblioteca_UniLib.Controllers
                     course.Quantidade -= 1;
                     _context.Update(course);
                 }
+                 else
+    {
+        TempData["ErrorMessage"] = "Não há mais exemplares disponíveis.";
+        return RedirectToAction(nameof(Gerirrequisicoes));
+    }
 
                 _context.Update(request);
                 await _context.SaveChangesAsync();
@@ -241,7 +246,7 @@ namespace Biblioteca_UniLib.Controllers
                 TempData["ErrorMessage"] = "A solicitação está fora do período de aceitação.";
             }
 
-            return RedirectToAction(nameof(ManageRequests));
+            return RedirectToAction(nameof(Gerirrequisicoes));
         }
 
         // GET: Requests/ReturnRequest/{id}
@@ -267,7 +272,7 @@ namespace Biblioteca_UniLib.Controllers
             _context.Update(request);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(ManageRequests));
+            return RedirectToAction(nameof(Gerirrequisicoes));
         }
     }
 }
