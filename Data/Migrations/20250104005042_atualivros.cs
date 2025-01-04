@@ -10,9 +10,9 @@ namespace Biblioteca_UniLib.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Document",
-                table: "courses");
+          ///  migrationBuilder.DropColumn(
+               /// name: "Document",
+               /// table: "courses"); 
 
             migrationBuilder.AddColumn<bool>(
                 name: "Addrec",

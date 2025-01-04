@@ -1,17 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using Biblioteca_UniLib.Models;
+using System.ComponentModel.DataAnnotations;
 
+public class Perfil
+{
+    public int Id { get; set; }
 
+    [Required]
+    [StringLength(50)]
+    public string Username { get; set; }
 
-
-    public class Perfil
-    {
-    
-        public int Id { get; set; }
-        public string? Username { get; set; }
-        
-    }
-
-
+    // Propriedade de navegação para muitos-para-muitos
+    public ICollection<PerfilRole> PerfilRoles { get; set; } = new List<PerfilRole>();
+}

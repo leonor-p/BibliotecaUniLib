@@ -23,6 +23,7 @@ namespace Biblioteca_UniLib.Data
         public DbSet<Notificacao> Notificacoes { get; set; }
         public DbSet<HistoricoRequisicoes> HistoricoRequisicoes { get; set; }
         public DbSet<Perfil> Perfis { get; set; }
+        public DbSet<PerfilRole> PerfilRoles { get; set; }
         public DbSet<Biblioteca_UniLib.Models.Category> Category { get; set; } = default!;
         public DbSet<Biblioteca_UniLib.Models.Course> courses { get; set; }
         public DbSet<BookRequests> BookRequests { get; set; }
@@ -93,7 +94,23 @@ namespace Biblioteca_UniLib.Data
                 b.Property<bool>("ActiveAcc")
                     .HasDefaultValue(true);
             });
+
+
+            // Configurar o relacionamento muitos-para-muitos
+            modelBuilder.Entity<PerfilRole>()
+        .HasKey(pr => new { pr.PerfilId, pr.RoleId }); // Chave composta
+
+            modelBuilder.Entity<PerfilRole>()
+                .HasOne(pr => pr.Perfil)
+                .WithMany(p => p.PerfilRoles) // Propriedade de navegação no modelo Perfil
+                .HasForeignKey(pr => pr.PerfilId);
+
+            modelBuilder.Entity<PerfilRole>()
+                .HasOne(pr => pr.Role)
+                .WithMany() // Sem propriedade de navegação inversa no IdentityRole
+                .HasForeignKey(pr => pr.RoleId);
         }
+    }
         /*public DbSet<Biblioteca_UniLib.Models.Category> Category { get; set; } = default!;*/
     }
 }

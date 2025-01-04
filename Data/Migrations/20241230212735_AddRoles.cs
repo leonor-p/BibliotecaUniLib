@@ -1,29 +1,27 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
-
-namespace Biblioteca_UniLib.Data.Migrations
+public partial class AddRoles : Migration
 {
-    /// <inheritdoc />
-    public partial class AddRoles : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AddColumn<string>(
-                name: "Role",
-                table: "Perfis",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "");
-        }
+        // Adiciona os papéis diretamente na tabela AspNetRoles
+        migrationBuilder.InsertData(
+            table: "AspNetRoles",
+            columns: new[] { "Id", "Name", "NormalizedName", "ConcurrencyStamp" },
+            values: new object[,]
+            {
+                { Guid.NewGuid().ToString(), "Admin", "ADMIN", Guid.NewGuid().ToString() },
+                { Guid.NewGuid().ToString(), "Bibliotecario", "BIBLIOTECARIO", Guid.NewGuid().ToString() },
+                { Guid.NewGuid().ToString(), "Leitor", "LEITOR", Guid.NewGuid().ToString() }
+            });
+    }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "Role",
-                table: "Perfis");
-        }
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        // Remove os papéis inseridos
+        migrationBuilder.DeleteData(
+            table: "AspNetRoles",
+            keyColumn: "Name",
+            keyValues: new object[] { "Admin", "Bibliotecario", "Leitor" });
     }
 }
