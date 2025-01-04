@@ -163,7 +163,12 @@ namespace Biblioteca_UniLib.Controllers
             return View("Error");
         }
 
-        // POST: Admin/CreateUser
+        // GET: Admin/CreateUser
+        public IActionResult CreateUser()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateUser(string email, string userName, string password, string confirmPassword, DateTime birthday, string role)
@@ -196,6 +201,7 @@ namespace Biblioteca_UniLib.Controllers
 
             if (result.Succeeded)
             {
+
                 if (!await _roleManager.RoleExistsAsync(role))
                 {
                     await _roleManager.CreateAsync(new IdentityRole(role));
@@ -212,6 +218,7 @@ namespace Biblioteca_UniLib.Controllers
                 var profile = new Perfil
                 {
                     Username = userName,
+                    //Birthday = birthday,
                 };
 
                 _context.Perfis.Add(profile);
@@ -228,8 +235,9 @@ namespace Biblioteca_UniLib.Controllers
             return View();
         }
 
-        // GET: Admin/EditUser/{id}
-        public async Task<IActionResult> EditUser(string id)
+
+            // GET: Admin/EditUser/{id}
+            public async Task<IActionResult> EditUser(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
