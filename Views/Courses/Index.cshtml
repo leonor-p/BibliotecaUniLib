@@ -25,6 +25,12 @@
                 @Html.DisplayNameFor(model => model.State)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Dest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Addrec)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
             <th></th>
@@ -45,6 +51,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.State)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dest)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Addrec)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.Description)
             </td>

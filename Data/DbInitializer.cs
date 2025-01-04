@@ -29,10 +29,14 @@ namespace Biblioteca_UniLib.Data
 
             var categories = new Category[]
             {
-                new Category{Name="Book1", Description="Description1", Author="Author1"},
-                new Category{Name="Book2", Description="Description2", Author="Author2"},
-                new Category{Name="Book3", Description="Description3", Author="Author3"},
-                new Category{Name="Book3", Description="Description3", Author="Author3"},
+                new Category{Name="Book1", Description="Destaques", Author="Author1"},
+                new Category{Name="Book2", Description="Recentes", Author="Author2"},
+                new Category{Name="Book3", Description="Fantasia", Author="Author3"},
+                new Category{Name="Book4", Description="Financas", Author="Author3"},
+                new Category{Name="Book5", Description="Comedia", Author="Author3"},
+                new Category{Name="Book6", Description="Romance", Author="Author3"},
+                new Category{Name="Book7", Description="Ficção", Author="Author3"},
+                new Category{Name="Book8", Description="Arte", Author="Author3"},
             };
 
             _context.Category.AddRange(categories);

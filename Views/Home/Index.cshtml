@@ -126,7 +126,7 @@
         <div class="carousel">
             <button class="carousel-btn prev">&#8249;</button>
             <div class="carousel-track" data-current-slide="0">
-                            @foreach (var course in Model.Where(c => c.CategoryID == 1))
+                            @foreach (var course in Model.Where(c => c.Dest == true))
                             {
                     <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
                         <div class="card_ld">
@@ -164,7 +164,7 @@
         <div class="carousel2">
             <button class="carousel2-btn prev">&#8249;</button>
             <div class="carousel2-track" data-current-slide="0">
-                            @foreach (var course in Model.Where(c => c.CategoryID == 2))
+                            @foreach (var course in Model.Where(c => c.Addrec == true))
                             {
                     <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
                         <div class="card_ld">

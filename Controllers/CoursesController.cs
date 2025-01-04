@@ -63,12 +63,9 @@ namespace Biblioteca_UniLib.Controllers
         // POST: Courses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Author, Description, Quantidade, CoverPhoto,Document,CategoryID")] BookViewModel course)
+        public async Task<IActionResult> Create([Bind("Name,Author,Description,Quantidade,CoverPhoto,CategoryID,Dest,Addrec")] BookViewModel course)
         {
-            // Validate the extension of the files
             var photoExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp" };
-            //var documentExtensions = new[] { ".pdf", ".doc", ".docx", ".epub" };
-
             var extension = Path.GetExtension(course.CoverPhoto.FileName).ToLower();
 
             if (!photoExtensions.Contains(extension))
@@ -76,51 +73,31 @@ namespace Biblioteca_UniLib.Controllers
                 ModelState.AddModelError("CoverPhoto", "Please, submit a valid image (jpg, jpeg, png, gif, bmp).");
             }
 
-            /*extension = Path.GetExtension(course.Document.FileName).ToLower();
-            if (!documentExtensions.Contains(extension))
-            {
-                ModelState.AddModelError("Document", "Please, submit a valid document (pdf, doc, docx, epub).");
-            }*/
-
             if (ModelState.IsValid)
             {
                 var newCourse = new Course
                 {
                     Name = course.Name,
                     Author = course.Author,
-                    Description = course.Description, // Adicionando a propriedade Description
-                    CoverPhoto = Path.GetFileName(course.CoverPhoto.FileName), // Salvar nome do arquivo
+                    Description = course.Description,
+                    CoverPhoto = Path.GetFileName(course.CoverPhoto.FileName),
                     Quantidade = course.Quantidade,
-                    //Document = Path.GetFileName(course.Document.FileName), // Salvar nome do arquivo
-                    CategoryID = course.CategoryID // Certifique-se de que CategoryID está configurado
+                    CategoryID = course.CategoryID,
+                    Dest = course.Dest, // Adicionado
+                    Addrec = course.Addrec // Adicionado
                 };
 
-                // Certifique-se de que os diretórios existem
                 string coverDirectory = Path.Combine(_webHostEnvironment.WebRootPath, "Cover");
                 if (!Directory.Exists(coverDirectory))
                 {
                     Directory.CreateDirectory(coverDirectory);
                 }
 
-                /*string documentsDirectory = Path.Combine(_webHostEnvironment.WebRootPath, "Documents");
-                if (!Directory.Exists(documentsDirectory))
-                {
-                    Directory.CreateDirectory(documentsDirectory);
-                }*/
-
-                // Salvar o arquivo CoverPhoto na pasta Cover
                 string coverFullPath = Path.Combine(coverDirectory, newCourse.CoverPhoto);
                 using (var stream = new FileStream(coverFullPath, FileMode.Create))
                 {
                     await course.CoverPhoto.CopyToAsync(stream);
                 }
-
-                // Salvar o arquivo Document na pasta Documents
-                /*string docFullPath = Path.Combine(documentsDirectory, newCourse.Document);
-                using (var stream = new FileStream(docFullPath, FileMode.Create))
-                {
-                    await course.Document.CopyToAsync(stream);
-                }*/
 
                 _context.Add(newCourse);
                 await _context.SaveChangesAsync();
@@ -128,6 +105,7 @@ namespace Biblioteca_UniLib.Controllers
             }
             return View(course);
         }
+
 
 
 
@@ -155,7 +133,7 @@ namespace Biblioteca_UniLib.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Author,Description,Quantidade,State,CategoryID")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Author,Description,Quantidade,State,CategoryID,Dest,Addrec")] Course course)
         {
             if (id != course.ID)
             {
@@ -185,6 +163,7 @@ namespace Biblioteca_UniLib.Controllers
             ViewData["CategoryID"] = new SelectList(_context.Category, "ID", "Description", course.CategoryID);
             return View(course);
         }
+
 
         // GET: Courses/Delete/5
         public async Task<IActionResult> Delete(int? id)

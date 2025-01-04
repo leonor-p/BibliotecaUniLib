@@ -18,6 +18,8 @@ namespace Biblioteca_UniLib.Models
         public int Quantidade { get; set; }
         public string? Author { get; set; }
         public Boolean State { get; set; }
+        public Boolean Dest { get; set; }
+        public Boolean Addrec { get; set; }
 
 
 
