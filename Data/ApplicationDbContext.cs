@@ -23,7 +23,8 @@ namespace Biblioteca_UniLib.Data
         public DbSet<HistoricoRequisicoes> HistoricoRequisicoes { get; set; }
         public DbSet<Perfil> Perfis { get; set; }
         public DbSet<Biblioteca_UniLib.Models.Category> Category { get; set; } = default!;
-        public DbSet<Biblioteca_UniLib.Models.Course> courses { get; set; } 
+        public DbSet<Biblioteca_UniLib.Models.Course> courses { get; set; }
+        public DbSet<BookRequests> BookRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

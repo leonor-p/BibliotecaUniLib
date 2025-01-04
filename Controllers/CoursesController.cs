@@ -203,5 +203,73 @@ namespace Biblioteca_UniLib.Controllers
         {
             return _context.courses.Any(e => e.ID == id);
         }
+
+        // GET: Requests/ManageRequests
+        public async Task<IActionResult> ManageRequests()
+        {
+            var requests = await _context.BookRequests.ToListAsync();
+            return View(requests);
+        }
+
+        // GET: Requests/AcceptRequest/{id}
+        public async Task<IActionResult> AcceptRequest(int id)
+        {
+            var request = await _context.BookRequests.FindAsync(id);
+            if (request == null)
+            {
+                return NotFound();
+            }
+
+            if (request.RequestStartDate <= DateTime.Now && request.RequestEndDate >= DateTime.Now)
+            {
+                request.IsAccepted = true;
+                request.AcceptedBy = User.Identity.Name;
+                request.AcceptedDate = DateTime.Now;
+
+                var course = await _context.courses.FindAsync(request.BookId);
+                if (course   != null && course.Quantidade > 0)
+                {
+                    course.Quantidade -= 1;
+                    _context.Update(course);
+                }
+
+                _context.Update(request);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "A solicitação está fora do período de aceitação.";
+            }
+
+            return RedirectToAction(nameof(ManageRequests));
+        }
+
+        // GET: Requests/ReturnRequest/{id}
+        public async Task<IActionResult> ReturnRequest(int id)
+        {
+            var request = await _context.BookRequests.FindAsync(id);
+            if (request == null)
+            {
+                return NotFound();
+            }
+
+            request.IsReturned = true;
+            request.ReturnedBy = User.Identity.Name;
+            request.ReturnedDate = DateTime.Now;
+
+            var course = await _context.courses.FindAsync(request.BookId);
+            if (course != null)
+            {
+                course.Quantidade += 1;
+                _context.Update(course);
+            }
+
+            _context.Update(request);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(ManageRequests));
+        }
     }
 }
+    
+
