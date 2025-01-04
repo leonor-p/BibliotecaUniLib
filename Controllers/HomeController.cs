@@ -153,3 +153,31 @@ namespace Biblioteca_UniLib.Controllers
 
 
 }
+
+//BOLACHAS AKA COOKIES
+
+public class HomeController : Controller
+{
+    public IActionResult AddCookies()
+    {
+        var cookieOptions1 = new CookieOptions { Expires = DateTime.Now.AddSeconds(10) };
+        var cookieOptions2 = new CookieOptions { Expires = DateTime.Now.AddDays(1) };
+
+        HttpContext.Response.Cookies.Append("Test1", "Value1");
+        HttpContext.Response.Cookies.Append("Test2", "Value2", cookieOptions1);
+        HttpContext.Response.Cookies.Append("Test3", "Value3", cookieOptions2);
+
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult DeleteCookies()
+    {
+        foreach (var item in HttpContext.Request.Cookies.Keys)
+        {
+            HttpContext.Response.Cookies.Delete(item);
+        }
+
+        return RedirectToAction("Index");
+    }
+    
+}

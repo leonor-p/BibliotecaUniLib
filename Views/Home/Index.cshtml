@@ -227,6 +227,25 @@
             </div>
         </div>
     </footer>
+
+<!-- BOLACHAS COOKIES-->
+    
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+    <h1>Web Cookies in Request</h1>
+
+                @if (HttpContextAccessor.HttpContext.Request.Cookies.Count == 0)
+                {
+        <div>No cookies were sent</div>
+                }
+                else
+                {
+                    @foreach (var item in HttpContextAccessor.HttpContext.Request.Cookies.Keys)
+                    {
+            <div>@item - @HttpContextAccessor.HttpContext.Request.Cookies[item]</div>
+                    }
+                }
+
 </body>
 </html>
 
