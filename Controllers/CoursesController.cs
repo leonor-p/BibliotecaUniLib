@@ -227,16 +227,16 @@ namespace Biblioteca_UniLib.Controllers
                 request.AcceptedDate = DateTime.Now;
 
                 var course = await _context.courses.FindAsync(request.BookId);
-                if (course   != null && course.Quantidade > 0)
+                if (course != null && course.Quantidade > 0)
                 {
                     course.Quantidade -= 1;
                     _context.Update(course);
                 }
-                 else
-    {
-        TempData["ErrorMessage"] = "Não há mais exemplares disponíveis.";
-        return RedirectToAction(nameof(Gerirrequisicoes));
-    }
+                else
+                {
+                    TempData["ErrorMessage"] = "Não há mais exemplares disponíveis.";
+                    return RedirectToAction(nameof(Gerirrequisicoes));
+                }
 
                 _context.Update(request);
                 await _context.SaveChangesAsync();

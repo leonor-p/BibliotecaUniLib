@@ -775,3 +775,13 @@ h1 {
         background-color: #7a0a0a;
         color: white;
     }
+
+.btn-custom {
+    background-color: #5e0606; /* Cor azul */
+    color: #fff; /* Cor do texto branca */
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2); /* Sombra azul translúcida */
+}
+
+    .btn-custom:hover {
+        background-color: #5c1a1a; /* Cor azul escura ao passar o mouse */
+    }

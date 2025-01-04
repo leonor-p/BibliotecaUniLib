@@ -78,17 +78,36 @@ namespace Biblioteca_UniLib.Controllers
                 return NotFound();
             }
 
-            request.IsAccepted = true;
-            request.AcceptedBy = User.Identity.Name;
-            request.AcceptedDate = DateTime.Now;
+            if (request.RequestStartDate <= DateTime.Now && request.RequestEndDate >= DateTime.Now)
+            {
+                request.IsAccepted = true;
+                request.AcceptedBy = User.Identity.Name;
+                request.AcceptedDate = DateTime.Now;
 
-            _context.Update(request);
-            await _context.SaveChangesAsync();
+                var course = await _context.courses.FindAsync(request.BookId);
+                if (course != null && course.Quantidade > 0)
+                {
+                    course.Quantidade -= 1;
+                    _context.Update(course);
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Não há mais exemplares disponíveis.";
+                    return RedirectToAction(nameof(Gerirrequisicoes));
+                }
+
+                _context.Update(request);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "A solicitação está fora do período de aceitação.";
+            }
 
             return RedirectToAction(nameof(Gerirrequisicoes));
         }
 
-        // GET: Requests/ReturnRequest/{id}
+        // POST: Requests/ReturnRequest/{id}
         [HttpPost]
         public async Task<IActionResult> ReturnRequest(int id)
         {
@@ -102,8 +121,32 @@ namespace Biblioteca_UniLib.Controllers
             request.ReturnedBy = User.Identity.Name;
             request.ReturnedDate = DateTime.Now;
 
+            var course = await _context.courses.FindAsync(request.BookId);
+            if (course != null)
+            {
+                // Log para depuração
+                Console.WriteLine($"Updating course quantity: Current Quantity {course.Quantidade}");
+                course.Quantidade += 1;
+                _context.Update(course);
+            }
+            else
+            {
+                // Log para depuração
+                Console.WriteLine($"Course not found for BookId {request.BookId}");
+            }
+
             _context.Update(request);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+                // Log para confirmar salvamento
+                Console.WriteLine("Changes saved successfully.");
+            }
+            catch (Exception ex)
+            {
+                // Log para pegar exceções
+                Console.WriteLine($"Error saving changes: {ex.Message}");
+            }
 
             return RedirectToAction(nameof(Gerirrequisicoes));
         }
@@ -114,5 +157,5 @@ namespace Biblioteca_UniLib.Controllers
             var Requests = await _context.BookRequests.ToListAsync();
             return View(Requests);
         }
-    }   
+    }
 }

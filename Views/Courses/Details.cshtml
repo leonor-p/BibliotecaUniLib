@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "Details";
 }
+@{
+    bool isLeitor = User.IsInRole("Leitor");
+    bool isBibliotecario = User.IsInRole("Bibliotecario");
+}
+
 
 <h1>@Model.Name</h1>
 
@@ -49,7 +54,16 @@
                     @Html.DisplayFor(model => model.Category.Description)
                 </dd>
                 <div class="text-center mt-3">
-                    <a href="@Url.Action("Index", "Requests", new { id = Model.ID })" class="btn btn-success" style="background-color: #5e0606; border-color: #5e0606;">Requisitar</a>
+                    <div>
+                        @if (isLeitor)
+                        {
+                            <a href="@Url.Action("Index", "Requests", new { id = Model.ID })" class="btn btn-success" style="background-color: #5e0606; border-color: #5e0606;">Requisitar</a>
+                        }
+                        else
+                        {
+                            <h3 style="font-size: 19px; color: #5e0606;">Só o leitor pode requisitar livros</h3>
+                        }
+                    </div>
                 </div>
             </dl>
         </div>
@@ -57,8 +71,11 @@
 </div>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.ID">Edit</a> |
+    @if (isBibliotecario)
+                        {
+    <a asp-action="Edit" asp-route-id="@Model?.ID">Edit</a> 
     <a asp-action="Index">Back to List</a>
+                        }
 </div>
 
 <footer>
