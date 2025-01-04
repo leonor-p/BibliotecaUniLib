@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Bibliotecario\" />
     <Folder Include="wwwroot\Cover\" />
     <Folder Include="wwwroot\Documents\" />
   </ItemGroup>

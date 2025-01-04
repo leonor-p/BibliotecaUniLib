@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Biblioteca_UniLib.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Biblioteca_UniLib.Data
 {
@@ -83,6 +84,15 @@ namespace Biblioteca_UniLib.Data
                 .WithMany()
                 .HasForeignKey(h => h.LivroID)
                 .OnDelete(DeleteBehavior.Cascade);
+            
+            modelBuilder.Entity<IdentityUser>(b =>
+            {
+                b.Property<bool>("AccBlocked")
+                    .HasDefaultValue(false);
+
+                b.Property<bool>("ActiveAcc")
+                    .HasDefaultValue(true);
+            });
         }
         /*public DbSet<Biblioteca_UniLib.Models.Category> Category { get; set; } = default!;*/
     }

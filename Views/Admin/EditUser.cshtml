@@ -1,0 +1,102 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityUser
+
+<h2 class="text-center mb-4">Editar Utilizador</h2>
+
+<form asp-action="EditUser" method="post" class="border p-4 shadow-sm rounded">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="UserName" class="form-label">Nome de Utilizador</label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label for="Birthday" class="form-label">Data de Nascimento</label>
+        <input type="date" id="Birthday" name="birthday" class="form-control" value="@ViewBag.Birthday?.ToString("yyyy-MM-dd")" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Palavra-passe</label>
+        <input type="password" class="form-control" disabled placeholder="A palavra-passe não pode ser alterada aqui" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Função</label>
+        <input type="text" class="form-control" disabled value="Função não pode ser alterada aqui" />
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary me-2 px-4">Guardar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancelar</a>
+    </div>
+</form>
+
+<footer>
+    <div class="grid footer mt-5">
+        <div class="card_logo">
+            <img src="/imagens/logo200.png" alt="logo UniLib">
+        </div>
+        <div class="grid sb">
+            <h3>Sobre nós</h3>
+            <p></p>
+            <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
+            <p></p>
+            <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
+            <p></p>
+        </div>
+        <div class="grid ajuda">
+            <h3>Ajuda</h3>
+            <p></p>
+            <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
+        </div>
+    </div>
+</footer>
+
+<style>
+    h2 {
+        color: #5e0606;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #5e0606;
+    }
+
+    .form-control {
+        border-color: #5e0606;
+    }
+
+    .btn-primary {
+        background-color: #5e0606;
+        border-color: #5e0606;
+        color: #fff;
+    }
+
+        .btn-primary:hover {
+            background-color: #470404;
+            border-color: #470404;
+        }
+
+    .btn-outline-secondary {
+        border-color: #5e0606;
+        color: #5e0606;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #5e0606;
+            color: #fff;
+        }
+
+    footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+    }
+</style>
