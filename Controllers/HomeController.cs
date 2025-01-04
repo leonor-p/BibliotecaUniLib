@@ -158,6 +158,12 @@ namespace Biblioteca_UniLib.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+            HttpContext.Response.Cookies.Delete(".UniLib.Session");
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 
 

@@ -466,6 +466,7 @@ h1 {
     margin-bottom: 80px;
 }
 
+/*bookcardtransparente*/
 .book-card {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -498,7 +499,7 @@ h1 {
 
     .book-card p {
         font-size: 14px;
-        color: #666;
+        color: #333;
     }
 
 .pagination {
@@ -631,7 +632,7 @@ h1 {
 
 
 .cat-arte {
-    background-image: url(/imagens/cat-arte.jpg);
+    background-image: url(/imagens/cat-arte3.jpg);
     background-size: cover; /* Faz com que a imagem cubra toda a área */
     background-repeat: no-repeat; /* Evita que a imagem se repita */
     background-attachment: fixed; /* Mantém a imagem fixa durante a rolagem */

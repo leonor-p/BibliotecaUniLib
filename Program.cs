@@ -23,7 +23,8 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Tempo de expiração
+    options.IdleTimeout = TimeSpan.FromMinutes(10); // Tempo de expiração
+    options.Cookie.Name = ".UniLib.Session"; // Nome do cookie
     options.Cookie.HttpOnly = true; // Para maior segurança
     options.Cookie.IsEssential = true;
 });
