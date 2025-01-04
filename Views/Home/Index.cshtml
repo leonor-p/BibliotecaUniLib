@@ -112,7 +112,6 @@
         </div>
     </section>
 
-
     <!-- Livros em Destaque -->
     <section id="destaques" class="destaques">
         <div class="destaque-header">
@@ -127,42 +126,29 @@
         <div class="carousel">
             <button class="carousel-btn prev">&#8249;</button>
             <div class="carousel-track" data-current-slide="0">
-            @if (Model == null || !Model.Any())
-             {
-                <p>No courses available.</p>
-             }
-             else
-             {
-                @foreach (var course in Model)
-                {
+                            @foreach (var course in Model.Where(c => c.CategoryID == 1))
+                            {
+                    <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
                         <div class="card_ld">
                             <div class="card_l_content">
-                                            @if (course == null)
+                                            @if (!string.IsNullOrEmpty(course.CoverPhoto))
                                             {
-                                    <p>Course is null</p>
+                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" />
                                             }
                                             else
                                             {
-                                                @if (!string.IsNullOrEmpty(course.CoverPhoto))
-                                                {
-                                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" />
-                                                    
-                                                }
-                                                else
-                                                {
-                                                    <span>Sem imagem disponível</span>
-                                                }
-                                    <h3>@course.Name</h3>
-                                    <p>@course.Author</p>
+                                    <span>Sem imagem disponível</span>
                                             }
+                                <h3 class="book-title">@course.Name</h3>
+                                <p class="book-author">@course.Author</p>
                             </div>
                         </div>
-                }
-             }
-            </div>
+                    </a>
+                            }
             <button class="carousel-btn next">&#8250;</button>
         </div>
     </section>
+
 
     <!-- Adicionados Recentemente -->
     <section id="adicionados" class="recentes">
@@ -178,30 +164,25 @@
         <div class="carousel2">
             <button class="carousel2-btn prev">&#8249;</button>
             <div class="carousel2-track" data-current-slide="0">
-                <div class="card_ad">
-                    <img src="/imagens/livros/heartstoppervol1.jpeg" alt="Capa do livro Heartstopper Vol 1">
-                    <h3>Heartstopper Vol 1</h3>
-                    <p>Alice Oseman</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ad">
-                    <img src="/imagens/livros/acriada.jpeg" alt="Capa do livro A Criada">
-                    <h3>A Criada</h3>
-                    <p>Freida McFadden</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ad">
-                    <img src="/imagens/livros/powerless.jpeg" alt="Capa do livro Powerless">
-                    <h3>Powerless</h3>
-                    <p>Lauren Roberts</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ad">
-                    <img src="/imagens/livros/morte_no_sanatorio.jpeg" alt="Capa do livro Morte No Sanatório">
-                    <h3>Morte No Sanatório</h3>
-                    <p> Ragnar Jónasson</p>
-                    <div class="stars">★★★★★</div>
-                </div>
+                            @foreach (var course in Model.Where(c => c.CategoryID == 2))
+                            {
+                    <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
+                        <div class="card_ld">
+                            <div class="card_l_content">
+                                            @if (!string.IsNullOrEmpty(course.CoverPhoto))
+                                            {
+                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" />
+                                            }
+                                            else
+                                            {
+                                    <span>Sem imagem disponível</span>
+                                            }
+                                <h3 class="book-title">@course.Name</h3>
+                                <p class="book-author">@course.Author</p>
+                            </div>
+                        </div>
+                    </a>
+                            }
             </div>
             <button class="carousel2-btn next">&#8250;</button>
         </div>

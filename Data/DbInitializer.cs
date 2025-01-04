@@ -32,6 +32,7 @@ namespace Biblioteca_UniLib.Data
                 new Category{Name="Book1", Description="Description1", Author="Author1"},
                 new Category{Name="Book2", Description="Description2", Author="Author2"},
                 new Category{Name="Book3", Description="Description3", Author="Author3"},
+                new Category{Name="Book3", Description="Description3", Author="Author3"},
             };
 
             _context.Category.AddRange(categories);

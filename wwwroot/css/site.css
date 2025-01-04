@@ -633,11 +633,130 @@ h1 {
     font-size: 1.1em;
 }
 
-
+/*------------*/
 .card_ld img {
     width: 200px; /* Largura fixa */
     height: 300px; /* Altura fixa */
     object-fit: cover; /* Ajusta a imagem ao tamanho especificado, preservando a proporção */
     border-radius: 8px; /* Borda arredondada (opcional) */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra (opcional) */
+}
+.book-title, .book-author {
+    color: black; /* Define a cor do texto como preto */
+    text-decoration: none; /* Remove o sublinhado */
+    font-family: Arial;
+}
+
+.book-title {
+    
+}
+
+.book-author {
+    font-style: italic; /* Opcional: Define o autor do livro como itálico */
+}
+
+/* Opcional: Se desejar remover o sublinhado quando o link estiver sendo clicado */
+.card_ld-link {
+    text-decoration: none;
+}
+    .card_ld-link:hover {
+        text-decoration: none; /* Remove o sublinhado no hover */
+        color: darkred; 
+    }
+
+/* Estilo para garantir que a imagem tenha um tamanho fixo */
+.course-cover-photo {
+    width: 250px; /* Aumente a largura desejada */
+    height: 350px; /* Aumente a altura desejada */
+    object-fit: cover; /* Garante que a imagem preencha a área definida sem distorção */
+    margin: auto; /* Centraliza a imagem verticalmente */
+}
+
+/* Ajusta a largura da coluna de detalhes */
+.details-container {
+    flex: 1; /* Expande a coluna para ocupar o espaço disponível */
+    width: 100%; /* Garante que a coluna ocupe toda a largura possível */
+    max-width: 800px; /* Aumenta a largura máxima */
+}
+
+    .details-container .row {
+        width: 100%; /* Garante que as linhas ocupem toda a largura */
+        max-width: 800px; /* Ajusta a largura máxima desejada */
+    }
+
+/* Estilo para garantir que a imagem tenha um tamanho fixo */
+.course-cover-photo {
+    width: 250px; /* Aumente a largura desejada */
+    height: 350px; /* Aumente a altura desejada */
+    object-fit: cover; /* Garante que a imagem preencha a área definida sem distorção */
+    margin: auto; /* Centraliza a imagem verticalmente */
+}
+
+/* Ajusta a largura da coluna de detalhes */
+.details-container {
+    flex: 1; /* Expande a coluna para ocupar o espaço disponível */
+    width: 100%; /* Garante que a coluna ocupe toda a largura possível */
+    max-width: 800px; /* Aumenta a largura máxima */
+}
+
+    .details-container .row {
+        width: 100%; /* Garante que as linhas ocupem toda a largura */
+        max-width: 800px; /* Ajusta a largura máxima desejada */
+    }
+
+/* Estilo para garantir que a imagem tenha um tamanho fixo */
+.course-cover-photo {
+    width: 250px; /* Aumente a largura desejada */
+    height: 350px; /* Aumente a altura desejada */
+    object-fit: cover; /* Garante que a imagem preencha a área definida sem distorção */
+    margin: auto; /* Centraliza a imagem verticalmente */
+}
+
+/* Ajusta a largura da coluna de detalhes */
+.details-container {
+    flex: 1; /* Expande a coluna para ocupar o espaço disponível */
+    width: 100%; /* Garante que a coluna ocupe toda a largura possível */
+    max-width: 800px; /* Aumenta a largura máxima */
+}
+
+    .details-container .row {
+        width: 100%; /* Garante que as linhas ocupem toda a largura */
+        max-width: 800px; /* Ajusta a largura máxima desejada */
+    }
+
+/* Estilo para o container principal */
+.course-details {
+    margin: 20px auto; /* Centraliza horizontalmente */
+    padding: 20px;
+    background-color: #f9f9f9; /* Cor de fundo */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+    max-width: 1200px; /* Aumenta a largura máxima */
+    width: 100%; /* Garante que ocupe toda a largura disponível */
+}
+
+/* Estilo para a área da descrição */
+.description-content {
+    max-height: 100px; /* Altura inicial limitada */
+    overflow: hidden; /* Oculta o texto que ultrapassa a área visível */
+    transition: max-height 0.3s ease-in-out;
+}
+
+    /* Quando expandido */
+    .description-content.expanded {
+        max-height: none; /* Remove a limitação de altura */
+    }
+
+/* Estilo do botão */
+.toggle-description {
+    display: block; /* Garante que o botão seja exibido */
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
 }
