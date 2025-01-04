@@ -10,11 +10,7 @@ public class Administrador
 
     [Required]
     [MaxLength(100)]
-<<<<<<< HEAD
     public string? Nome { get; set; }
-=======
-    public string Nome { get; set; } = string.Empty;
->>>>>>> 13a865ed738cfe968ee7cd630f2fe836d92e9499
 
     [Required]
     [MaxLength(100)]
