@@ -149,12 +149,22 @@ namespace Biblioteca_UniLib.Controllers
             ViewData["BodyClass"] = "cat-comedia";
             return View();
         }
+
+        public IActionResult SessionDetails()
+        {
+            HttpContext.Session.SetString("StringValue", "Hello, Session!");
+            HttpContext.Session.SetInt32("IntValue", 123);
+
+            return View();
+        }
+
     }
 
 
 }
 
 //BOLACHAS AKA COOKIES
+
 
 public class HomeController : Controller
 {
@@ -179,5 +189,35 @@ public class HomeController : Controller
 
         return RedirectToAction("Index");
     }
-    
+
+    public IActionResult AddSessionVariables() //cria as sessões unicas de ID referenciadas antes no program.cs
+
+    {   //podemos criar do tipo string, int ou byte array
+        HttpContext.Session.SetString("StringValue", "Text variable value");
+        HttpContext.Session.SetInt32("IntegerValue", 100);
+        // uma cookie de sessão '.AspNetCore.Session' é criada e enviada para o cliente
+
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult DeleteSessionVariables()
+    {
+        //delete all variables stored in session
+        foreach (var item in HttpContext.Session.Keys)
+        {
+            HttpContext.Session.Remove(item);
+        }
+
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult DeleteSession()
+    {
+        HttpContext.Response.Cookies.Delete(".AspNetCore.Session");
+
+        return RedirectToAction("Index");
+
+    }
+
+
 }

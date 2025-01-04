@@ -24,6 +24,7 @@
 
     
     <!-- categorias em Destaque -->
+
     <section id="categorias" class="categorias">
         <h2>
             <img src="/imagens/catlab.png" alt="Símbolo de Categorias" class="icon-categoria">
@@ -229,8 +230,7 @@
     </footer>
 
 <!-- BOLACHAS COOKIES-->
-    
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+    @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
     <h1>Web Cookies in Request</h1>
 
@@ -243,6 +243,28 @@
                     @foreach (var item in HttpContextAccessor.HttpContext.Request.Cookies.Keys)
                     {
             <div>@item - @HttpContextAccessor.HttpContext.Request.Cookies[item]</div>
+                    }
+                }
+
+                @{
+                    var sessionId = HttpContextAccessor.HttpContext.Session.Id; // Obtendo o ID da sessão
+                }
+
+    <h1>Session ID</h1>
+    <div>
+        The presentation of this value is used to confirm the reuse of the sessions:
+        <strong>@sessionId</strong>
+    </div>
+
+                @foreach (var item in HttpContextAccessor.HttpContext.Session.Keys) // Acessando as chaves da sessão
+                {
+                    if (item == "StringValue")
+                    {
+            <div>@item - @HttpContextAccessor.HttpContext.Session.GetString(item)</div>
+                    }
+                    else
+                    {
+            <div>@item - @HttpContextAccessor.HttpContext.Session.GetInt32(item)</div>
                     }
                 }
 
