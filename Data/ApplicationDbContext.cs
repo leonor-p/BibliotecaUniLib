@@ -83,6 +83,7 @@ namespace Biblioteca_UniLib.Data
                 .HasForeignKey(h => h.LivroID)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+        public DbSet<Biblioteca_UniLib.Models.Pessoa> Pessoa { get; set; } = default!;
         /*public DbSet<Biblioteca_UniLib.Models.Category> Category { get; set; } = default!;*/
     }
 }

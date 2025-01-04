@@ -1,6 +1,107 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
+<h1>jQuery testing page</h1>
+<p id="box" class="square">This is content to be clicked</p>
+<div class="square">Mouseover this content to change backgroud color</div>
+<h2>Relogio: <span id="time"></span></h2
+<p id="fading">Este texto irá mudar de cor em 10 segundos depois da pagina carregar</p>
+<div style="border:dashed;border-color:black;padding:10px;">
+    <form>
+        <label>Introduz o texto:</label>
+        <input type="text" />
+        <br />
+        <input type="checkbox" id="accept" value="true" />&nbsp;Aceito os termos e condições.
+        <input type="submit" value="Register" id="send" style="display:none;" />
+    </form>
+</div>
+
+<div style="border:dotted; border-color: blue; padding: 20px;"> 
+    <div> 
+        <label for="Categorias>">Escolhe uma categoria:</label> 
+            <select name="Categorias" id="Categorias">
+                   <option value="'">-- Escolhe uma --</option> 
+                   <option value="Ficção">Ficção</option> 
+                   <option value="Comédia">Comédia</option> 
+                   <option value="Arte">Arte</option>
+                   <option value="Fantasia">Fantasia</option>
+                   <option value="Finanças">Finanças</option>
+                   <option value="Romance">Romance</option>
+            <select> 
+            <div> 
+        <div> 
+            <label for="cities">Escolha um livro:</label> 
+            <select name="livros" id="livros"
+            </select> 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        $(´#box´).click(function () {
+            if (confirm("Queres mudar a cor para vermelho?")) {
+                $(this).css("color", "red");
+            }
+            $(this).text("Já cliquei!");
+            $(this).css("background-color", "lightcyan");
+        })
+
+        $(" square").mouseover(function () { //switches the applied CSS class
+            if ($(this).hasClass("alerta-perigo")) {
+                $(this).addClass("alerta-successo"); $(this).removeClass("alerta-perigo");
+            }
+            else {
+                $(this).addClass("alerta-perigo");
+                $(this).removeClass("alerta-successo");
+            }
+        })
+
+        setInterval(function () {
+            $("#time").text(new Date().toLocaleString());
+        }, 1000)
+
+        setTimeout(function () {
+                    $"(#fading").fadeOut(1000, function () {
+            $(this).css({ "color": "red", "fomt-weight": "bold" })
+        });
+        $("#fading").fadeIn(1000)
+        }, 10000)
+
+        $("#accept").change(function () {
+            if (this.checked) {
+                $("#send").show();
+            }
+            else {
+                $("#send").hide()
+            }
+        })
+
+        $("#Categorias").change(function () {
+            var index = $(this).val();
+
+            $.getJSON("Home/testAjax", { id: index }, function (data) {
+                var $selector = $("#livros");
+                $selector.html(""); //clear all existing options in second dropdown
+
+                if (data.length > 0) { //if returned any data, insert first option
+                    $selector.append($("<option/>", { nodeValue: "", text: "--Escolhe um livro" }));
+                }
+
+                $.each(data, function (index, val) {
+                    $selector.append($("<option/>", {
+                        value: val,
+                        text: val
+                    }));
+                });
+            })
+        })
+
+    </script>
+}
 Date: @DateTime.Now
 
 <form asp-action="TestAjaxForm"

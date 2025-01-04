@@ -1,10 +1,12 @@
 using Biblioteca_UniLib.Models;
+using Biblioteca_UniLib.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using System.Data;
+using Newtonsoft.Json;
 
 namespace Biblioteca_UniLib.Controllers
 {
@@ -124,6 +126,25 @@ namespace Biblioteca_UniLib.Controllers
             System.Threading.Thread.Sleep(5000); //simulate time-consuming processing
             return "executed at <strong> " + DateTime.Now + "</strong>";
         }
+
+        public string testAjax(string id)
+        {
+            Dictionary<string, List<string>> alllivros = new Dictionary<string, List<string>>();
+            alllivros.Add("Ficção", new List<string>() { "1", "2" });
+            alllivros.Add("Comédia", new List<string>() { "3", "4" });
+            alllivros.Add("Arte", new List<string>() { "5", "6" });
+            alllivros.Add("Fantasia", new List<string>() { "7", "8" });
+            alllivros.Add("Finanças", new List<string>() { "9", "10" });
+            alllivros.Add("Romance", new List<string>() { "11", "12" });
+
+            List<string> items = new List<string>();
+            if (id != null && alllivros.ContainsKey(id))
+                    items = alllivros[id];
+
+            return JsonConvert.SerializeObject(items);
+
+        }
+
 
     }
 
