@@ -106,6 +106,7 @@ namespace Biblioteca_UniLib.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
         public IActionResult Sobre_Nos()
         {
             return View();
