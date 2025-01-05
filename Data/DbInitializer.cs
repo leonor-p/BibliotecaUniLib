@@ -1,5 +1,4 @@
-﻿using Biblioteca_UniLib.Data.Migrations;
-using Biblioteca_UniLib.Models;
+﻿using Biblioteca_UniLib.Models;
 using System.Linq;
 
 namespace Biblioteca_UniLib.Data
@@ -28,15 +27,15 @@ namespace Biblioteca_UniLib.Data
                 return; // DB has been seeded
             }
 
-            var categories = new Models.Category[]
-            {
-                new Models.Category{Name="Fantasia", Description="Fantasia", Author="Author3"},
-                new Models.Category{Name="Finanças", Description="Finanças", Author="Author3"},
-                new Models.Category{Name="Comédia", Description="Comédia", Author="Author3"},
-                new Models.Category{Name="Romance", Description="Romance", Author="Author3"},
-                new Models.Category{Name="Ficção", Description="Ficção", Author="Author3"},
-                new Models.Category{Name="Arte", Description="Arte", Author="Author3"},
-            };
+            var categories = new Category[]
+           {                
+                new Category{Name="Fantasia", Description="Fantasia"},
+                new Category{Name="Finanças", Description="Finanças"},
+                new Category{Name="Comédia", Description="Comedia"},
+                new Category{Name="Romance", Description="Romance"},
+                new Category{Name="Ficção", Description="Ficção"},
+                new Category{Name="Arte", Description="Arte"},
+           };
 
             _context.Category.AddRange(categories);
             _context.SaveChanges();
