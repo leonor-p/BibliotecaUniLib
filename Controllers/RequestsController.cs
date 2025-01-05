@@ -37,6 +37,22 @@ namespace Biblioteca_UniLib.Controllers
 
         }
 
+        [Authorize] // Garante que apenas usuários autenticados podem acessar
+        public async Task<IActionResult> Historicoreq()
+        {
+            // Obtém o nome do usuário autenticado
+            string userName = User.Identity.Name;
+
+            // Busca as requisições feitas pelo usuário autenticado no banco de dados
+            var userRequests = await _context.BookRequests
+                .Where(r => r.UserName == userName) // Filtra as requisições pelo nome do usuário
+                .ToListAsync();
+
+            // Retorna a view com os dados das requisições
+            return View(userRequests);
+        }
+
+
         // POST: Requests/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
