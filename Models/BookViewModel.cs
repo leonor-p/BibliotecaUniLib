@@ -12,11 +12,14 @@ namespace Biblioteca_UniLib.Models
         [Required(ErrorMessage = "Select a Image File")]
         public IFormFile? CoverPhoto { get; set; }
         [Required(ErrorMessage = "Select a Document File")]
-        public IFormFile? Document { get; set; }
+        //public IFormFile? Document { get; set; }
         public string? Description { get; set; } = string.Empty;
         public int CategoryID { get; set; }
-       
+        public int Quantidade { get; set; }
+        public string? Author { get; set; }
         public Boolean State { get; set; }
+        public Boolean Dest { get; set; }
+        public Boolean Addrec { get; set; }
 
 
 

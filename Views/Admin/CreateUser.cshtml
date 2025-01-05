@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Adicionar Utilizador";
+}
+
+<h2 class="text-center mb-4">Adicionar Utilizador</h2>
+
+<form asp-action="CreateUser" method="post" class="border p-4 shadow-sm rounded">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="Email" class="form-label">Email</label>
+            <input type="email" id="Email" name="email" class="form-control" placeholder="exemplo@dominio.com" required />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="UserName" class="form-label">Nome de Utilizador</label>
+            <input type="text" id="UserName" name="userName" class="form-control" placeholder="Insira o nome de utilizador" required />
+        </div>
+    </div>
+
+    <div class="row">
+      
+        <div class="col-md-6 mb-3">
+            <label for="Role" class="form-label">Função</label>
+            <select id="Role" name="role" class="form-select" required>
+                <option value="" disabled selected>-- Escolha uma função --</option>
+                <option value="Admin">Administrador</option>
+                <option value="Librarian">Bibliotecário</option>
+                <option value="Reader">Leitor</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="Password" class="form-label">Palavra-passe</label>
+            <input type="password" id="Password" name="password" class="form-control" placeholder="Digite a palavra-passe" required />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="ConfirmPassword" class="form-label">Confirmar Palavra-passe</label>
+            <input type="password" id="ConfirmPassword" name="confirmPassword" class="form-control" placeholder="Repita a palavra-passe" required />
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary me-2 px-4">Adicionar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancelar</a>
+    </div>
+</form>
+
+<style>
+    h2 {
+        color: #5e0606;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #5e0606;
+    }
+
+
+    .form-control,
+    .form-select {
+        border-color: #5e0606;
+    }
+
+    .btn-outline-secondary {
+        border-color: #5e0606;
+        color: #5e0606;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #5e0606;
+            color: #fff;
+        }
+
+    .btn-success, .btn-primary, .btn-warning, .btn-danger {
+        color: #fff;
+        background-color: #5e0606;
+        border-color: #5e0606;
+    }
+
+        .btn-primary:hover {
+            color: #fff;
+            background-color: #470404;
+            border-color: #470404;
+            text-decoration: none;
+        }
+
+
+</style >

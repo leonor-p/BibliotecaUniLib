@@ -1,0 +1,231 @@
+﻿@model IEnumerable<Biblioteca_UniLib.Models.BookRequests>
+
+<h2 class="text-left mb-4" style=" color: white;">Gerir Requisições de Livros</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- Pendentes -->
+<div class="table-container">
+    <h3 class="table-title" style="background-color: #5e0606; color: white;">Pendentes</h3>
+    <table class="table table-striped table-white">
+        <thead>
+            <tr>
+                <th>ID da Solicitação</th>
+                <th>Título do Livro</th>
+                <th>Usuário que Fez a Solicitação</th>
+                <th>Data de Levantamento Proposta</th>
+                <th>Data de Entrega Proposta</th>
+                <th class="text-end">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model.Where(r => !r.IsAccepted && r.RequestStartDate <= DateTime.Now && r.RequestEndDate >= DateTime.Now))
+            {
+                <tr>
+                    <td>@request.Id</td>
+                    <td>@request.BookTitle</td>
+                    <td>@request.UserName</td>
+                    <td>@request.RequestStartDate.ToString("dd/MM/yyyy")</td>
+                    <td>@request.RequestEndDate.ToString("dd/MM/yyyy")</td>
+                    <td class="text-end">
+                        @if (request.RequestStartDate <= DateTime.Now && request.RequestEndDate >= DateTime.Now)
+                        {
+                            <form asp-action="AcceptRequest" asp-route-id="@request.Id" method="post" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja aceitar esta solicitação?');">
+                                <button type="submit" class="btn btn-warning btn-sm">Aceitar</button> <!-- Cor laranja -->
+                            </form>
+                        }
+                        else
+                        {
+                            <span>Fora do período de solicitação</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Aceites -->
+<div class="table-container">
+    <h3 class="table-title" style="background-color: #5e0606; color: white;">Aceites</h3>
+    <table class="table table-striped table-white">
+        <thead>
+            <tr>
+                <th>ID da Solicitação</th>
+                <th>Título do Livro</th>
+                <th>Usuário que Aceitou</th>
+                <th>Data de Aceitação</th>
+                <th>Data de Entrega Proposta</th>
+                <th>Usuário que Fez a Solicitação</th>
+                <th class="text-end">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model.Where(r => r.IsAccepted && !r.IsReturned))
+            {
+                <tr>
+                    <td>@request.Id</td>
+                    <td>@request.BookTitle</td>
+                    <td>@request.AcceptedBy</td>
+                    <td>@(request.AcceptedDate?.ToString("dd/MM/yyyy HH:mm") ?? "-")</td>
+                    <td>@request.RequestEndDate.ToString("dd/MM/yyyy")</td>
+                    <td>@request.UserName</td>
+                    <td class="text-end">
+                        <form asp-action="ReturnRequest" asp-route-id="@request.Id" method="post" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja devolver este livro?');">
+                            <button type="submit" class="btn btn-info btn-sm">Devolver</button> <!-- Cor azul clara -->
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Concluídas -->
+<div class="table-container">
+    <h3 class="table-title" style="background-color: #5e0606; color: white;">Concluídas</h3>
+    <table class="table table-striped table-white">
+        <thead>
+            <tr>
+                <th>ID da Solicitação</th>
+                <th>Título do Livro</th>
+                <th>Usuário que Aceitou</th>
+                <th>Data de Aceitação</th>
+                <th>Usuário que Devolveu</th>
+                <th>Data de Devolução</th>
+                <th>Usuário que Fez a Solicitação</th>
+                <th class="text-end">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model.Where(r => r.IsReturned))
+            {
+                <tr>
+                    <td>@request.Id</td>
+                    <td>@request.BookTitle</td>
+                    <td>@request.AcceptedBy</td>
+                    <td>@(request.AcceptedDate?.ToString("dd/MM/yyyy HH:mm") ?? "-")</td>
+                    <td>@request.ReturnedBy</td>
+                    <td>@(request.ReturnedDate?.ToString("dd/MM/yyyy HH:mm") ?? "-")</td>
+                    <td>@request.UserName</td>
+                    <td class="text-end">
+                        <span>Finalizado</span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<footer>
+    <div class="grid footer">
+        <div class="card_logo">
+            <img src="/imagens/logo200.png" alt="logo UniLib">
+        </div>
+        <div class="grid sb">
+            <h3>Sobre nós</h3>
+            <p></p>
+            <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
+            <p></p>
+            <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
+            <p></p>
+        </div>
+        <div class="grid ajuda">
+            <h3>Ajuda</h3>
+            <p></p>
+            <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Estilos CSS -->
+<style>
+    .table-container {
+        margin: 20px 0;
+    }
+
+    .table-title {
+        padding: 10px;
+        font-size: 1.25rem;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white; /* Fundo branco nas tabelas */
+    }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #ddd;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .btn-sm {
+        padding: 6px 12px;
+    }
+
+    .alert {
+        margin-bottom: 20px;
+    }
+
+    .text-end {
+        text-align: right;
+    }
+
+    h3 {
+        font-weight: bold;
+    }
+
+    h2 {
+        font-size: 2rem;
+        color: #343a40
+    }
+
+    .btn-info {
+        background-color: #5e0606;
+        color: white;
+        border: none;
+    }
+
+        .btn-info:hover {
+            background-color: #5e0606;
+        }
+
+    .btn-warning {
+        background-color: #5e0606;
+        color: white;
+        border: none;
+    }
+
+        .btn-warning:hover {
+            background-color: #5e0606;
+        }
+
+    .btn-success {
+        background-color: #5e0606;
+        color: white;
+        border: none;
+    }
+
+        .btn-success:hover {
+            background-color: #5e0606;
+        }
+</style>
+
+

@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
 {
@@ -122,27 +123,42 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+                // Definir o valor de ActiveAcc antes da criação
+                var entry = _dbcontext.Entry(user);
+                entry.Property<bool>("ActiveAcc").CurrentValue =
+                    (Input.Role == "Admin" || Input.Role == "Librarian") ? false : true;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-                    await _userManager.AddToRoleAsync(user, Input.Role);
-                    Perfil newPerfil = new Perfil { Username = user.UserName, };
 
-                    _dbcontext.Perfis.Add(newPerfil);
-                    _dbcontext.SaveChanges();
+                    await _userManager.AddToRoleAsync(user, Input.Role);
+
+                    // Adicionar perfil do usuário
+                    Perfil newProfile = new Perfil
+                    {
+                        Username = user.UserName,
+                        //Birthday = Input.Birthday
+                    };
+
+                    _dbcontext.Perfis.Add(newProfile);
+                    await _dbcontext.SaveChangesAsync();
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page("./ConfirmEmail",
+                    var callbackUrl = Url.Page(
+                        "/Account/ConfirmEmail",
                         pageHandler: null,
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
@@ -152,7 +168,7 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("./RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
                     else
                     {
@@ -160,13 +176,13 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
                         return LocalRedirect(returnUrl);
                     }
                 }
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             ViewData["roles"] = _roleManager.Roles.ToList();
             return Page();
         }

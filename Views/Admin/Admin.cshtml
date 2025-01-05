@@ -1,0 +1,213 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+@using Microsoft.AspNetCore.Identity
+@using System.Collections.Generic
+
+<h2 class="text-center mb-4">Gestão de Utilizadores</h2>
+
+<div class="d-flex justify-content-between mb-3">
+    <a asp-action="CreateUser" class="btn btn-create">Criar Novo Utilizador</a>
+</div>
+
+<div class="card mb-5">
+    <div class="card-header bg-main text-white">
+        <h4 class="m-0">Contas Ativas</h4>
+    </div>
+    <div class="card-body">
+        @foreach (var role in ViewData["ActiveRoles"] as Dictionary<string, List<IdentityUser>>)
+        {
+            <h5 class="role-title mt-4">
+                @if (role.Key == "Bibliotecario")
+                {
+                    @:Bibliotecário
+                }
+                else if (role.Key == "Admin")
+                {
+                    @:Administrador
+                }
+                else if (role.Key == "Leitor")
+                {
+                    @:Leitor
+                }
+            </h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th class="text-end"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in role.Value)
+                    {
+                        var userManager = ViewData["UserManager"] as UserManager<IdentityUser>;
+                        var userBlocks = ViewData["UserBlocks"] as Dictionary<string, bool>;
+                        var isBlocked = userBlocks.ContainsKey(user.UserName) && userBlocks[user.UserName];
+                        var isActive = ViewData["ActiveAccounts"] is HashSet<string> activeAccounts && activeAccounts.Contains(user.Id);
+
+                        if (isActive)
+                        {
+                            var userRoles = userManager?.GetRolesAsync(user).Result ?? new List<string>();
+                            var isAdmin = userRoles.Contains("Admin");
+
+                            <tr>
+                                <td>@user.Id</td>
+                                <td>@user.UserName</td>
+                                <td>@user.Email</td>
+                                <td class="text-end">
+                                    @if (!isAdmin)
+                                    {
+                                        <a asp-action="EditUser" asp-route-id="@user.Id" class="btn btn-edit">Editar</a>
+
+                                        <form asp-action="ToggleAccountBlock" asp-route-id="@user.Id" method="post" style="display:inline;" onsubmit="return confirm('Tem a certeza que deseja alternar o estado de bloqueio?');">
+                                            <button type="submit" class="btn btn-block">
+                                                @(isBlocked ? "Desbloquear" : "Bloquear")
+                                            </button>
+                                        </form>
+
+                                        <form asp-action="DeleteUser" asp-route-id="@user.Id" method="post" style="display:inline;" onsubmit="return confirm('Tem a certeza que deseja eliminar este utilizador?');">
+                                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-edit" disabled>Editar</button>
+
+                                        <button class="btn btn-block" disabled>
+                                            @(isBlocked ? "Desbloquear" : "Bloquear")
+                                        </button>
+
+                                        <button class="btn btn-delete" disabled>Eliminar</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header bg-secondary text-white">
+        <h4 class="m-0">Contas Inativas</h4>
+    </div>
+    <div class="card-body">
+        @foreach (var role in ViewData["InactiveRoles"] as Dictionary<string, List<IdentityUser>>)
+        {
+            <h5 class="role-title mt-4">
+                @if (role.Key == "Librarian")
+                {
+                    @:Bibliotecário
+                }
+                else if (role.Key == "Admin")
+                {
+                    @:Administrador
+                }
+                else if (role.Key == "Reader")
+                {
+                    @:Leitor
+                }
+            </h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th class="text-end"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in role.Value)
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td class="text-end">
+                                <form asp-action="ActivateAccount" asp-route-id="@user.Id" method="post" style="display:inline;" onsubmit="return confirm('Tem a certeza que deseja ativar esta conta?');">
+                                    <button type="submit" class="btn btn-activate">Ativar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: white;
+        color: #5e0606;
+    }
+
+    .bg-main {
+        background-color: #5e0606;
+    }
+
+    h2 {
+        font-size: 2rem;
+        color: #5e0606;
+    }
+
+    h4 {
+        font-size: 1.5rem;
+    }
+
+    h5.role-title {
+        font-size: 1.25rem;
+        color: #5e0606;
+    }
+
+    .btn-create {
+        background-color: #5e0606;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-create:hover {
+            background-color: #470404;
+        }
+
+    .btn {
+        color: #fff;
+        border: none;
+    }
+
+    .btn-edit {
+        background-color: #5e0606;
+    }
+
+        .btn-edit:hover {
+            background-color: #470404;
+        }
+
+    .btn-block {
+        background-color: #ffb100;
+    }
+
+        .btn-block:hover {
+            background-color: #e0a000;
+        }
+
+    .btn-delete {
+        background-color: #5e0606;
+    }
+
+        .btn-delete:hover {
+            background-color: #470404;
+        }
+
+    .btn-activate {
+        background-color: #5e0606;
+    }
+
+        .btn-activate:hover {
+            background-color: #470404;
+        }
+</style>

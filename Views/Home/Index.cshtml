@@ -1,5 +1,10 @@
-﻿@{
+﻿@model IEnumerable<Biblioteca_UniLib.Models.Course>
+@{
     ViewData["Title"] = "Home Page";
+}
+@{
+    bool isBibliotecario = User.IsInRole("Bibliotecario");
+    bool isAdmin = User.IsInRole("Admin");
 }
 
 @{
@@ -25,10 +30,27 @@
             </div>
             
         </div>
+                @if (isBibliotecario)
+                {
+            <a href="/Requests/Gerirrequisicoes" class="btn btn-custom btn-lg" style="border-radius: 10px; padding: 15px 35px; font-size: 18px;">
+                <i class="fas fa-list" style="margin-right: 10px;"></i> Gerir Requisições
+            </a>
+            <a href="/Courses/Index" class="btn btn-custom btn-lg" style="border-radius: 10px; padding: 15px 35px; font-size: 18px;">
+                <i class="fas fa-list" style="margin-right: 10px;"></i> Gerir Livros
+            </a>
+                }
+                @if (isAdmin)
+                {
+            <a href="/Admin/" class="btn btn-custom btn-lg" style="border-radius: 10px; padding: 15px 35px; font-size: 18px;">
+                <i class="fas fa-list" style="margin-right: 10px;"></i> Painel de Administração
+            </a>
+                }
+      
     </nav>
 
     
     <!-- categorias em Destaque -->
+
     <section id="categorias" class="categorias">
         <h2>
             <img src="/imagens/catlab.png" alt="Símbolo de Categorias" class="icon-categoria">
@@ -46,7 +68,7 @@
             <div class="card_c">
                 <form asp-controller="Home" asp-action="cat_ficcao">
                     <button class="card_a">
-                        <img src="/imagens/Cat_Ficcao.jpg" alt="Ficção">
+                        <img src="/imagens/ficcao1.jpeg" alt="Ficção">
                         <h3>Ficção</h3>
                     </button>
                 </form>
@@ -92,29 +114,25 @@
     <section id="autores" class="autores">
         <h2>
             <img src="/imagens/pessoalab.png" alt="Símbolo de Autores em Destaque" class="icon-categoria">
-             Autores em Destaque
+            Autores em Destaque
         </h2>
         <div class="grid grid_autores">
-            <form asp-controller="Home" asp-action="Freida_mcfadden">
-                <button class="card_a">
-                    <img src="/imagens/Freida.jpg" alt="Fraida Mcfadden">
-                    <h3>Freida Mcfadden</h3>
-                </button>
-            </form>
-            <form asp-controller="Home" asp-action="George_Martin">
-                <button class="card_a">
-                    <img src="/imagens/George.jpg" alt="George R. R. Martin">
-                    <h3>George R. R. Martin</h3>
-                </button>
-            </form>
-            <form asp-controller="Home" asp-action="Alice_oseman">
-                <button class="card_a">
-                    <img src="/imagens/Alice.jpg" alt="Alice Oseman">
-                    <h3>Alice Oseman</h3>
-                </button>
-            </form>
+            <div class="card_a">
+                <img src="/imagens/Freida.jpg" alt="Fraida Mcfadden">
+                <h3>Freida Mcfadden</h3>
+            </div>
+            <div class="card_a">
+                <img src="/imagens/George.jpg" alt="George R. R. Martin">
+                <h3>George R. R. Martin</h3>
+            </div>
+            <div class="card_a">
+                <img src="/imagens/Alice.jpg" alt="Alice Oseman">
+                <h3>Alice Oseman</h3>
+            </div>
         </div>
     </section>
+
+
 
 
     <!-- Livros em Destaque -->
@@ -131,34 +149,29 @@
         <div class="carousel">
             <button class="carousel-btn prev">&#8249;</button>
             <div class="carousel-track" data-current-slide="0">
-                <div class="card_ld">
-                    <img src="/imagens/livros/heartstoppervol1.jpeg" alt="Capa do livro Heartstopper">
-                    <h3>Heartstopper Vol1</h3>
-                    <p>Alice Oseman</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ld">
-                    <img src="/imagens/livros/Princepezinhojpeg.jpeg" alt="Capa do livro O Principezinho">
-                    <h3>O Principezinho</h3>
-                    <p>Antoine de Saint-Exupéry</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ld">
-                    <img src="/imagens/livros/GoT.jpeg" alt="Capa do livro A Guerra dos Tronos">
-                    <h3>A Guerra dos Tronos</h3>
-                    <p>George R. R. Martin</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ld">
-                    <img src="/imagens/livros/morte_no_sanatorio.jpeg" alt="Capa do livro Morte No Sanatório">
-                    <h3>Morte No Sanatório</h3>
-                    <p> Ragnar Jónasson</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-            </div>
+                            @foreach (var course in Model.Where(c => c.Dest == true))
+                            {
+                    <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
+                        <div class="card_ld">
+                            <div class="card_l_content">
+                                            @if (!string.IsNullOrEmpty(course.CoverPhoto))
+                                            {
+                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" />
+                                            }
+                                            else
+                                            {
+                                    <span>Sem imagem disponível</span>
+                                            }
+                                <h3 class="book-title">@course.Name</h3>
+                                <p class="book-author">@course.Author</p>
+                            </div>
+                        </div>
+                    </a>
+                            }
             <button class="carousel-btn next">&#8250;</button>
         </div>
     </section>
+
 
     <!-- Adicionados Recentemente -->
     <section id="adicionados" class="recentes">
@@ -174,30 +187,25 @@
         <div class="carousel2">
             <button class="carousel2-btn prev">&#8249;</button>
             <div class="carousel2-track" data-current-slide="0">
-                <div class="card_ad">
-                    <img src="/imagens/livros/heartstoppervol1.jpeg" alt="Capa do livro Heartstopper Vol 1">
-                    <h3>Heartstopper Vol 1</h3>
-                    <p>Alice Oseman</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ad">
-                    <img src="/imagens/livros/acriada.jpeg" alt="Capa do livro A Criada">
-                    <h3>A Criada</h3>
-                    <p>Freida McFadden</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ad">
-                    <img src="/imagens/livros/powerless.jpeg" alt="Capa do livro Powerless">
-                    <h3>Powerless</h3>
-                    <p>Lauren Roberts</p>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="card_ad">
-                    <img src="/imagens/livros/morte_no_sanatorio.jpeg" alt="Capa do livro Morte No Sanatório">
-                    <h3>Morte No Sanatório</h3>
-                    <p> Ragnar Jónasson</p>
-                    <div class="stars">★★★★★</div>
-                </div>
+                            @foreach (var course in Model.Where(c => c.Addrec == true))
+                            {
+                    <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
+                        <div class="card_ld">
+                            <div class="card_l_content">
+                                            @if (!string.IsNullOrEmpty(course.CoverPhoto))
+                                            {
+                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" />
+                                            }
+                                            else
+                                            {
+                                    <span>Sem imagem disponível</span>
+                                            }
+                                <h3 class="book-title">@course.Name</h3>
+                                <p class="book-author">@course.Author</p>
+                            </div>
+                        </div>
+                    </a>
+                            }
             </div>
             <button class="carousel2-btn next">&#8250;</button>
         </div>
@@ -207,7 +215,11 @@
         <!-- Sobre Nós -->
         <section id="sobre" class="sobre">
             <h2>Sobre Nós</h2>
-            <p>A UNILIB procura ser um estímulo na construção de uma sociedade baseada no conhecimento, conectando utilizadores a recursos digitais diversificados.</p>
+            <p>A UNILIB procura ser um estímulo na construção de uma sociedade baseada no conhecimento, conectando utilizadores a recursos digitais diversificados.
+               A nossa missão é promover a literacia digital e a literacia da informação, disponibilizando recursos digitais de qualidade e fomentando a partilha de conhecimento.
+             <p> Contacto: 972742234</p>
+             <p>Unilib@gumail.com</p>
+            </p>
         </section>
     </main>
 

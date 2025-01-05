@@ -17,7 +17,6 @@ namespace Biblioteca_UniLib.Data.Migrations
                Id = table.Column<int>(nullable: false)
                    .Annotation("SqlServer:Identity", "1, 1"),
                Username = table.Column<string>(type: "nvarchar(50)", nullable: false),
-               Role = table.Column<string>(type: "nvarchar(20)", nullable: false, defaultValue: "")
            },
            constraints: table =>
            {

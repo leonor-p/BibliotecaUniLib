@@ -19,6 +19,11 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
@@ -33,11 +38,11 @@
                 <input type="file" asp-for="CoverPhoto" class="form-control" />
                 <span asp-validation-for="CoverPhoto" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <!--div class="form-group">
                 <label asp-for="Document" class="control-label"></label>
                 <input type="file" asp-for="Document" class="form-control" />
                 <span asp-validation-for="Document" class="text-danger"></span>
-            </div>
+            </div>-->
             <div class="form-group">
                 <label asp-for="CategoryID" class="control-label"></label>
                 <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>
@@ -48,14 +53,43 @@
                     <input class="form-check-input" asp-for="State" /> @Html.DisplayNameFor(model => model.State)
                 </label>
             </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Dest" /> @Html.DisplayNameFor(model => model.Dest)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Addrec" /> @Html.DisplayNameFor(model => model.Addrec)
+                </label>
+            </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" style="color: #fff; background-color: #5e0606; border-color: #5e0606;" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" style="color: #5e0606"; >Back to List</a>
 </div>
-
+<footer>
+    <div class="grid footer">
+        <div class="card_logo">
+            <img src="/imagens/logo200.png" alt="logo UniLib">
+        </div>
+        <div class="grid sb">
+            <h3>Sobre nós</h3>
+            <p></p>
+            <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
+            <p></p>
+            <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
+            <p></p>
+        </div>
+        <div class="grid ajuda">
+            <h3>Ajuda</h3>
+            <p></p>
+            <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
+        </div>
+    </div>
+</footer>

@@ -1,8 +1,8 @@
-
 using Biblioteca_UniLib.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,17 +19,40 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<DbInitializer>();
 
+
+// Cookies
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10); // Tempo de expira��o
+    options.Cookie.Name = ".UniLib.Session"; // Nome do cookie
+    options.Cookie.HttpOnly = true; // Para maior seguran�a
+    options.Cookie.IsEssential = true;
+});
+
+// Adicionar servi�os to the container, o server cria uma sess�o �nica para cada ID permitindo o armazenamento de dados para cada cliente 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.Cookie.Name = ".AspNetCore.Session";
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    SeedRoles.Seed(roleManager);
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-    var services = scope.ServiceProvider;
-    var initializer = services.GetRequiredService<DbInitializer>();
+    await SeedRoles.SeedAsync(roleManager, userManager, context);
+
+    var initializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
     initializer.Run();
 }
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -39,7 +62,6 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -48,11 +70,16 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession();
+
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapRazorPages();
+});
 
 app.Run();

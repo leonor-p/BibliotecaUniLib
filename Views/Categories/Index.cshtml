@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Gestão de Categorias</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -51,3 +51,35 @@
 }
     </tbody>
 </table>
+
+<footer>
+    <div class="grid footer">
+        <div class="card_logo">
+            <img src="/imagens/logo200.png" alt="logo UniLib">
+        </div>
+        <div class="grid sb">
+            <h3>Sobre nós</h3>
+            <p></p>
+            <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
+            <p></p>
+            <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
+            <p></p>
+        </div>
+        <div class="grid ajuda">
+            <h3>Ajuda</h3>
+            <p></p>
+            <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .custom-link {
+        color: #5e0606;
+        text-decoration: none; /* Remove underline */
+    }
+
+        .custom-link:hover {
+            text-decoration: underline; /* Optional: Add underline on hover */
+        }
+</style>

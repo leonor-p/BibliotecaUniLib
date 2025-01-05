@@ -39,6 +39,7 @@ document.querySelector(".carousel2 .next").addEventListener("click", () => {
     scrollCarouselGeneric(".carousel2-track", ".card_ad", 1);
 });
 
+<<<<<<< HEAD
 $(document).ready(function () {
     $('#search').on('keyup', function () {
         var query = $(this).val();
@@ -64,3 +65,21 @@ $(document).ready(function () {
         }
     });
 });
+=======
+document.addEventListener("DOMContentLoaded", function () {
+    var toggleDescriptionButton = document.querySelector(".toggle-description");
+    var descriptionContent = document.querySelector(".description-content");
+
+    toggleDescriptionButton.addEventListener("click", function () {
+        if (descriptionContent.classList.contains("expanded")) {
+            descriptionContent.classList.remove("expanded");
+            toggleDescriptionButton.textContent = "Ver Mais";
+        } else {
+            descriptionContent.classList.add("expanded");
+            toggleDescriptionButton.textContent = "Ver Menos";
+        }
+    });
+});
+
+
+>>>>>>> Pedro
