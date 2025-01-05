@@ -1,7 +1,7 @@
 ﻿@model Biblioteca_UniLib.Models.Course
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 @{
     bool isLeitor = User.IsInRole("Leitor");
@@ -56,13 +56,22 @@
                 </dd>
                 <div class="text-center mt-3">
                     <div>
-                        @if (isLeitor)
+                        @if (Model.Quantidade > 0)
                         {
-                            <a href="@Url.Action("Index", "Requests", new { id = Model.ID })" class="btn btn-success" style="background-color: #5e0606; border-color: #5e0606;">Requisitar</a>
+                            @if (isLeitor)
+                            {
+                                <a href="@Url.Action("Index", "Requests", new { id = Model.ID })"
+                                   class="btn btn-success"
+                                   style="background-color: #5e0606; border-color: #5e0606;">Requisitar</a>
+                            }
+                            else
+                            {
+                                <h3 style="font-size: 19px; color: #5e0606;">Só o leitor pode requisitar livros</h3>
+                            }
                         }
                         else
                         {
-                            <h3 style="font-size: 19px; color: #5e0606;">Só o leitor pode requisitar livros</h3>
+                            <h3 style="font-size: 19px; color: #5e0606;">Livro indisponível no momento</h3>
                         }
                     </div>
                 </div>
