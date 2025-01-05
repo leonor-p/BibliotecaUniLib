@@ -110,6 +110,12 @@ namespace Biblioteca_UniLib.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        public async Task<IActionResult> Todoslivros()
+        {
+            var books = await _context.courses.ToListAsync();
+            return View(books);
+        }
 
         //Páginas das categorias
         public IActionResult cat_fantasia()
