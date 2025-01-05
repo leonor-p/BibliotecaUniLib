@@ -870,13 +870,20 @@ body {
         }
 
 
-    .footer .sb, .footer .ajuda {
+    .footer .sb, .footer .ajuda, .footer .loc {
         flex: 1; /* Faz com que a seção ocupe espaço proporcional */
         margin: 0 1rem; /* Margem horizontal para espaçamento */
         line-height: 1.6; /* Espaçamento entre linhas */
         text-align: center; /* Centraliza o texto */
     }
-
+    .footer .loc p{
+        color: rgba(255, 255, 255, 0.6);
+        position:center;
+        align-items:center;
+        justify-content:center;
+        height: auto;
+        
+    }
         .footer .sb h3, .footer .ajuda h3 {
             margin-bottom: 0.5rem; /* Espaçamento inferior do título */
             font-size: 1.4rem; /* Tamanho da fonte do título */
