@@ -284,6 +284,11 @@ namespace Biblioteca_UniLib.Controllers
 
             return RedirectToAction(nameof(Gerirrequisicoes));
         }
+        public IActionResult Todoslivros()
+        {
+            return View();
+        }
+
     }
 }
     
