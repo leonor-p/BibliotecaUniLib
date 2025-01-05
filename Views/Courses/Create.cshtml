@@ -38,11 +38,7 @@
                 <input type="file" asp-for="CoverPhoto" class="form-control" />
                 <span asp-validation-for="CoverPhoto" class="text-danger"></span>
             </div>
-            <!--div class="form-group">
-                <label asp-for="Document" class="control-label"></label>
-                <input type="file" asp-for="Document" class="form-control" />
-                <span asp-validation-for="Document" class="text-danger"></span>
-            </div>-->
+          
             <div class="form-group">
                 <label asp-for="CategoryID" class="control-label">Categoria</label>
                 <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID">
@@ -50,11 +46,7 @@
                 </select>
                 <span asp-validation-for="CategoryID" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="State" /> @Html.DisplayNameFor(model => model.State)
-                </label>
-            </div>
+            
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Dest" /> @Html.DisplayNameFor(model => model.Dest)

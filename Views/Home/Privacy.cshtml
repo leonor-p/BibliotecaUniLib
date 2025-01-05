@@ -27,7 +27,7 @@
 
         
     <main class="container">
-        <h1>Detalhes da Sessão</h1>
+        <h3>Detalhes da Sessão</h3>
         <div>
             <strong>Session ID:</strong> @(HttpContextAccessor.HttpContext?.Session?.Id ?? "No Session")
         </div>
@@ -48,7 +48,7 @@
 
         @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
-        <h1>Web Cookies in Request</h1>
+        <h3>Web Cookies in Request</h3>
 
         @if (HttpContextAccessor.HttpContext.Request.Cookies.Count == 0)
         {
@@ -66,7 +66,7 @@
             var sessionId = HttpContextAccessor.HttpContext.Session.Id; // Obtendo o ID da sessão
         }
 
-        <h1>Session ID</h1>
+        <h3>Session ID</h3>
         <div>
             The presentation of this value is used to confirm the reuse of the sessions:
             <strong>@sessionId</strong>
