@@ -58,7 +58,15 @@ namespace Biblioteca_UniLib.Controllers
 
         public IActionResult Adicionados_recentemente()
         {
-            return View();
+            var cursos = _context.courses.Where(c => c.Addrec == true).ToList();
+
+            // Verifique se a lista de cursos não é nula
+            if (cursos == null)
+            {
+                cursos = new List<Course>();
+            }
+
+            return View(cursos);
         }
 
         public IActionResult Freida_mcfadden()
