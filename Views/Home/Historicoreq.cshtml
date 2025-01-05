@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Biblioteca_UniLib.Models.BookRequests>
 
-<h2 class="text-left mb-4" style=" color: black;">Gerir Requisições de Livros</h2>
+
 
 @if (TempData["ErrorMessage"] != null)
 {
@@ -9,6 +9,7 @@
     </div>
 }
 
+<h2 class="text-left mb-4" style=" color: black;">Histórico de Requisições de Livros</h2>
 <!-- Pendentes -->
 <div class="table-container">
     <h3 class="table-title" style="background-color: #5e0606; color: white;">Pendentes</h3>
@@ -17,32 +18,21 @@
             <tr>
                 <th>ID da Solicitação</th>
                 <th>Título do Livro</th>
-                <th>Leitor que Fez a Solicitação</th>
                 <th>Data de Levantamento Proposta</th>
                 <th>Data de Entrega Proposta</th>
-                <th class="text-end">Ações</th>
+                <th class="text-end">Status</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var request in Model.Where(r => !r.IsAccepted && r.RequestStartDate <= DateTime.Now && r.RequestEndDate >= DateTime.Now))
+            @foreach (var request in Model.Where(r => r.UserName == User.Identity.Name && !r.IsAccepted && r.RequestStartDate <= DateTime.Now && r.RequestEndDate >= DateTime.Now))
             {
                 <tr>
                     <td>@request.Id</td>
                     <td>@request.BookTitle</td>
-                    <td>@request.UserName</td>
                     <td>@request.RequestStartDate.ToString("dd/MM/yyyy")</td>
                     <td>@request.RequestEndDate.ToString("dd/MM/yyyy")</td>
                     <td class="text-end">
-                        @if (request.RequestStartDate <= DateTime.Now && request.RequestEndDate >= DateTime.Now)
-                        {
-                            <form asp-action="AcceptRequest" asp-route-id="@request.Id" method="post" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja aceitar esta solicitação?');">
-                                <button type="submit" class="btn btn-warning btn-sm">Aceitar</button> <!-- Cor laranja -->
-                            </form>
-                        }
-                        else
-                        {
-                            <span>Fora do período de solicitação</span>
-                        }
+                        <span>Pendente</span>
                     </td>
                 </tr>
             }
@@ -58,27 +48,21 @@
             <tr>
                 <th>ID da Solicitação</th>
                 <th>Título do Livro</th>
-                <th>Bibliotecário que Aceitou</th>
                 <th>Data de Aceitação</th>
                 <th>Data de Entrega Proposta</th>
-                <th>Leitor que Fez a Solicitação</th>
-                <th class="text-end">Ações</th>
+                <th class="text-end">Status</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var request in Model.Where(r => r.IsAccepted && !r.IsReturned))
+            @foreach (var request in Model.Where(r => r.UserName == User.Identity.Name && r.IsAccepted && !r.IsReturned))
             {
                 <tr>
                     <td>@request.Id</td>
                     <td>@request.BookTitle</td>
-                    <td>@request.AcceptedBy</td>
                     <td>@(request.AcceptedDate?.ToString("dd/MM/yyyy HH:mm") ?? "-")</td>
                     <td>@request.RequestEndDate.ToString("dd/MM/yyyy")</td>
-                    <td>@request.UserName</td>
                     <td class="text-end">
-                        <form asp-action="ReturnRequest" asp-route-id="@request.Id" method="post" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja devolver este livro?');">
-                            <button type="submit" class="btn btn-info btn-sm">Devolver</button> <!-- Cor azul clara -->
-                        </form>
+                        <span>Em Andamento</span>
                     </td>
                 </tr>
             }
@@ -94,33 +78,30 @@
             <tr>
                 <th>ID da Solicitação</th>
                 <th>Título do Livro</th>
-                <th>Bibliotecário que Aceitou</th>
                 <th>Data de Aceitação</th>
-                <th>Bibliotecário que Devolveu</th>
                 <th>Data de Devolução</th>
-                <th>Leitor que Fez a Solicitação</th>
-                <th class="text-end">Ações</th>
+                <th class="text-end">Status</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var request in Model.Where(r => r.IsReturned))
+            @foreach (var request in Model.Where(r => r.UserName == User.Identity.Name && r.IsReturned))
             {
                 <tr>
                     <td>@request.Id</td>
                     <td>@request.BookTitle</td>
-                    <td>@request.AcceptedBy</td>
                     <td>@(request.AcceptedDate?.ToString("dd/MM/yyyy HH:mm") ?? "-")</td>
-                    <td>@request.ReturnedBy</td>
                     <td>@(request.ReturnedDate?.ToString("dd/MM/yyyy HH:mm") ?? "-")</td>
-                    <td>@request.UserName</td>
                     <td class="text-end">
-                        <span>Finalizado</span>
+                        <span>Concluído</span>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+</div>
+
 <style>
+    
     .table-container {
         margin: 20px 0;
     }
