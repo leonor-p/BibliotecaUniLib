@@ -1,8 +1,4 @@
-﻿@{
-    bool isBibliotecario = User.IsInRole("Bibliotecario");
-    bool isLeitor = User.IsInRole("Leitor");
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -36,11 +32,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Todoslivros">Os Nossos Livros</a>
                         </li>
-                        @if (isLeitor){
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Historicoreq">Histórico de Requisições</a>
-                            </li>
-                        }
                         <partial name="_LoginPartial" />
                     </ul>
                 </div>
