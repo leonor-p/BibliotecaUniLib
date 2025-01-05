@@ -103,19 +103,6 @@
                     $selector.append($("<option/>", { nodeValue: "", text: "--Escolhe um livro" }));
                 }
 
-                $.each(data, function (index, val) {
-                    $selector.append($("<option/>", {
-                        value: val,
-                        text: val
-                    }));
-                });
-            })
-        })
-
-    </script>
-}
-Date: @DateTime.Now
-
 <form asp-action="TestAjaxForm"
     data-ajax="true" data-ajax-method="post"
     data-ajax-moode="replace" data-ajax-update="#box">
