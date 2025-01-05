@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Biblioteca_UniLib.Models.Course>
+@{
     ViewData["Title"] = "cat_comedia";
 }
 
@@ -15,128 +16,49 @@
 <body>
     <div class="container_ld">
         <h1>Comédia</h1>
-        <p>Descobre os melhores livros de comédia</p>
+        <p>Descobre os melhores livros sobre de Comédia</p>
 
         <div class="book-grid">
-            <div class="book-card">
-                <img src="/imagens/livros/heartstopper.jpeg" alt="Capa do livro Heartstopper">
-                <h3>Heartstopper</h3>
-                <p>Alice Oseman</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/acriada.jpeg" alt="Capa do livro A Criada">
-                <h3>A Criada</h3>
-                <p>Freida McFadden</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/powerless.jpeg" alt="Capa do livro Powerless">
-                <h3>Powerless</h3>
-                <p>Lauren Roberts</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/morte_no_sanatorio.jpeg" alt="Capa do livro Morte No Sanatório">
-                <h3>Morte No Sanatório</h3>
-                <p> Ragnar Jónasson</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/reino_dos_malditos.jpeg" alt="Capa do livro O Reino dos Malditos">
-                <h3>O Reino dos Malditos</h3>
-                <p>  Kerri Maniscalco</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/corte_asas.jpeg" alt="Capa do Corte de Asas e Ruína">
-                <h3>Corte de Asas e Ruína</h3>
-                <p> Sarah J. Maas </p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/romance_verao.jpeg" alt="Capa do livro Romance de Verão">
-                <h3>Romance de Verão</h3>
-                <p>  Emily Henry </p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/everyone_here_is_lying.jpeg" alt="Capa do livro Everyone Here Is Lying">
-                <h3>Everyone Here Is Lying</h3>
-                <p> Shari Lapena </p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/cafe_pumpkin.jpeg" alt="Capa do livro Um Dia Diferente">
-                <h3>O Café Pumpkin Spice</h3>
-                <p>Laurie Gilmore</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/queria_ja_nao_quer.jpeg" alt="Capa do livro Queria? Já Não Quer?">
-                <h3>Queria? Já Não Quer?</h3>
-                <p>Marco Neves</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/the_inheritance_games.jpeg" alt="Capa do livro The Inheritance Games">
-                <h3>The Inheritance Games</h3>
-                <p>Jennifer Lynn Barnes</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/o_colibri.jpeg" alt="Capa do livro O Colibri">
-                <h3>O Colibri</h3>
-                <p> Sandro Veronesi </p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/funny_story.jpeg" alt="Capa do livro Funny Story">
-                <h3>Funny Story</h3>
-                <p>Emily Henry</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/pequena_vida.jpeg" alt="Uma Pequena Vida">
-                <h3>Uma Pequena Vida</h3>
-                <p> Hanya Yanagiharay</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/as_gemeas.jpeg" alt="Capa do livro Um Dia Diferente">
-                <h3>As Gémeas de Auschwitz</h3>
-                <p>Eva Mozes Kor</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/quarta_asa.jpeg" alt="Capa do livro Quarta Asa">
-                <h3>Quarta Asa</h3>
-                <p>Rebecca Yarros</p>
-                <div class="stars">★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/intermezzo.jpeg" alt="Capa do livro Intermezzo">
-                <h3>Intermezzo</h3>
-                <p>Sally Rooney</p>
-                <div class="stars">★★★★★</div>
-            </div>
-            <div class="book-card">
-                <img src="/imagens/livros/comunicacao_n_violenta.jpeg" alt="Capa do livro Um Dia Diferente">
-                <h3>Comunicação Não-Violenta</h3>
-                <p>Marshall B. Rosenberg</p>
-                <div class="stars">★★★★★</div>
-            </div>
-
-
+            @if (Model != null && Model.Any())
+            {
+                <div class="card_grid">
+                    @foreach (var course in Model.Where(c => c.CategoryID == 2))
+                    {
+                        <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
+                            <div class="card_ld">
+                                <div class="card_l_content">
+                                    @if (!string.IsNullOrEmpty(course.CoverPhoto))
+                                    {
+                                        <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" />
+                                    }
+                                    else
+                                    {
+                                        <span>Sem imagem disponível</span>
+                                    }
+                                    <h3 class="book-title">@course.Name</h3>
+                                    <p class="book-author">@course.Author</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            }
+            else
+            {
+                <p>Nenhum livro em Destaque.</p>
+            }
         </div>
 
-        <div class="pagination">
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#" class="active">4</a>
-            <a href="#">5</a>
-        </div>
+
+    </div>
+
+    <div class="pagination">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#" class="active">4</a>
+        <a href="#">5</a>
+    </div>
     </div>
     <footer>
         <div class="grid footer">
@@ -145,19 +67,124 @@
             </div>
             <div class="grid sb">
                 <h3>Sobre nós</h3>
-                <p>  </p>
-                <a href="#privacidade">Política de Privacidade</a>
-                <p>  </p>
-                <a href="#termos">Termos de Serviço</a>
-                <p>  </p>
+                <p></p>
+                <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
+                <p></p>
+                <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
+                <p></p>
             </div>
             <div class="grid ajuda">
                 <h3>Ajuda</h3>
-                <p>  </p>
-                <a href="#ajuda">Ajuda</a>
+                <p></p>
+                <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
             </div>
         </div>
-
     </footer>
 </body>
 </html>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+    }
+
+    .card_ld, .card_ad {
+        min-width: 300px;
+        background-color: #f8f9fa;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+    }
+
+        .card_ld img, .card_ad img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    p {
+        font-size: 1rem;
+        color: #666;
+    }
+
+    .card_grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .card_ld {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+    }
+
+        .card_ld:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card_ld img {
+            width: 100px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+    .card_l_content {
+        padding: 15px;
+    }
+
+    .book-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #333;
+        margin: 10px 0 5px;
+    }
+
+    .book-author {
+        font-size: 1rem;
+        color: #777;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+        .pagination a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 5px;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+            .pagination a.active {
+                background-color: #5e0606;
+                color: #fff;
+                border-color: #5e0606;
+            }
+
+            .pagination a:hover {
+                background-color: #5e0606;
+                color: #fff;
+            }
+
+</style>
