@@ -27,9 +27,8 @@ namespace Biblioteca_UniLib.Data
                 return; // DB has been seeded
             }
 
-
             var categories = new Category[]
-           {                
+           {
                 new Category{Name="Fantasia", Description="Fantasia",Author="Autor1"},
                 new Category{Name="Finanças", Description="Finanças",Author = "Autor2"},
                 new Category{Name="Comédia", Description="Comedia", Author = "Autor3"},
@@ -44,7 +43,7 @@ namespace Biblioteca_UniLib.Data
             var courses = new Course[]
             {
                 new Course
-                {
+{
                     Name="A Cegueira do Rio",
                     Description="O primeiro incidente militar numa aldeia do Norte de Moçambique marca, em agosto de 1914, o início da Primeira Guerra Mundial no continente africano.\r\n\r\nEsse inesperado episódio despoleta, para além disso, uma série de misteriosos eventos que culminam com o desaparecimento da escrita no mundo. Livros, relatórios, documentos, fotografias, mapas surgem deslavados e ninguém mais parece ser capaz de dominar a arte da escrita.\r\n\r\nOs habitantes dessa aldeia são chamados a restabelecer a ordem no mundo, ensinando aos europeus o ofício da escrita e as artes da navegação.",
                     CoverPhoto= "a_cegueira_do_rio.jpeg",
@@ -320,7 +319,6 @@ namespace Biblioteca_UniLib.Data
                     CategoryID=categories.Single(c => c.Name == "Ficção").ID
 
                 },
-
 
             };
 
