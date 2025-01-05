@@ -238,46 +238,6 @@
             </div>
         </div>
     </footer>
-
-<!-- BOLACHAS COOKIES
-    @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-
-    <h1>Web Cookies in Request</h1>
-
-                @if (HttpContextAccessor.HttpContext.Request.Cookies.Count == 0)
-                {
-        <div>No cookies were sent</div>
-                }
-                else
-                {
-                    @foreach (var item in HttpContextAccessor.HttpContext.Request.Cookies.Keys)
-                    {
-            <div>@item - @HttpContextAccessor.HttpContext.Request.Cookies[item]</div>
-                    }
-                }
-
-                @{
-                    var sessionId = HttpContextAccessor.HttpContext.Session.Id; // Obtendo o ID da sessão
-                }
-
-    <h1>Session ID</h1>
-    <div>
-        The presentation of this value is used to confirm the reuse of the sessions:
-        <strong>@sessionId</strong>
-    </div>
-
-                @foreach (var item in HttpContextAccessor.HttpContext.Session.Keys) // Acessando as chaves da sessão
-                {
-                    if (item == "StringValue")
-                    {
-            <div>@item - @HttpContextAccessor.HttpContext.Session.GetString(item)</div>
-                    }
-                    else
-                    {
-            <div>@item - @HttpContextAccessor.HttpContext.Session.GetInt32(item)</div>
-                    }
-                }
-    -->
 </body>
 </html>
 

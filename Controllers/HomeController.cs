@@ -274,7 +274,7 @@ public class HomeController : Controller
         HttpContext.Response.Cookies.Append("Test2", "Value2", cookieOptions1);
         HttpContext.Response.Cookies.Append("Test3", "Value3", cookieOptions2);
 
-        return RedirectToAction("Index");
+        return RedirectToAction("Privacy");
     }
 
     public IActionResult DeleteCookies()
@@ -284,7 +284,7 @@ public class HomeController : Controller
             HttpContext.Response.Cookies.Delete(item);
         }
 
-        return RedirectToAction("Index");
+        return RedirectToAction("Privacy");
     }
 
     public IActionResult AddSessionVariables() //cria as sessões unicas de ID referenciadas antes no program.cs
@@ -294,7 +294,7 @@ public class HomeController : Controller
         HttpContext.Session.SetInt32("IntegerValue", 100);
         // uma cookie de sessão '.AspNetCore.Session' é criada e enviada para o cliente
 
-        return RedirectToAction("Index");
+        return RedirectToAction("Privacy");
     }
 
     public IActionResult DeleteSessionVariables()
@@ -305,14 +305,14 @@ public class HomeController : Controller
             HttpContext.Session.Remove(item);
         }
 
-        return RedirectToAction("Index");
+        return RedirectToAction("Privacy");
     }
 
     public IActionResult DeleteSession()
     {
         HttpContext.Response.Cookies.Delete(".AspNetCore.Session");
 
-        return RedirectToAction("Index");
+        return RedirectToAction("Privacy");
 
     }
 }
