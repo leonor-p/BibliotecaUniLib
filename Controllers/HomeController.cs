@@ -7,6 +7,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using System.Data;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Html;
 
 namespace Biblioteca_UniLib.Controllers
 {
@@ -48,6 +49,23 @@ namespace Biblioteca_UniLib.Controllers
         [AllowAnonymous]
         public IActionResult Privacy()
         {
+            List<string> alllivros = new List<string>();
+            {
+                alllivros.Add("Dom Quixote");
+                alllivros.Add("O Pequeno Príncipe");
+                alllivros.Add("Orgulho e Preconceito");
+                alllivros.Add("1984");
+                alllivros.Add("Cem Anos de Solidão");
+                alllivros.Add("O Senhor dos Anéis");
+                alllivros.Add("Harry Potter e a Pedra Filosofal");
+                alllivros.Add("O Grande Gatsby");
+                alllivros.Add("A Metamorfose");
+                alllivros.Add("Moby Dick");
+                alllivros.Add("Jane Eyre");
+                alllivros.Add("A Revolução dos Bichos");
+            };
+
+            ViewBag.alllivros = new HtmlString(JsonConvert.SerializeObject(alllivros.ToArray()));
             return View();
         }
         public IActionResult Termos()
