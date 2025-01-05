@@ -876,7 +876,7 @@ namespace Biblioteca_UniLib.Data
                     {
                         Name="Como Parar o Tempo",
                         Description="Tom Hazard tem uma condição única que o faz viver por séculos. Enquanto tenta levar uma vida normal, ele descobre que o maior risco de sua imortalidade é o amor.",
-                        CoverPhoto= "como-parar-o-tempo.jpg",
+                        CoverPhoto= "como-parar-o-tempo-3.jpg",
                         Author="Matt Haig",
                         Addrec=false,
                         Dest=true,
