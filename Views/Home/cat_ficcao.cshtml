@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Biblioteca_UniLib.Models.Course>
 @{
-    ViewData["Title"] = "Livros_em_destaque";
+    ViewData["Title"] = "cat_ficcao";
 }
 
 <!DOCTYPE html>
@@ -11,14 +11,21 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="/css/style.css"> <!-- Adicione um CSS externo se necessário -->
 </head>
+<style>
+        body {            
+            background: url("/imagens/cat-ficcao.jpg") no-repeat center center fixed;
+            background-size: cover;
+            
+        }
+    </style>
 <body>
     <div class="container_ld">
-        <h1>Livros Em Destaque</h1>
-        <p>Descobre os Livros Em Destaque</p>
+        <h1>Ficção</h1>
+        <p>Descobre os melhores livros sobre Ficção</p>
         @if (Model != null && Model.Any())
         {
             <div class="card_grid">
-                @foreach (var course in Model.Where(c => c.Dest == true))
+                @foreach (var course in Model.Where(c => c.CategoryID == 5))
                 {
                     <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
                         <div class="card_ld">

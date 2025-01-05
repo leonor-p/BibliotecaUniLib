@@ -53,7 +53,14 @@ namespace Biblioteca_UniLib.Controllers
 
         public IActionResult Livros_em_destaque()
         {
-            return View();
+
+            var cursos = _context.courses.Where(c => c.Dest == true).ToList();
+            if (cursos == null)
+            {
+                cursos = new List<Course>();
+            }
+
+            return View(cursos);
         }
 
         public IActionResult Adicionados_recentemente()
@@ -103,32 +110,68 @@ namespace Biblioteca_UniLib.Controllers
         //Páginas das categorias
         public IActionResult cat_fantasia()
         {
-            return View("Categorias/cat_fantasia");
+            var cursos = _context.courses.Where(c => c.CategoryID == 1).ToList();
+            if (cursos == null)
+            {
+                cursos = new List<Course>();
+            }
+
+            return View(cursos);
         }
 
         public IActionResult cat_romance()
         {
-            return View("Categorias/cat_romance");
+            var cursos = _context.courses.Where(c => c.CategoryID == 4).ToList();
+            if (cursos == null)
+            {
+                cursos = new List<Course>();
+            }
+
+            return View(cursos);
         }
 
         public IActionResult cat_ficcao()
         {
-            return View("Categorias/cat_ficcao");
+            var cursos = _context.courses.Where(c => c.CategoryID == 5).ToList();
+            if (cursos == null)
+            {
+                cursos = new List<Course>();
+            }
+
+            return View(cursos);
         }
 
         public IActionResult cat_arte()
         {
-            return View("Categorias/cat_arte");
+            var cursos = _context.courses.Where(c => c.CategoryID == 6).ToList();
+            if (cursos == null)
+            {
+                cursos = new List<Course>();
+            }
+
+            return View(cursos);
         }
 
         public IActionResult cat_financas()
         {
-            return View("Categorias/cat_financas");
+            var cursos = _context.courses.Where(c => c.CategoryID == 2).ToList();
+            if (cursos == null)
+            {
+                cursos = new List<Course>();
+            }
+
+            return View(cursos);
         }
 
         public IActionResult cat_comedia()
         {
-            return View("Categorias/cat_comedia");
+            var cursos = _context.courses.Where(c => c.CategoryID == 3).ToList();
+            if (cursos == null)
+            {
+                cursos = new List<Course>();
+            }
+
+            return View(cursos);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
