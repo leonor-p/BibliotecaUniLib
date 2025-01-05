@@ -33,34 +33,51 @@ body {
     display: flex; /* Habilita o Flexbox para alinhamento horizontal */
     justify-content: space-between; /* Espaço entre as seções */
     align-items: flex-start; /* Alinha os itens ao topo */
-    background-color: #343a40;
-    color: white;
-    padding: 1rem;
-    margin-bottom: 0;
+    background-color: #343a40; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    padding: 1rem 2rem; /* Ajuste do padding para um layout consistente */
+    margin: 0; /* Remove margens externas */
     flex-wrap: wrap; /* Permite quebra para telas menores */
+    box-sizing: border-box; /* Inclui padding nas dimensões totais */
 }
+
     .footer .card_logo {
         width: 50px; /* Ajusta o tamanho da imagem */
-        height: auto;
-    }
-    .footer .sb {
-        flex: 1; /* Faz com que a seção ocupe espaço proporcional */
-        margin: 0 30px; /* Margem horizontal para espaçamento */
-        line-height: 1.6;
-        text-align: center;
+        height: auto; /* Mantém a proporção da imagem */
+        display: flex; /* Usa Flexbox para centralização */
+        align-items: center; /* Alinha verticalmente */
+        justify-content: center; /* Alinha horizontalmente */
+        overflow: hidden; /* Garante que o conteúdo não "vaze" */
     }
 
-    .footer .ajuda {
+        .footer .card_logo img {
+            max-width: 100%; /* Garante que a imagem se ajuste ao tamanho do container */
+            height: auto; /* Mantém a proporção da imagem */
+        }
+
+
+    .footer .sb, .footer .ajuda {
         flex: 1; /* Faz com que a seção ocupe espaço proporcional */
-        margin: 0 30px; /* Margem horizontal para espaçamento */
-        line-height: 1.4;
-        text-align: center;
+        margin: 0 1rem; /* Margem horizontal para espaçamento */
+        line-height: 1.6; /* Espaçamento entre linhas */
+        text-align: center; /* Centraliza o texto */
     }
 
-    .footer .sb h3, .footer .ajuda h3 {
-        margin-bottom: 10px;
-        font-size: 1.4rem;
-    }
+        .footer .sb h3, .footer .ajuda h3 {
+            margin-bottom: 0.5rem; /* Espaçamento inferior do título */
+            font-size: 1.4rem; /* Tamanho da fonte do título */
+        }
+
+        .footer .ajuda a, .footer .sb a {
+            color: #ffffff; /* Cor dos links */
+            text-decoration: none; /* Remove sublinhado */
+            transition: color 0.3s; /* Adiciona uma transição suave para hover */
+        }
+
+            .footer .ajuda a:hover, .footer .sb a:hover {
+                color: #ffc107; /* Cor dos links ao passar o mouse */
+            }
+
 
 a {
     color: #258cfb;
@@ -833,36 +850,50 @@ body {
     display: flex; /* Habilita o Flexbox para alinhamento horizontal */
     justify-content: space-between; /* Espaço entre as seções */
     align-items: flex-start; /* Alinha os itens ao topo */
-    background-color: #343a40;
-    color: white;
-    padding: 1rem;
-    margin-bottom: 0;
+    background-color: #343a40; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    padding: 1rem 2rem; /* Ajuste do padding para um layout consistente */
+    margin: 0; /* Remove margens externas */
     flex-wrap: wrap; /* Permite quebra para telas menores */
+    box-sizing: border-box; /* Inclui padding nas dimensões totais */
 }
 
     .footer .card_logo {
-        width: 50px; /* Ajusta o tamanho da imagem */
-        height: auto;
+        width: 150px; /* Ajusta o tamanho da imagem */
+        height: auto; /* Mantém a proporção da imagem */
+        display: flex; /* Usa Flexbox para centralização */
+        align-items: center; /* Alinha verticalmente */
+        justify-content: center; /* Alinha horizontalmente */
+        overflow: hidden; /* Garante que o conteúdo não "vaze" */
     }
 
-    .footer .sb {
-        flex: 1; /* Faz com que a seção ocupe espaço proporcional */
-        margin: 0 30px; /* Margem horizontal para espaçamento */
-        line-height: 1.6;
-        text-align: center;
-    }
+        .footer .card_logo img {
+            max-width: 100%; /* Garante que a imagem se ajuste ao tamanho do container */
+            height: auto; /* Mantém a proporção da imagem */
+        }
 
-    .footer .ajuda {
+
+    .footer .sb, .footer .ajuda {
         flex: 1; /* Faz com que a seção ocupe espaço proporcional */
-        margin: 0 30px; /* Margem horizontal para espaçamento */
-        line-height: 1.4;
-        text-align: center;
+        margin: 0 1rem; /* Margem horizontal para espaçamento */
+        line-height: 1.6; /* Espaçamento entre linhas */
+        text-align: center; /* Centraliza o texto */
     }
 
         .footer .sb h3, .footer .ajuda h3 {
-            margin-bottom: 10px;
-            font-size: 1.4rem;
+            margin-bottom: 0.5rem; /* Espaçamento inferior do título */
+            font-size: 1.4rem; /* Tamanho da fonte do título */
         }
+
+        .footer .ajuda a, .footer .sb a {
+            color: #c96f6f; /* Cor dos links */
+            text-decoration: none; /* Remove sublinhado */
+            transition: color 0.3s; /* Adiciona uma transição suave para hover */
+        }
+
+            .footer .ajuda a:hover, .footer .sb a:hover {
+                color: #ffc107; /* Cor dos links ao passar o mouse */
+            }
 
 a {
     color: #258cfb;

@@ -109,23 +109,30 @@
     <section id="autores" class="autores">
         <h2>
             <img src="/imagens/pessoalab.png" alt="Símbolo de Autores em Destaque" class="icon-categoria">
-            Autores em Destaque
+             Autores em Destaque
         </h2>
         <div class="grid grid_autores">
-            <div class="card_a">
-                <img src="/imagens/Freida.jpg" alt="Fraida Mcfadden">
-                <h3>Freida Mcfadden</h3>
-            </div>
-            <div class="card_a">
-                <img src="/imagens/George.jpg" alt="George R. R. Martin">
-                <h3>George R. R. Martin</h3>
-            </div>
-            <div class="card_a">
-                <img src="/imagens/Alice.jpg" alt="Alice Oseman">
-                <h3>Alice Oseman</h3>
-            </div>
+            <form asp-controller="Home" asp-action="Freida_mcfadden">
+                <button class="card_a">
+                    <img src="/imagens/Freida.jpg" alt="Fraida Mcfadden">
+                    <h3>Freida Mcfadden</h3>
+                </button>
+            </form>
+            <form asp-controller="Home" asp-action="George_Martin">
+                <button class="card_a">
+                    <img src="/imagens/George.jpg" alt="George R. R. Martin">
+                    <h3>George R. R. Martin</h3>
+                </button>
+            </form>
+            <form asp-controller="Home" asp-action="Alice_oseman">
+                <button class="card_a">
+                    <img src="/imagens/Alice.jpg" alt="Alice Oseman">
+                    <h3>Alice Oseman</h3>
+                </button>
+            </form>
         </div>
     </section>
+
     <!-- Livros em Destaque -->
     <section id="destaques" class="destaques">
         <div class="destaque-header">
