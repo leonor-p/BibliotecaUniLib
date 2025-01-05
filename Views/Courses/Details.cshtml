@@ -39,7 +39,6 @@
                 <dd class="col-sm-8">
                     <div class="description-content">
                         <p class="description-text">@Html.DisplayFor(model => model.Description)</p>
-                        <button class="btn btn-secondary toggle-description">Ver Mais</button>
                     </div>
                 </dd>
                 <dt class="col-sm-4">
@@ -85,28 +84,7 @@
                         }
 </div>
 
-<footer>
-    <div class="grid footer">
-        <div class="card_logo">
-            <img src="/imagens/logo200.png" alt="logo UniLib">
-        </div>
-        <div class="grid sb">
-            <h3>Sobre nós</h3>
-            <p></p>
-            <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
-            <p></p>
-            <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
-            <p></p>
-        </div>
-        <div class="grid ajuda">
-            <h3>Ajuda</h3>
-            <p></p>
-            <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
-        </div>
-    </div>
-</footer>
 
-<style>
     .back-button {
         position: absolute; /* Ajuste conforme necessário */
         top: 60px;

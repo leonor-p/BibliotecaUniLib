@@ -97,7 +97,7 @@
     <div class="card-body">
         @foreach (var role in ViewData["InactiveRoles"] as Dictionary<string, List<IdentityUser>>)
         {
-            <h5 class="role-title mt-4">
+            <h5 class="mt-4">
                 @if (role.Key == "Librarian")
                 {
                     @:Bibliotecário
@@ -129,7 +129,7 @@
                             <td>@user.Email</td>
                             <td class="text-end">
                                 <form asp-action="ActivateAccount" asp-route-id="@user.Id" method="post" style="display:inline;" onsubmit="return confirm('Tem a certeza que deseja ativar esta conta?');">
-                                    <button type="submit" class="btn btn-activate">Ativar</button>
+                                    <button type="submit" class="btn btn-success btn-sm">Ativar</button>
                                 </form>
                             </td>
                         </tr>
