@@ -91,20 +91,13 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
 
                 if (user != null)
                 {
-                    // Verifica o estado de bloqueio e se a conta está ativa
+                    // Verifica se a conta está ativa
                     var entry = _context.Entry(user);
-                    var accBlocked = entry.Property<bool>("AccBlocked").CurrentValue;
                     var activeAcc = entry.Property<bool>("ActiveAcc").CurrentValue;
-
-                    if (accBlocked)
-                    {
-                        ModelState.AddModelError(string.Empty, "Your account is blocked. Please contact support.");
-                        return Page();
-                    }
 
                     if (!activeAcc)
                     {
-                        ModelState.AddModelError(string.Empty, "Your account is not active. Please contact support.");
+                        ModelState.AddModelError(string.Empty, "Sua conta ainda não está ativada. Por favor, entre em contato com o suporte.");
                         return Page();
                     }
                 }
@@ -113,7 +106,7 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation("Usuário autenticado com sucesso.");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -122,12 +115,12 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("Conta do usuário bloqueada.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Tentativa de login inválida.");
                     return Page();
                 }
             }

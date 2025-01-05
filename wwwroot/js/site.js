@@ -33,10 +33,10 @@ document.querySelector(".carousel .next").addEventListener("click", () => {
 
 // Eventos para o carrossel "Adicionados Recentemente"
 document.querySelector(".carousel2 .prev").addEventListener("click", () => {
-    scrollCarouselGeneric(".carousel2-track", ".card_ad", -1);
+    scrollCarouselGeneric(".carousel2-track", ".card_ld", -1);
 });
 document.querySelector(".carousel2 .next").addEventListener("click", () => {
-    scrollCarouselGeneric(".carousel2-track", ".card_ad", 1);
+    scrollCarouselGeneric(".carousel2-track", ".card_ld", 1);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
