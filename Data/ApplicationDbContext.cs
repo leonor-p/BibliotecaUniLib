@@ -18,6 +18,7 @@ namespace Biblioteca_UniLib.Data
         public DbSet<Leitor> Leitores { get; set; }
         public DbSet<Livro> Livros { get; set; }
         public DbSet<Emprestimo> Emprestimos { get; set; }
+        public DbSet<Course> Courses { get; set; }
         public DbSet<ReviewLivro> ReviewsLivros { get; set; }
         public DbSet<Notificacao> Notificacoes { get; set; }
         public DbSet<HistoricoRequisicoes> HistoricoRequisicoes { get; set; }

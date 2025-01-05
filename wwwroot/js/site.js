@@ -38,3 +38,29 @@ document.querySelector(".carousel2 .prev").addEventListener("click", () => {
 document.querySelector(".carousel2 .next").addEventListener("click", () => {
     scrollCarouselGeneric(".carousel2-track", ".card_ad", 1);
 });
+
+$(document).ready(function () {
+    $('#search').on('keyup', function () {
+        var query = $(this).val();
+
+        if (query.length > 2) { // Inicia a busca a partir do terceiro caractere
+            $.ajax({
+                url: '/Home/Search',
+                type: 'GET',
+                data: { q: query },
+                success: function (data) {
+                    $('#results').empty();
+                    if (data.length > 0) {
+                        data.forEach(function (course) {
+                            $('#results').append('<div class="course-result"><a href="/Home/Details/' + course.id + '">' + course.title + '</a></div>');
+                        });
+                    } else {
+                        $('#results').append('<div class="no-results">Nenhum curso encontrado</div>');
+                    }
+                }
+            });
+        } else {
+            $('#results').empty();
+        }
+    });
+});

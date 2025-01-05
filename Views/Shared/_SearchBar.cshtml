@@ -1,0 +1,16 @@
+﻿@page
+@model Biblioteca_UniLib.Views.Shared._SearchBarModel
+@{
+}
+
+<div class="search-container">
+    <form class="search-form">
+        <input type="text" id="search" placeholder="Pesquisar livros..." class="search-input">
+    </form>
+    <div id="results" class="results-container"></div> <!-- Div para mostrar os resultados da pesquisa -->
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/site.js"></script>
+}
