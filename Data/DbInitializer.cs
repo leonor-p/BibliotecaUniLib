@@ -1,11 +1,5 @@
 ﻿using Biblioteca_UniLib.Models;
-using Microsoft.AspNetCore.Identity;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Biblioteca_UniLib.Data
 {
@@ -32,6 +26,7 @@ namespace Biblioteca_UniLib.Data
             {
                 return; // DB has been seeded
             }
+
 
             var categories = new Category[]
            {                
