@@ -1061,7 +1061,7 @@ namespace Biblioteca_UniLib.Data
                     {
                         Name = "A Bíblia dos Culpados",
                         Description = "Uma obra de humor negro que explora a culpa e ironiza diferentes situações com sátira afiada.",
-                        CoverPhoto = "abiliadosculpados.jpg",
+                        CoverPhoto = "abibliadosculpados.jpg",
                         Author = "Confúcio Costa",
                         Addrec = true,
                         Dest = false,
@@ -1139,7 +1139,7 @@ namespace Biblioteca_UniLib.Data
                     {
                         Name = "O Lixo na Minha Cabeça",
                         Description = "Histórias cómicas e situações absurdas vistas pelo olhar de uma criança.",
-                        CoverPhoto = "olixonaminhacabeca.jpg",
+                        CoverPhoto = "olixodaminhacabeca.jpg",
                         Author = "Hugo van der Ding",
                         Addrec = true,
                         Dest = false,

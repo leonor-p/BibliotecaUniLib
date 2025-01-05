@@ -111,9 +111,10 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
-                // Definir o valor de ActiveAcc como falso para todos os novos registros
+                // Definir o valor de ActiveAcc com base no papel do usuário
+                bool isActive = Input.Role.Equals("Leitor", StringComparison.OrdinalIgnoreCase);
                 var entry = _dbcontext.Entry(user);
-                entry.Property<bool>("ActiveAcc").CurrentValue = false;
+                entry.Property<bool>("ActiveAcc").CurrentValue = isActive;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -165,7 +166,6 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
             ViewData["roles"] = _roleManager.Roles.ToList();
             return Page();
         }
-
 
 
         private IdentityUser CreateUser()
