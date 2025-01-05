@@ -2,6 +2,8 @@
 function scrollCarouselGeneric(trackSelector, cardSelector, direction) {
     const track = document.querySelector(trackSelector);
     const cards = document.querySelectorAll(`${trackSelector} ${cardSelector}`);
+    if (cards.length === 0) return; // Verifica se há cartões
+
     const cardWidth = cards[0].offsetWidth + 20; // Largura do card + espaçamento
     const visibleCards = Math.floor(track.offsetWidth / cardWidth); // Quantos cabem visíveis
     const totalCards = cards.length;
@@ -24,20 +26,21 @@ function scrollCarouselGeneric(trackSelector, cardSelector, direction) {
 }
 
 // Eventos para o carrossel "Livros em Destaque"
-document.querySelector(".carousel .prev").addEventListener("click", () => {
-    scrollCarouselGeneric(".carousel-track", ".card_ld", -1);
+document.querySelector("#carousel-destaques .prev").addEventListener("click", () => {
+    scrollCarouselGeneric("#carousel-destaques .carousel2-track", ".card_ld", -1);
 });
-document.querySelector(".carousel .next").addEventListener("click", () => {
-    scrollCarouselGeneric(".carousel-track", ".card_ld", 1);
+document.querySelector("#carousel-destaques .next").addEventListener("click", () => {
+    scrollCarouselGeneric("#carousel-destaques .carousel2-track", ".card_ld", 1);
 });
 
 // Eventos para o carrossel "Adicionados Recentemente"
-document.querySelector(".carousel2 .prev").addEventListener("click", () => {
-    scrollCarouselGeneric(".carousel2-track", ".card_ad", -1);
+document.querySelector("#carousel-adicionados .prev").addEventListener("click", () => {
+    scrollCarouselGeneric("#carousel-adicionados .carousel2-track", ".card_ld", -1);
 });
-document.querySelector(".carousel2 .next").addEventListener("click", () => {
-    scrollCarouselGeneric(".carousel2-track", ".card_ad", 1);
+document.querySelector("#carousel-adicionados .next").addEventListener("click", () => {
+    scrollCarouselGeneric("#carousel-adicionados .carousel2-track", ".card_ld", 1);
 });
+
 
 document.addEventListener("DOMContentLoaded", function () {
     var toggleDescriptionButton = document.querySelector(".toggle-description");

@@ -133,11 +133,22 @@ namespace Biblioteca_UniLib.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Author,Description,Quantidade,State,CategoryID,Dest,Addrec")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Author,Description,Quantidade,State,CategoryID,Dest,Addrec,CoverPhoto")] Course course)
         {
             if (id != course.ID)
             {
                 return NotFound();
+            }
+
+            var existingCourse = await _context.courses.AsNoTracking().FirstOrDefaultAsync(c => c.ID == id);
+            if (existingCourse == null)
+            {
+                return NotFound();
+            }
+
+            if (string.IsNullOrEmpty(course.CoverPhoto))
+            {
+                course.CoverPhoto = existingCourse.CoverPhoto;
             }
 
             if (ModelState.IsValid)
@@ -163,7 +174,6 @@ namespace Biblioteca_UniLib.Controllers
             ViewData["CategoryID"] = new SelectList(_context.Category, "ID", "Description", course.CategoryID);
             return View(course);
         }
-
 
         // GET: Courses/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -25,12 +25,12 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Sobre_Nos">Sobre Nós</a>
                         </li>
                         
                      
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Ajuda</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Ajuda">Ajuda</a>
                         </li>
                         <partial name="_LoginPartial" />
                     </ul>
@@ -43,10 +43,36 @@
             @RenderBody()
         </main>
     </div>
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - UniLib - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer class="footer">
+      
+            <div class="card_logo">
+                <img src="/imagens/logo200.png" alt="logo UniLib">
+            </div>
+            <div class="loc">
+            <h3> </h3>
+            <p class="card-text text-justify">
+                Localização: Rua da Universidade 33, Vila Real, VR
+            </p>
+            <p class="card-text text-justify">
+                Contacto: 972742234
+            </p>
+            <p class="card-text text-justify">
+                Email: Unilib@gmail.com
+            </div>
+            <div class="sb">
+                <h3>Sobre nós</h3>
+                <p></p>
+                <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
+                <p></p>
+                <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
+                <p></p>
+            </div>
+            <div class="ajuda">
+                <h3>Ajuda</h3>
+                <p></p>
+                <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
+            </div>
+       
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jqueryui/jquery-ui.js"></script>

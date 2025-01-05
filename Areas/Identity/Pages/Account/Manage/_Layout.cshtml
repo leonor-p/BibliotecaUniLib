@@ -9,10 +9,10 @@
     }
 }
 
-<h1 style="color:#5e0606 ;">Manage your account</h1>
+<h1 style="color:#000 ;">Gere a Tua Conta</h1>
 
 <div>
-    <h2 style="color: #5e0606;">Change your account settings</h2>
+    <h2 style="color: #000;">Altera as definições da tua conta</h2>
     <hr />
     <div class="row">
         <div class="col-md-3">
@@ -27,52 +27,3 @@
 @section Scripts {
     @RenderSection("Scripts", required: false)
 }
-<style>
-    /* Ajuste para o botão Save */
-    .btn-submit {
-        width: 100%;
-        padding: 10px;
-        background-color: #5e0606; /* Mesma cor da barra de navegação */
-        color: #fff; /* Texto branco para contraste */
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 20px;
-        transition: background-color 0.3s ease; /* Efeito ao passar o mouse */
-    }
-
-        .btn-submit:hover {
-            background-color: #a33636; /* Tom mais claro ao passar o mouse */
-        }
-
-    /* Alteração dos links na navegação lateral */
-    .nav-link {
-        color: #5e0606; /* Cor do texto */
-    }
-
-        .nav-link:hover, .nav-link.active {
-            background-color: #a33636; /* Tom mais claro no hover ou ativo */
-            color: white; /* Texto branco */
-        }
-    /* Botão ativo */
-    .btn-submit:active {
-        background-color: #a33636; /* Cor ao ser clicado */
-        color: white; /* Texto branco */
-        border: 1px solid #5e0606; /* Borda para destaque */
-    }
-
-    /* Botão ativo na navegação lateral */
-    .nav-link.active {
-        background-color: #5e0606; /* Fundo do botão ativo */
-        color: white; /* Texto branco */
-        border-radius: 5px; /* Para combinar com o design */
-    }
-
-    /* Estilo hover para feedback adicional */
-    .nav-link:hover {
-        background-color: #a33636; /* Cor ao passar o mouse */
-        color: white;
-    }
-
-</style>

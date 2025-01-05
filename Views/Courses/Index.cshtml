@@ -7,7 +7,7 @@
 <h1>Gestão de Livros</h1>
 
 <p>
-    <a asp-action="Create" style="color: #5e0606;">Create New</a>
+    <a asp-action="Create" style="color: #5e0606;">Adicionar livro</a>
 </p>
 <table class="table">
     <thead>
@@ -61,33 +61,13 @@
                 @Html.DisplayFor(modelItem => item.Category.Description)
             </td>
             <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID" style="color: #5e0606;">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ID" style="color: #5e0606;">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID" style="color: #5e0606;">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.ID" style="color: #5e0606;">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID" style="color: #5e0606;">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID" style="color: #5e0606;">Eliminar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-<footer>
-    <div class="grid footer">
-        <div class="card_logo">
-            <img src="/imagens/logo200.png" alt="logo UniLib">
-        </div>
-        <div class="grid sb">
-            <h3>Sobre nós</h3>
-            <p></p>
-            <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
-            <p></p>
-            <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
-            <p></p>
-        </div>
-        <div class="grid ajuda">
-            <h3>Ajuda</h3>
-            <p></p>
-            <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
-        </div>
-    </div>
-</footer>
 
 

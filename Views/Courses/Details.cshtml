@@ -1,7 +1,7 @@
 ﻿@model Biblioteca_UniLib.Models.Course
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 @{
     bool isLeitor = User.IsInRole("Leitor");
@@ -34,12 +34,11 @@
             <hr />
             <dl class="row">
                 <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Description)
+                    Descrição
                 </dt>
                 <dd class="col-sm-8">
                     <div class="description-content">
                         <p class="description-text">@Html.DisplayFor(model => model.Description)</p>
-                        <button class="btn btn-secondary toggle-description">Ver Mais</button>
                     </div>
                 </dd>
                 <dt class="col-sm-4">
@@ -48,27 +47,31 @@
                 <dd class="col-sm-8">
                     @Html.DisplayFor(model => model.Quantidade)
                 </dd>
+             
                 <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.State)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.State)
-                </dd>
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Category)
+                    Categoria
                 </dt>
                 <dd class="col-sm-8">
                     @Html.DisplayFor(model => model.Category.Description)
                 </dd>
                 <div class="text-center mt-3">
                     <div>
-                        @if (isLeitor)
+                        @if (Model.Quantidade > 0)
                         {
-                            <a href="@Url.Action("Index", "Requests", new { id = Model.ID })" class="btn btn-success" style="background-color: #5e0606; border-color: #5e0606;">Requisitar</a>
+                            @if (isLeitor)
+                            {
+                                <a href="@Url.Action("Index", "Requests", new { id = Model.ID })"
+                                   class="btn btn-success"
+                                   style="background-color: #5e0606; border-color: #5e0606;">Requisitar</a>
+                            }
+                            else
+                            {
+                                <h3 style="font-size: 19px; color: #5e0606;">Só o leitor pode requisitar livros</h3>
+                            }
                         }
                         else
                         {
-                            <h3 style="font-size: 19px; color: #5e0606;">Só o leitor pode requisitar livros</h3>
+                            <h3 style="font-size: 19px; color: #5e0606;">Livro indisponível no momento</h3>
                         }
                     </div>
                 </div>
@@ -85,46 +88,6 @@
                         }
 </div>
 
-<footer>
-    <div class="grid footer">
-        <div class="card_logo">
-            <img src="/imagens/logo200.png" alt="logo UniLib">
-        </div>
-        <div class="grid sb">
-            <h3>Sobre nós</h3>
-            <p></p>
-            <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
-            <p></p>
-            <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
-            <p></p>
-        </div>
-        <div class="grid ajuda">
-            <h3>Ajuda</h3>
-            <p></p>
-            <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
-        </div>
-    </div>
-</footer>
-<footer>
-    <div class="grid footer">
-        <div class="card_logo">
-            <img src="/imagens/logo200.png" alt="logo UniLib">
-        </div>
-        <div class="grid sb">
-            <h3>Sobre nós</h3>
-            <p></p>
-            <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
-            <p></p>
-            <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
-            <p></p>
-        </div>
-        <div class="grid ajuda">
-            <h3>Ajuda</h3>
-            <p></p>
-            <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
-        </div>
-    </div>
-</footer>
 <style>
     .back-button {
         position: absolute; /* Ajuste conforme necessário */

@@ -34,6 +34,7 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly ApplicationDbContext _dbcontext;
         private readonly RoleManager<IdentityRole> _roleManager;
+
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
@@ -41,7 +42,8 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             ApplicationDbContext dbContext,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager
+        )
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -53,64 +55,42 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
             _roleManager = roleManager;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public string ReturnUrl { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
-            [Display(Name = "UserName")]
+            [Display(Name = "User Name")]
             public string UserName { get; set; }
+
+            [Required]
+            [DataType(DataType.Date)]
+            public DateTime Birthday { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
             [Required]
-            public string Role {  get; set; }
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
+            public string Role { get; set; }
+
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
-
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -131,10 +111,10 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
-                // Definir o valor de ActiveAcc antes da criação
+                // Definir o valor de ActiveAcc com base no papel do usuário
+                bool isActive = Input.Role.Equals("Leitor", StringComparison.OrdinalIgnoreCase);
                 var entry = _dbcontext.Entry(user);
-                entry.Property<bool>("ActiveAcc").CurrentValue =
-                    (Input.Role == "Admin" || Input.Role == "Librarian") ? false : true;
+                entry.Property<bool>("ActiveAcc").CurrentValue = isActive;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -186,6 +166,7 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
             ViewData["roles"] = _roleManager.Roles.ToList();
             return Page();
         }
+
 
         private IdentityUser CreateUser()
         {

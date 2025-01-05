@@ -110,6 +110,11 @@ namespace Biblioteca_UniLib.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        public IActionResult Sobre_Nos()
+        {
+            return View();
+        }
 
         // Páginas das categorias
         public IActionResult cat_fantasia()
@@ -122,7 +127,7 @@ namespace Biblioteca_UniLib.Controllers
 
             return View(cursos);
         }
-
+        
         public IActionResult cat_romance()
         {
             var cursos = _context.courses.Where(c => c.CategoryID == 4).ToList();

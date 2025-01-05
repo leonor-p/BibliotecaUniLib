@@ -136,8 +136,8 @@
 
 
     <!-- Livros em Destaque -->
-    <section id="destaques" class="destaques">
-        <div class="destaque-header">
+    <section id="destaques" class="recentes">
+        <div class="Ad-header">
             <h2>
                 <img src="/imagens/livrolab.png" alt="Símbolo de Livros em Destaque" class="icon-categoria">
                 Livros em Destaque
@@ -146,9 +146,9 @@
                 <button type="submit" class="ver-mais">Ver mais</button>
             </form>
         </div>
-        <div class="carousel">
-            <button class="carousel-btn prev">&#8249;</button>
-            <div class="carousel-track" data-current-slide="0">
+        <div class="carousel2" id="carousel-destaques">
+            <button class="carousel2-btn prev">&#8249;</button>
+            <div class="carousel2-track" data-current-slide="0">
                             @foreach (var course in Model.Where(c => c.Dest == true))
                             {
                     <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
@@ -168,10 +168,10 @@
                         </div>
                     </a>
                             }
-            <button class="carousel-btn next">&#8250;</button>
+            </div>
+            <button class="carousel2-btn next">&#8250;</button>
         </div>
     </section>
-
 
     <!-- Adicionados Recentemente -->
     <section id="adicionados" class="recentes">
@@ -184,7 +184,7 @@
                 <button type="submit" class="ver-mais">Ver mais</button>
             </form>
         </div>
-        <div class="carousel2">
+        <div class="carousel2" id="carousel-adicionados">
             <button class="carousel2-btn prev">&#8249;</button>
             <div class="carousel2-track" data-current-slide="0">
                             @foreach (var course in Model.Where(c => c.Addrec == true))
@@ -212,38 +212,8 @@
     </section>
 
 
-        <!-- Sobre Nós -->
-        <section id="sobre" class="sobre">
-            <h2>Sobre Nós</h2>
-            <p>A UNILIB procura ser um estímulo na construção de uma sociedade baseada no conhecimento, conectando utilizadores a recursos digitais diversificados.
-               A nossa missão é promover a literacia digital e a literacia da informação, disponibilizando recursos digitais de qualidade e fomentando a partilha de conhecimento.
-             <p> Contacto: 972742234</p>
-             <p>Unilib@gumail.com</p>
-            </p>
-        </section>
+       
     </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="grid footer">
-            <div class="card_logo">
-                <img src="/imagens/logo200.png" alt="logo UniLib">
-            </div>
-            <div class="grid sb">
-                <h3>Sobre nós</h3>
-                <p></p>
-                <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
-                <p></p>
-                <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
-                <p></p>
-            </div>
-            <div class="grid ajuda">
-                <h3>Ajuda</h3>
-                <p></p>
-                <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
 

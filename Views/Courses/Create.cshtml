@@ -5,26 +5,26 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Adicionar Livro</h1>
 
-<h4>Course</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Título</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Author" class="control-label"></label>
+                <label asp-for="Author" class="control-label">Autor</label>
                 <input asp-for="Author" class="form-control" />
                 <span asp-validation-for="Author" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
+                <label asp-for="Description" class="control-label">Descrição</label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
@@ -34,7 +34,7 @@
                 <span asp-validation-for="Quantidade" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CoverPhoto" class="control-label"></label>
+                <label asp-for="CoverPhoto" class="control-label">Capa</label>
                 <input type="file" asp-for="CoverPhoto" class="form-control" />
                 <span asp-validation-for="CoverPhoto" class="text-danger"></span>
             </div>
@@ -44,8 +44,10 @@
                 <span asp-validation-for="Document" class="text-danger"></span>
             </div>-->
             <div class="form-group">
-                <label asp-for="CategoryID" class="control-label"></label>
-                <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>
+                <label asp-for="CategoryID" class="control-label">Categoria</label>
+                <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID">
+                    <option value="" class="form-control">Seleciona a Categoria</option>
+                </select>
                 <span asp-validation-for="CategoryID" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
@@ -64,7 +66,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" style="color: #fff; background-color: #5e0606; border-color: #5e0606;" />
+                <input type="submit" value="Adicionar" class="btn btn-primary" style="color: #fff; background-color: #5e0606; border-color: #5e0606;" />
             </div>
         </form>
     </div>
@@ -73,23 +75,4 @@
 <div>
     <a asp-action="Index" style="color: #5e0606"; >Back to List</a>
 </div>
-<footer>
-    <div class="grid footer">
-        <div class="card_logo">
-            <img src="/imagens/logo200.png" alt="logo UniLib">
-        </div>
-        <div class="grid sb">
-            <h3>Sobre nós</h3>
-            <p></p>
-            <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
-            <p></p>
-            <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
-            <p></p>
-        </div>
-        <div class="grid ajuda">
-            <h3>Ajuda</h3>
-            <p></p>
-            <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
-        </div>
-    </div>
-</footer>
+

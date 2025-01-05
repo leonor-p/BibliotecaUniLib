@@ -21,66 +21,45 @@
     </style>
 <body>
     <div class="container_ld">
-        <h1>Fantasia</h1>
-        <p>Descobre os melhores livros sobre Fantasia</p>
+        <h1 style="font-size: 3rem; font-weight: bold; color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Fantasia</h1>
+        <p style="font-size: 1.5rem; font-weight: bold; color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Descobre os melhores livros sobre Fantasia</p>
+
         @if (Model != null && Model.Any())
         {
             <div class="card_grid">
                 @foreach (var course in Model.Where(c => c.CategoryID == 1))
                 {
                     <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
-                        <div class="card_ld">
-                            <div class="card_l_content">
+                        <div class="card_ld" style="background-color: rgba(255, 255, 255, 0.8); width: 200px; margin: 10px;">
+                            <div class="card_l_content" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
                                 @if (!string.IsNullOrEmpty(course.CoverPhoto))
                                 {
-                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" />
+                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" style="width: 80%; height: auto; object-fit: cover;" />
                                 }
                                 else
                                 {
-                                    <img src="/imagens/default-cover.png" alt="Capa Padrão" />
+                                    <img src="/imagens/default-cover.png" alt="Capa Padrão" style="width: 80%; height: auto; object-fit: cover;" />
                                 }
-                                <h3 class="book-title">@course.Name</h3>
-                                <p class="book-author">@course.Author</p>
+                                <h3 class="book-title" style="text-align: center; margin-top: 10px;">@course.Name</h3>
+                                <p class="book-author" style="text-align: center;">@course.Author</p>
                             </div>
                         </div>
                     </a>
                 }
             </div>
         }
-        else
-        {
-            <p>Nenhum livro adicionado recentemente.</p>
+
         }
+
+
+        }
+
+
+        }
+       
     </div>
 
-    <div class="pagination">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#" class="active">4</a>
-        <a href="#">5</a>
-    </div>
-
-    <footer>
-        <div class="grid footer">
-            <div class="card_logo">
-                <img src="/imagens/logo200.png" alt="logo UniLib">
-            </div>
-            <div class="grid sb">
-                <h3>Sobre nós</h3>
-                <p></p>
-                <a href="@Url.Action("Privacy", "Home")">Política de Privacidade</a>
-                <p></p>
-                <a href="@Url.Action("Termos", "Home")">Termos de Serviço</a>
-                <p></p>
-            </div>
-            <div class="grid ajuda">
-                <h3>Ajuda</h3>
-                <p></p>
-                <a href="@Url.Action("Ajuda", "Home")">Caixa de Mensagens</a>
-            </div>
-        </div>
-    </footer>
+   
 </body>
 </html>
 <style>
