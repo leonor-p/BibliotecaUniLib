@@ -3,17 +3,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-<<<<<<< HEAD
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Html;
 using Biblioteca_UniLib.Data;
-=======
 using Microsoft.EntityFrameworkCore;
-using Biblioteca_UniLib.Data;
 using System.Threading.Tasks;
 using System.Linq;
->>>>>>> Pedro
+
 
 namespace Biblioteca_UniLib.Controllers
 {
@@ -21,20 +18,15 @@ namespace Biblioteca_UniLib.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-<<<<<<< HEAD
         private readonly ApplicationDbContext _context; // Adicionando o contexto do banco de dados
-=======
-        private readonly ApplicationDbContext _context;
->>>>>>> Pedro
+
 
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
-<<<<<<< HEAD
+
             _context = context; // Inicializando o contexto do banco de dados
-=======
-            _context = context ?? throw new ArgumentNullException(nameof(context)); // Verifique se _context não é null
->>>>>>> Pedro
+
         }
 
         [AllowAnonymous]
@@ -109,23 +101,6 @@ namespace Biblioteca_UniLib.Controllers
         [AllowAnonymous]
         public IActionResult Privacy()
         {
-            List<string> alllivros = new List<string>
-            {
-                "Dom Quixote",
-                "O Pequeno Príncipe",
-                "Orgulho e Preconceito",
-                "1984",
-                "Cem Anos de Solidão",
-                "O Senhor dos Anéis",
-                "Harry Potter e a Pedra Filosofal",
-                "O Grande Gatsby",
-                "A Metamorfose",
-                "Moby Dick",
-                "Jane Eyre",
-                "A Revolução dos Bichos"
-            };
-
-            ViewBag.alllivros = new HtmlString(JsonConvert.SerializeObject(alllivros.ToArray()));
             return View();
         }
 
@@ -236,7 +211,7 @@ namespace Biblioteca_UniLib.Controllers
             return View();
         }
 
-<<<<<<< HEAD
+
         public string TestAjaxForm(string text)
         {
             return "<br>Receive " + text + " at <strong> " + DateTime.Now + "</strong>";
@@ -290,7 +265,7 @@ namespace Biblioteca_UniLib.Controllers
 
             return View(course);
         }
-=======
+
         //imagens para fundo das categorias
         public IActionResult Fantasia()
         {
@@ -341,8 +316,6 @@ namespace Biblioteca_UniLib.Controllers
             HttpContext.Response.Cookies.Delete(".UniLib.Session");
             return RedirectToAction("Index", "Home");
         }
-
->>>>>>> Pedro
     }
 }
 

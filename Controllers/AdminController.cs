@@ -1,24 +1,4 @@
-<<<<<<< HEAD
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Biblioteca_UniLib.Data;
-using Biblioteca_UniLib.Models;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
-namespace Biblioteca_UniLib.Controllers
-{
-    public class AdminController : Controller
-    {
-        private readonly ApplicationDbContext _context;
-
-        public AdminController(ApplicationDbContext context)
-        {
-=======
 ﻿using Biblioteca_UniLib.Data;
 using Biblioteca_UniLib.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -40,7 +20,6 @@ namespace Biblioteca_UniLib.Controllers
         {
             _userManager = userManager;
             _roleManager = roleManager;
->>>>>>> Pedro
             _context = context;
         }
 
