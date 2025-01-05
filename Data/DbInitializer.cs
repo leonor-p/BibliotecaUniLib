@@ -1056,6 +1056,138 @@ namespace Biblioteca_UniLib.Data
 
                     },
 
+                    new Course
+
+                    {
+                        Name = "A Bíblia dos Culpados",
+                        Description = "Uma obra de humor negro que explora a culpa e ironiza diferentes situações com sátira afiada.",
+                        CoverPhoto = "abiliadosculpados.jpg",
+                        Author = "Confúcio Costa",
+                        Addrec = true,
+                        Dest = false,
+                        Quantidade = 50,
+                        State = true,
+                        CategoryID = categories.Single(c => c.Name == "Comédia").ID
+                    },
+
+                    new Course
+                    {
+                        Name = "Manual do Bom Fascista",
+                        Description = "Um guia satírico que desmonta os comportamentos autoritários e critica a mentalidade fascista.",
+                        CoverPhoto = "manualdobomfascista.jpg",
+                        Author = "Rui Zink",
+                        Addrec = true,
+                        Dest = false,
+                        Quantidade = 50,
+                        State = true,
+                        CategoryID = categories.Single(c => c.Name == "Comédia").ID
+                    },
+
+                    new Course
+                    {
+                        Name = "Mixórdia de Temáticas",
+                        Description = "Uma coleção de textos humorísticos baseados nas populares crónicas da Rádio Comercial.",
+                        CoverPhoto = "mixordiadetematicas.jpg",
+                        Author = "Ricardo Araújo Pereira",
+                        Addrec = true,
+                        Dest = false,
+                        Quantidade = 50,
+                        State = true,
+                        CategoryID = categories.Single(c => c.Name == "Comédia").ID
+                    },
+
+                    new Course
+                    {
+                        Name = "Novíssimas Crónicas da Boca do Inferno",
+                        Description = "Crónicas satíricas que exploram o absurdo da sociedade contemporânea.",
+                        CoverPhoto = "novissimascronicasdabocadoinferno.jpg",
+                        Author = "Ricardo Araújo Pereira",
+                        Addrec = true,
+                        Dest = false,
+                        Quantidade = 50,
+                        State = true,
+                        CategoryID = categories.Single(c => c.Name == "Comédia").ID
+                    },
+
+                    new Course
+                    {
+                        Name = "O Piropo Nacional",
+                        Description = "Uma antologia de humor com contribuições de diversos autores sobre a cultura portuguesa.",
+                        CoverPhoto = "opiroponacional.jpg",
+                        Author = "Autores Variados",
+                        Addrec = true,
+                        Dest = false,
+                        Quantidade = 50,
+                        State = true,
+                        CategoryID = categories.Single(c => c.Name == "Comédia").ID
+                    },
+
+                    new Course
+                    {
+                        Name = "O Meu Coração Só Tem Uma Cor",
+                        Description = "Um livro humorístico sobre a paixão clubística e o fanatismo desportivo.",
+                        CoverPhoto = "omeucoracaosotemumacor.jpg",
+                        Author = "Joana Marques",
+                        Addrec = true,
+                        Dest = false,
+                        Quantidade = 50,
+                        State = true,
+                        CategoryID = categories.Single(c => c.Name == "Comédia").ID
+                    },
+
+                    new Course
+                    {
+                        Name = "O Lixo na Minha Cabeça",
+                        Description = "Histórias cómicas e situações absurdas vistas pelo olhar de uma criança.",
+                        CoverPhoto = "olixonaminhacabeca.jpg",
+                        Author = "Hugo van der Ding",
+                        Addrec = true,
+                        Dest = false,
+                        Quantidade = 50,
+                        State = true,
+                        CategoryID = categories.Single(c => c.Name == "Comédia").ID
+                    },
+
+                    new Course
+                    {
+                        Name = "Os Benefícios de Dar Peidos",
+                        Description = "Uma abordagem humorística e filosófica sobre os tabus do corpo humano.",
+                        CoverPhoto = "osbeneficiosdedarpeidos.jpg",
+                        Author = "Jonathan Swift",
+                        Addrec = true,
+                        Dest = false,
+                        Quantidade = 50,
+                        State = true,
+                        CategoryID = categories.Single(c => c.Name == "Comédia").ID
+                    },
+
+                    new Course
+                    {
+                        Name = "O Diário de um Banana",
+                        Description = "O hilariante diário de um pré-adolescente tentando sobreviver ao ensino básico.",
+                        CoverPhoto = "diariodeumbanana.jpg",
+                        Author = "Jeff Kinney",
+                        Addrec = true,
+                        Dest = false,
+                        Quantidade = 50,
+                        State = true,
+                        CategoryID = categories.Single(c => c.Name == "Comédia").ID
+                    },
+
+                    new Course
+                    {
+                        Name = "O Estranhão",
+                        Description = "Uma divertida história sobre as peculiaridades de uma criança única.",
+                        CoverPhoto = "estranhao.jpg",
+                        Author = "Álvaro Magalhães",
+                        Addrec = true,
+                        Dest = false,
+                        Quantidade = 50,
+                        State = true,
+                        CategoryID = categories.Single(c => c.Name == "Comédia").ID
+                    },
+
+
 
 
                     };
