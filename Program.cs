@@ -20,6 +20,24 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<DbInitializer>();
 
 
+// Cookies
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10); // Tempo de expiração
+    options.Cookie.Name = ".UniLib.Session"; // Nome do cookie
+    options.Cookie.HttpOnly = true; // Para maior segurança
+    options.Cookie.IsEssential = true;
+});
+
+// Adicionar serviços to the container, o server cria uma sessão única para cada ID permitindo o armazenamento de dados para cada cliente 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.Cookie.Name = ".AspNetCore.Session";
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -48,11 +66,16 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession();
+
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapRazorPages();
+});
 
 app.Run();

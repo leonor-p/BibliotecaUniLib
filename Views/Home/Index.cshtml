@@ -45,6 +45,7 @@
 
     
     <!-- categorias em Destaque -->
+
     <section id="categorias" class="categorias">
         <h2>
             <img src="/imagens/catlab.png" alt="Símbolo de Categorias" class="icon-categoria">
@@ -62,7 +63,7 @@
             <div class="card_c">
                 <form asp-controller="Home" asp-action="cat_ficcao">
                     <button class="card_a">
-                        <img src="/imagens/Cat_Ficcao.jpg" alt="Ficção">
+                        <img src="/imagens/ficcao1.jpeg" alt="Ficção">
                         <h3>Ficção</h3>
                     </button>
                 </form>
@@ -237,6 +238,46 @@
             </div>
         </div>
     </footer>
+
+<!-- BOLACHAS COOKIES-->
+    @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+    <h1>Web Cookies in Request</h1>
+
+                @if (HttpContextAccessor.HttpContext.Request.Cookies.Count == 0)
+                {
+        <div>No cookies were sent</div>
+                }
+                else
+                {
+                    @foreach (var item in HttpContextAccessor.HttpContext.Request.Cookies.Keys)
+                    {
+            <div>@item - @HttpContextAccessor.HttpContext.Request.Cookies[item]</div>
+                    }
+                }
+
+                @{
+                    var sessionId = HttpContextAccessor.HttpContext.Session.Id; // Obtendo o ID da sessão
+                }
+
+    <h1>Session ID</h1>
+    <div>
+        The presentation of this value is used to confirm the reuse of the sessions:
+        <strong>@sessionId</strong>
+    </div>
+
+                @foreach (var item in HttpContextAccessor.HttpContext.Session.Keys) // Acessando as chaves da sessão
+                {
+                    if (item == "StringValue")
+                    {
+            <div>@item - @HttpContextAccessor.HttpContext.Session.GetString(item)</div>
+                    }
+                    else
+                    {
+            <div>@item - @HttpContextAccessor.HttpContext.Session.GetInt32(item)</div>
+                    }
+                }
+
 </body>
 </html>
 

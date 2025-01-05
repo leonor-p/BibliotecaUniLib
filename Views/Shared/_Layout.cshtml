@@ -26,6 +26,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="AddCookies">Add Cookies</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="DeleteCookies">Delete All Cookies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="AddSessionVariables">Add Sessions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="DeleteSessionVariables">Delete All Sessions</a>
+                         </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="DeleteSession">Add TempData</a>
                      
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#">Ajuda</a>
@@ -41,7 +54,6 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - UniLib - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -53,3 +65,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

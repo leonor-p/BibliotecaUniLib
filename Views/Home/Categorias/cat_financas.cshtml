@@ -11,10 +11,17 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="/css/style.css"> <!-- Adicione um CSS externo se necessário -->
     <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: url("/imagens/cat-financas.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
     </style>
 </head>
 <body>
-    <div class="container_ld">
+    <div class="cat-financas">
         <h1>Finanças</h1>
         <p>Descobre os melhores livros sobre finanças</p>
 
@@ -48,6 +55,7 @@
                 <p>Nenhum livro em Destaque.</p>
             }
         </div>
+
 
         <div class="pagination">
             <a href="#">1</a>
