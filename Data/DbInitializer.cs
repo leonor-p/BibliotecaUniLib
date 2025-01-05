@@ -1,4 +1,5 @@
-﻿using Biblioteca_UniLib.Models;
+﻿using Biblioteca_UniLib.Data.Migrations;
+using Biblioteca_UniLib.Models;
 using System.Linq;
 
 namespace Biblioteca_UniLib.Data
@@ -27,16 +28,14 @@ namespace Biblioteca_UniLib.Data
                 return; // DB has been seeded
             }
 
-            var categories = new Category[]
+            var categories = new Models.Category[]
             {
-                new Category{Name="Book1", Description="Destaques", Author="Author1"},
-                new Category{Name="Book2", Description="Recentes", Author="Author2"},
-                new Category{Name="Book3", Description="Fantasia", Author="Author3"},
-                new Category{Name="Book4", Description="Financas", Author="Author3"},
-                new Category{Name="Book5", Description="Comedia", Author="Author3"},
-                new Category{Name="Book6", Description="Romance", Author="Author3"},
-                new Category{Name="Book7", Description="Ficção", Author="Author3"},
-                new Category{Name="Book8", Description="Arte", Author="Author3"},
+                new Models.Category{Name="Fantasia", Description="Fantasia", Author="Author3"},
+                new Models.Category{Name="Finanças", Description="Finanças", Author="Author3"},
+                new Models.Category{Name="Comédia", Description="Comédia", Author="Author3"},
+                new Models.Category{Name="Romance", Description="Romance", Author="Author3"},
+                new Models.Category{Name="Ficção", Description="Ficção", Author="Author3"},
+                new Models.Category{Name="Arte", Description="Arte", Author="Author3"},
             };
 
             _context.Category.AddRange(categories);
@@ -46,28 +45,17 @@ namespace Biblioteca_UniLib.Data
             {
                 new Course
                 {
-                    Name="Course1",
+                    Name="A Cegueira do Rio",
                     Description="Description1",
+                    CoverPhoto= "/Cover/a_cegueira_do_rio.jpeg",
+                    Author="Mia Couto",
+                    Addrec=true,
+                    Dest=false,
                     Quantidade=50,
                     State=true,
-                    CategoryID=categories.Single(c => c.Name == "Book1").ID
+                    CategoryID=categories.Single(c => c.Name == "Ficção").ID
                 },
-                new Course
-                {
-                    Name="Course2",
-                    Description="Description2",
-                    Quantidade=50,
-                    State=true,
-                    CategoryID=categories.Single(c => c.Name == "Book2").ID
-                },
-                new Course
-                {
-                    Name="Course3",
-                    Description="Description3",
-                    Quantidade=50,
-                    State=true,
-                    CategoryID=categories.Single(c => c.Name == "Book3").ID
-                }
+               
             };
 
             _context.courses.AddRange(courses); // Certifique-se de que está usando "Courses"
