@@ -9,90 +9,28 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Biblioteca_UniLib.Data
 {
-    public static class DbInitializer
+    public class DbInitializer
     {
-        public static async Task InitializeAsync(IServiceProvider serviceProvider)
+        private readonly ApplicationDbContext _context;
+
+        public DbInitializer(ApplicationDbContext context)
         {
-            using var scope = serviceProvider.CreateScope();
-            var services = scope.ServiceProvider;
-
-            var context = services.GetRequiredService<ApplicationDbContext>();
-            var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
-            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
-            // Certifique-se de que o banco de dados existe
-            await context.Database.EnsureCreatedAsync();
-
-            // Adicionar roles iniciais, se necessário
-            await SeedRolesAsync(roleManager);
-
-            // Adicionar usuários iniciais, se necessário
-            await SeedUsersAsync(userManager, context);
-
-            // Adicionar categorias e cursos iniciais, se necessário
-            SeedCategoriesAndCourses(context);
+            _context = context;
         }
 
-        private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
+        public void Run()
         {
-            var roles = new[] { "Admin", "Bibliotecario", "Leitor" };
+            _context.Database.EnsureCreated();
 
-            foreach (var role in roles)
+            // Look for any categories.
+            if (_context.Category.Any())
             {
-                if (!await roleManager.RoleExistsAsync(role))
-                {
-                    await roleManager.CreateAsync(new IdentityRole(role));
-                }
-            }
-        }
-
-        private static async Task SeedUsersAsync(UserManager<IdentityUser> userManager, ApplicationDbContext _context)
-        {
-            var users = new[]
-            {
-            new { Email = "admin@admin.com", Password = "Admin_1", Role = "Admin", UserName = "Admin" },
-            new { Email = "bibliotecario@librarian.com", Password = "Bibliotecario_1", Role = "Bibliotecario", UserName = "Bibliotecario" },
-            new { Email = "leitor@reader.com", Password = "Leitor_1", Role = "Leitor", UserName = "Leitor" }
-        };
-
-            foreach (var userData in users)
-            {
-                if (await userManager.FindByEmailAsync(userData.Email) == null)
-                {
-                    var user = new IdentityUser
-                    {
-                        UserName = userData.UserName,
-                        Email = userData.Email,
-                        EmailConfirmed = true
-                    };
-
-                    var result = await userManager.CreateAsync(user, userData.Password);
-                    if (result.Succeeded)
-                    {
-                        await userManager.AddToRoleAsync(user, userData.Role);
-
-                        // Configurar a propriedade ActiveAcc
-                        var entry = _context.Entry(user);
-                        entry.Property<bool>("ActiveAcc").CurrentValue = true;
-
-                        // Adicionar o perfil correspondente ao usuário
-                        var perfil = new Perfil
-                        {
-                            Username = user.UserName,
-                                                    };
-                        _context.Perfis.Add(perfil);
-                    }
-                }
+                return; // DB has been seeded
             }
 
-            await _context.SaveChangesAsync(); // Salva as mudanças no banco
-        }
-
-        private static void SeedCategoriesAndCourses(ApplicationDbContext _context)
-        {
-            if (_context.Category.Any() || _context.courses.Any())
+            if (_context.courses.Any()) // Certifique-se de que está usando "Courses"
             {
-                return; // DB já foi preenchido
+                return; // DB has been seeded
             }
 
             var categories = new Category[]
