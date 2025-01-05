@@ -160,9 +160,6 @@ a {
         margin: 0 auto; /* Centraliza a imagem horizontalmente */
     }
 
-
-
-
 h2 {
     display: flex; /* Permite que o ícone e o texto fiquem alinhados horizontalmente */
     align-items: center; /* Alinha verticalmente o ícone com o texto */
@@ -281,7 +278,7 @@ h2 {
     .carousel-btn.next, .carousel2-btn.next {
         right: 10px;
     }
-h2 {
+.carousel, .carousel2 h2 {
     display: flex;
     align-items: center;
     font-size: 24px;
@@ -289,7 +286,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-    h2 i {
+    .carousel, .carousel2 h2 i {
         color: #333;
         font-size: 24px;
         margin-right: 15px;
@@ -307,7 +304,7 @@ h2 {
         font-size: 1.5rem;
     }
 
-.ver-mais {
+.carousel, .carousel2 .ver-mais {
     margin-left: auto;
     background-color: #5e0606;
     color: white;
@@ -1046,9 +1043,13 @@ h2 {
 
 .carousel-track, .carousel2-track {
     display: flex;
-    gap: 20px;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     will-change: transform;
+}
+
+.card_ld .card_ad {
+    flex: 0 0 auto; /* Garante que os cards não quebrem o layout */
+    margin-right: 20px; /* Espaçamento entre os cards */
 }
 
 .card_ld, .card_ad {
@@ -1084,10 +1085,12 @@ h2 {
 
     .carousel-btn.prev, .carousel2-btn.prev {
         left: 10px;
+        background: #5e0606;
     }
 
     .carousel-btn.next, .carousel2-btn.next {
         right: 10px;
+        background: #5e0606;
     }
 
 h2 {
