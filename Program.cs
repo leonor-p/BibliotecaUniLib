@@ -25,13 +25,13 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(10); // Tempo de expiração
+    options.IdleTimeout = TimeSpan.FromMinutes(10); // Tempo de expiraï¿½ï¿½o
     options.Cookie.Name = ".UniLib.Session"; // Nome do cookie
-    options.Cookie.HttpOnly = true; // Para maior segurança
+    options.Cookie.HttpOnly = true; // Para maior seguranï¿½a
     options.Cookie.IsEssential = true;
 });
 
-// Adicionar serviços to the container, o server cria uma sessão única para cada ID permitindo o armazenamento de dados para cada cliente 
+// Adicionar serviï¿½os to the container, o server cria uma sessï¿½o ï¿½nica para cada ID permitindo o armazenamento de dados para cada cliente 
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(10);

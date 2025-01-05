@@ -13,7 +13,9 @@
 
 <div class="container course-details">
     <div class="row">
+
         <div class="col-md-4">
+
             @if (!string.IsNullOrEmpty(Model.CoverPhoto))
             {
                 <img src="~/Cover/@Model.CoverPhoto" alt="Cover Photo" class="course-cover-photo" />
@@ -24,6 +26,11 @@
             }
         </div>
         <div class="col-md-8 details-container">
+            <div class="back-button">
+                <a href="javascript:history.back()">
+                    <img src="~/imagens/seta.png" alt="Seta" />
+                </a>
+            </div>
             <hr />
             <dl class="row">
                 <dt class="col-sm-4">
@@ -118,3 +125,22 @@
         </div>
     </div>
 </footer>
+<style>
+    .back-button {
+        position: absolute; /* Ajuste conforme necessário */
+        top: 60px;
+        left: 20px;
+    }
+
+        .back-button a img {
+            width: 65%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+            .back-button a img:hover {
+                transform: scale(1.1);
+            }
+
+</style>

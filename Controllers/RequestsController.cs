@@ -34,6 +34,7 @@ namespace Biblioteca_UniLib.Controllers
 
             ViewData["course"] = course;
             return View(bookRequest);
+
         }
 
         // POST: Requests/Create

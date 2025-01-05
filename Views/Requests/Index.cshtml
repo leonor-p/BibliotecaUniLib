@@ -10,7 +10,13 @@
 </head>
 
 <div class="container">
+    
     <div class="card shadow-lg p-5 rounded">
+        <div class="back-button">
+            <a href="javascript:history.back()">
+                <img src="~/imagens/seta.png" alt="Seta" />
+            </a>
+        </div>
         <h2 class="text-center mb-4" style="color: white; font-family: Arial, sans-serif;">Confirmar Requisição de Livro</h2>
 
         <div class="book-details mb-4 text-left">
@@ -164,5 +170,24 @@
     .img-fluid {
         max-width: 100%;
         height: auto;
+
     }
+
+    .back-button {
+        position: absolute; /* Ajuste conforme necessário */
+        top: 60px;
+        left: 20px;
+    }
+
+    .back-button a img {
+        width: 65%;
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+        .back-button a img:hover {
+            transform: scale(1.1);
+        }
+
 </style>
