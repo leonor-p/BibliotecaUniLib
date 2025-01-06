@@ -1653,3 +1653,61 @@ h1 {
     color: white;
 }
 
+.searchbar-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.searchbar-input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    font-size: 16px;
+}
+
+.searchbar-button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    .searchbar-button:hover {
+        background-color: #0056b3;
+    }
+
+.icon-categoria {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.card_ld img {
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.card_l_content {
+    padding: 10px;
+    text-align: center;
+}
+
+.footer {
+    background-color: #343a40;
+}
+
+    .footer .text-white a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+        .footer .text-white a:hover {
+            text-decoration: underline;
+        }

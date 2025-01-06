@@ -1,0 +1,22 @@
+﻿@model Biblioteca_UniLib.Views.Shared._SearchbarModel
+
+<h2>Resultados da Pesquisa</h2>
+
+<!-- Verificar se há resultados -->
+@if (Model.Courses.Any())
+{
+    <div class="books-list">
+        @foreach (var course in Model.Courses)
+        {
+            <div class="book-item">
+                <h3>@course.Name</h3>
+                <p>@course.Description</p>
+                <p><strong>Autor:</strong> @course.Author</p>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>Nenhum livro encontrado com os termos de pesquisa fornecidos.</p>
+}

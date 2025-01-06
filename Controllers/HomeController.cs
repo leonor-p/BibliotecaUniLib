@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Biblioteca_UniLib.Data;
 using System.Threading.Tasks;
 using System.Linq;
+using Biblioteca_UniLib.Views.Shared;
 
 namespace Biblioteca_UniLib.Controllers
 {
@@ -51,6 +52,18 @@ namespace Biblioteca_UniLib.Controllers
             return View(course);
         }
 
+        [HttpGet]
+        public IActionResult Search(string query)
+        {
+            var viewModel = new _SearchbarModel
+            {
+                Courses = _context.courses
+                    .Where(c => c.Name.Contains(query) || c.Description.Contains(query) || c.Author.Contains(query))
+                    .ToList()
+            };
+
+            return View("SearchResults", viewModel);
+        }
         public IActionResult Livros_em_destaque()
         {
 
