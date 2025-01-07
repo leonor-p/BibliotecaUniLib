@@ -15,6 +15,8 @@ namespace Biblioteca_UniLib.Data.Migrations
                 table: "courses",
                 type: "nvarchar(max)",
                 nullable: true);
+
+          
         }
 
         /// <inheritdoc />
@@ -23,6 +25,8 @@ namespace Biblioteca_UniLib.Data.Migrations
             migrationBuilder.DropColumn(
                 name: "Author",
                 table: "courses");
+
+           
         }
     }
 }

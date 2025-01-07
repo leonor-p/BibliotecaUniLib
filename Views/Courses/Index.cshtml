@@ -9,15 +9,34 @@
 <p>
     <a asp-action="Create" style="color: #5e0606;">Adicionar livro</a>
 </p>
+<form method="get" class="mb-4">
+    <div class="row g-3">
+        <div class="col-md-4">
+            <input type="text" name="searchName" value="@ViewData["SearchName"]" class="form-control" placeholder="Pesquisar por Título" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="searchAuthor" value="@ViewData["SearchAuthor"]" class="form-control" placeholder="Pesquisar por Autor" />
+        </div>
+        
+        <div class="col-md-12 text-end">
+            <button type="submit" class="btn-submit">Pesquisar</button>
+
+        </div>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Título
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+                Autor
             </th>
+            <th>
+                ISBN
+            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Quantidade)
             </th>
@@ -42,6 +61,9 @@
             </td>
              <td>
                 @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantidade)

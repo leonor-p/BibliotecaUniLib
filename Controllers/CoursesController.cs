@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Biblioteca_UniLib.Data;
 using Biblioteca_UniLib.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Biblioteca_UniLib.Controllers
 {
@@ -25,11 +26,41 @@ namespace Biblioteca_UniLib.Controllers
 
 
         // GET: Courses
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id,string searchName, string searchAuthor, string searchCategory)
         {
-            var applicationDbContext = _context.courses.Include(c => c.Category);
-            return View(await applicationDbContext.ToListAsync());
+           
+            var course = await _context.courses
+                .Include(c => c.Category)
+                .FirstOrDefaultAsync(m => m.ID == id);
+           
+
+            
+            var courseQuery = _context.courses.Include(c => c.Category).AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                courseQuery = courseQuery.Where(c => c.Name.Contains(searchName));
+            }
+
+            if (!string.IsNullOrEmpty(searchAuthor))
+            {
+                courseQuery = courseQuery.Where(c => c.Author.Contains(searchAuthor));
+            }
+
+            if (!string.IsNullOrEmpty(searchCategory))
+            {
+                courseQuery = courseQuery.Where(c => c.Category.Description.Contains(searchCategory));
+            }
+
+            var courses = await courseQuery.ToListAsync();
+
+            ViewData["SearchName"] = searchName;
+            ViewData["SearchAuthor"] = searchAuthor;
+            ViewData["SearchCategory"] = searchCategory;
+
+            return View(courses);
         }
+
 
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -63,7 +94,7 @@ namespace Biblioteca_UniLib.Controllers
         // POST: Courses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Author,Description,Quantidade,CoverPhoto,CategoryID,Dest,Addrec")] BookViewModel course)
+        public async Task<IActionResult> Create([Bind("Name,Author,Description,ISBN,Quantidade,CoverPhoto,CategoryID,Dest,Addrec")] BookViewModel course)
         {
             var photoExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp" };
             var extension = Path.GetExtension(course.CoverPhoto.FileName).ToLower();
@@ -79,6 +110,7 @@ namespace Biblioteca_UniLib.Controllers
                 {
                     Name = course.Name,
                     Author = course.Author,
+                    ISBN = course.ISBN,
                     Description = course.Description,
                     CoverPhoto = Path.GetFileName(course.CoverPhoto.FileName),
                     Quantidade = course.Quantidade,
@@ -133,7 +165,7 @@ namespace Biblioteca_UniLib.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Author,Description,Quantidade,State,CategoryID,Dest,Addrec,CoverPhoto")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Author,Description,Quantidade,ISBN,State,CategoryID,Dest,Addrec,CoverPhoto")] Course course)
         {
             if (id != course.ID)
             {
@@ -284,10 +316,8 @@ namespace Biblioteca_UniLib.Controllers
 
             return RedirectToAction(nameof(Gerirrequisicoes));
         }
-        public IActionResult Todoslivros()
-        {
-            return View();
-        }
+
+        
 
     }
 }

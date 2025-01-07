@@ -21,18 +21,18 @@
                 @foreach (var course in Model.Where(c => c.Dest == true))
                 {
                     <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
-                        <div class="card_ld">
-                            <div class="card_l_content">
+                        <div class="card_ld" style="background-color: rgba(255, 255, 255, 0.8); width: 200px; margin: 10px;">
+                            <div class="card_l_content" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
                                 @if (!string.IsNullOrEmpty(course.CoverPhoto))
                                 {
-                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" />
+                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" style="width: 80%; height: auto; object-fit: cover;" />
                                 }
                                 else
                                 {
-                                    <img src="/imagens/default-cover.png" alt="Capa Padrão" />
+                                    <img src="/imagens/default-cover.png" alt="Capa Padrão" style="width: 80%; height: auto; object-fit: cover;" />
                                 }
-                                <h3 class="book-title">@course.Name</h3>
-                                <p class="book-author">@course.Author</p>
+                                <h3 class="book-title" style="text-align: center; margin-top: 10px;">@course.Name</h3>
+                                <p class="book-author" style="text-align: center;">@course.Author</p>
                             </div>
                         </div>
                     </a>
@@ -45,13 +45,7 @@
         }
     </div>
 
-    <div class="pagination">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#" class="active">4</a>
-        <a href="#">5</a>
-    </div>
+   
 
 </body>
 </html>

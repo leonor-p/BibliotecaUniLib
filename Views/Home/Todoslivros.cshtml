@@ -12,38 +12,56 @@
     <link rel="stylesheet" href="/css/style.css"> <!-- Adicione um CSS externo se necessário -->
 </head>
 <body>
-    <div class="container_ld">
-        <h1>Os Nossos Livros</h1>
-        <p>Descobre os Melhores Livros</p>
-        @if (Model != null && Model.Any())
+
+<div class="container_ld">
+    <h1>Os Nossos Livros</h1>
+    <p>Descobre os Melhores Livros</p>
+
+        <form method="get" class="mb-4">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <input type="text" name="searchName" value="@ViewData["SearchName"]" class="form-control" placeholder="Pesquisar por Título" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" name="searchAuthor" value="@ViewData["SearchAuthor"]" class="form-control" placeholder="Pesquisar por Autor" />
+                </div>
+                
+                <div class="col-md-12 text-end">
+                    <button type="submit" class="btn-submit">Pesquisar</button>
+                    
+                </div>
+            </div>
+        </form>
+    @if (Model != null && Model.Any())
         {
             <div class="card_grid">
                 @foreach (var course in Model)
                 {
                     <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.ID" class="card_ld-link">
-                        <div class="card_ld">
-                            <div class="card_l_content">
+                        <div class="card_ld" style="background-color: rgba(255, 255, 255, 0.8); width: 200px; margin: 10px;">
+                            <div class="card_l_content" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
                                 @if (!string.IsNullOrEmpty(course.CoverPhoto))
                                 {
-                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" />
+                                    <img src="~/Cover/@course.CoverPhoto" alt="Capa do Livro" style="width: 80%; height: auto; object-fit: cover;" />
                                 }
                                 else
                                 {
-                                    <img src="/imagens/default-cover.png" alt="Capa Padrão" />
+                                    <img src="/imagens/default-cover.png" alt="Capa Padrão" style="width: 80%; height: auto; object-fit: cover;" />
                                 }
-                                <h3 class="book-title">@course.Name</h3>
-                                <p class="book-author">@course.Author</p>
+                                <h3 class="book-title" style="text-align: center; margin-top: 10px;">@course.Name</h3>
+                                <p class="book-author" style="text-align: center;">@course.Author</p>
                             </div>
                         </div>
                     </a>
                 }
             </div>
         }
-        else
-        {
-            <p>Nenhum livro disponível no momento.</p>
-        }
-    </div>
+    else
+    {
+        <p>Nenhum livro encontrado para o termo "@ViewData["searchTerm"]".</p>
+    }
+</div>
+
 
     
 </body>
@@ -56,23 +74,31 @@
         background-color: #f8f9fa;
     }
 
-    .container_ld {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
+    .card_ld, .card_ad {
+        min-width: 300px;
+        background-color: #f8f9fa;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 15px;
     }
+
+        .card_ld img, .card_ad img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
 
     h1 {
         font-size: 2.5rem;
         margin-bottom: 10px;
         color: #333;
-        text-align: center;
     }
 
     p {
         font-size: 1rem;
         color: #666;
-        text-align: center;
     }
 
     .card_grid {
@@ -82,8 +108,8 @@
         margin-top: 20px;
     }
 
-    .card_ld, .card_ad {
-        background-color: #fff;
+    .card_ld {
+        background: #fff;
         border: 1px solid #ddd;
         border-radius: 10px;
         overflow: hidden;
@@ -91,15 +117,14 @@
         text-align: center;
     }
 
-        .card_ld:hover, .card_ad:hover {
+        .card_ld:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .card_ld img, .card_ad img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #ddd;
+        .card_ld img {
+            width: 100px;
+            height: 200px;
             object-fit: cover;
         }
 
@@ -145,4 +170,5 @@
                 background-color: #5e0606;
                 color: #fff;
             }
+
 </style>

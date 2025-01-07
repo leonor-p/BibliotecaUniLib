@@ -22,66 +22,6 @@ namespace Biblioteca_UniLib.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Administrador", b =>
-                {
-                    b.Property<int>("AdminID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminID"));
-
-                    b.Property<int?>("CreatedByAdminID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AdminID");
-
-                    b.HasIndex("CreatedByAdminID");
-
-                    b.ToTable("Administradores");
-                });
-
-            modelBuilder.Entity("Biblioteca", b =>
-                {
-                    b.Property<int>("BibliotecaID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BibliotecaID"));
-
-                    b.Property<string>("Localizacao")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("BibliotecaID");
-
-                    b.ToTable("Bibliotecas");
-                });
-
             modelBuilder.Entity("Biblioteca_UniLib.Models.BookRequests", b =>
                 {
                     b.Property<int>("Id")
@@ -185,6 +125,9 @@ namespace Biblioteca_UniLib.Data.Migrations
                     b.Property<bool>("Dest")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ISBN")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -201,184 +144,6 @@ namespace Biblioteca_UniLib.Data.Migrations
                     b.HasIndex("CategoryID");
 
                     b.ToTable("courses");
-                });
-
-            modelBuilder.Entity("Bibliotecario", b =>
-                {
-                    b.Property<int>("BibliotecarioID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BibliotecarioID"));
-
-                    b.Property<int?>("BibliotecaID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BibliotecarioID");
-
-                    b.HasIndex("BibliotecaID");
-
-                    b.ToTable("Bibliotecarios");
-                });
-
-            modelBuilder.Entity("Emprestimo", b =>
-                {
-                    b.Property<int>("EmprestimoID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmprestimoID"));
-
-                    b.Property<DateTime?>("DataDevolucao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataDevolucaoPrevista")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataEmprestimo")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LeitorID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LivroID")
-                        .HasColumnType("int");
-
-                    b.HasKey("EmprestimoID");
-
-                    b.HasIndex("LeitorID");
-
-                    b.HasIndex("LivroID");
-
-                    b.ToTable("Emprestimos");
-                });
-
-            modelBuilder.Entity("HistoricoRequisicoes", b =>
-                {
-                    b.Property<int>("HistoricoID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HistoricoID"));
-
-                    b.Property<string>("Acao")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("DataAcao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LeitorID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LivroID")
-                        .HasColumnType("int");
-
-                    b.HasKey("HistoricoID");
-
-                    b.HasIndex("LeitorID");
-
-                    b.HasIndex("LivroID");
-
-                    b.ToTable("HistoricoRequisicoes");
-                });
-
-            modelBuilder.Entity("Leitor", b =>
-                {
-                    b.Property<int>("LeitorID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LeitorID"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ImagemPerfil")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PreferenciasNotificacao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("LeitorID");
-
-                    b.ToTable("Leitores");
-                });
-
-            modelBuilder.Entity("Livro", b =>
-                {
-                    b.Property<int>("LivroID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LivroID"));
-
-                    b.Property<int?>("AnoPublicacao")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Autor")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Categoria")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("CopiasDisponiveis")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ISBN")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Resumo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tema")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Titulo")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("LivroID");
-
-                    b.ToTable("Livros");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -593,38 +358,6 @@ namespace Biblioteca_UniLib.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Notificacao", b =>
-                {
-                    b.Property<int>("NotificacaoID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotificacaoID"));
-
-                    b.Property<DateTime>("DataEnvio")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LeitorID")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Lida")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Mensagem")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("NotificacaoID");
-
-                    b.HasIndex("LeitorID");
-
-                    b.ToTable("Notificacoes");
-                });
-
             modelBuilder.Entity("Perfil", b =>
                 {
                     b.Property<int>("Id")
@@ -641,48 +374,6 @@ namespace Biblioteca_UniLib.Data.Migrations
                     b.ToTable("Perfis");
                 });
 
-            modelBuilder.Entity("ReviewLivro", b =>
-                {
-                    b.Property<int>("ReviewID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewID"));
-
-                    b.Property<int>("Avaliacao")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Comentario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LeitorID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LivroID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ReviewID");
-
-                    b.HasIndex("LeitorID");
-
-                    b.HasIndex("LivroID");
-
-                    b.ToTable("ReviewsLivros");
-                });
-
-            modelBuilder.Entity("Administrador", b =>
-                {
-                    b.HasOne("Administrador", "CreatedByAdmin")
-                        .WithMany()
-                        .HasForeignKey("CreatedByAdminID");
-
-                    b.Navigation("CreatedByAdmin");
-                });
-
             modelBuilder.Entity("Biblioteca_UniLib.Models.Course", b =>
                 {
                     b.HasOne("Biblioteca_UniLib.Models.Category", "Category")
@@ -692,54 +383,6 @@ namespace Biblioteca_UniLib.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("Bibliotecario", b =>
-                {
-                    b.HasOne("Biblioteca", "Biblioteca")
-                        .WithMany()
-                        .HasForeignKey("BibliotecaID")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Biblioteca");
-                });
-
-            modelBuilder.Entity("Emprestimo", b =>
-                {
-                    b.HasOne("Leitor", "Leitor")
-                        .WithMany()
-                        .HasForeignKey("LeitorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Livro", "Livro")
-                        .WithMany()
-                        .HasForeignKey("LivroID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Leitor");
-
-                    b.Navigation("Livro");
-                });
-
-            modelBuilder.Entity("HistoricoRequisicoes", b =>
-                {
-                    b.HasOne("Leitor", "Leitor")
-                        .WithMany()
-                        .HasForeignKey("LeitorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Livro", "Livro")
-                        .WithMany()
-                        .HasForeignKey("LivroID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Leitor");
-
-                    b.Navigation("Livro");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -791,36 +434,6 @@ namespace Biblioteca_UniLib.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Notificacao", b =>
-                {
-                    b.HasOne("Leitor", "Leitor")
-                        .WithMany()
-                        .HasForeignKey("LeitorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Leitor");
-                });
-
-            modelBuilder.Entity("ReviewLivro", b =>
-                {
-                    b.HasOne("Leitor", "Leitor")
-                        .WithMany()
-                        .HasForeignKey("LeitorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Livro", "Livro")
-                        .WithMany()
-                        .HasForeignKey("LivroID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Leitor");
-
-                    b.Navigation("Livro");
                 });
 
             modelBuilder.Entity("Biblioteca_UniLib.Models.Category", b =>

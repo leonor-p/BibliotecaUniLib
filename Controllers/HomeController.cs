@@ -22,6 +22,7 @@ namespace Biblioteca_UniLib.Controllers
             _context = context ?? throw new ArgumentNullException(nameof(context)); // Verifique se _context não é null
         }
 
+       
         [AllowAnonymous]
         public async Task<IActionResult> Index(string searchName, string searchAuthor, string searchGenre)
         {
@@ -37,19 +38,48 @@ namespace Biblioteca_UniLib.Controllers
                 courseQuery = courseQuery.Where(b => b.Author.Contains(searchAuthor));
             }
 
-            /* if (!string.IsNullOrEmpty(searchGenre))
-             {
-                 courseQuery = courseQuery.Where(b => b.Genre.Contains(searchGenre));
-             }*/
+            if (!string.IsNullOrEmpty(searchGenre))
+            {
+                courseQuery = courseQuery.Where(b => b.Category.Description.Contains(searchGenre));
+            }
 
             var course = await courseQuery.ToListAsync();
 
             ViewData["SearchTitle"] = searchName;
             ViewData["SearchAuthor"] = searchAuthor;
-            //ViewData["SearchGenre"] = searchGenre;
+            ViewData["SearchGenre"] = searchGenre;
 
             return View(course);
         }
+        [AllowAnonymous]
+        public async Task<IActionResult> Todoslivros(string searchName, string searchAuthor, string searchCategory)
+        {
+            var courseQuery = _context.courses.Include(c => c.Category).AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                courseQuery = courseQuery.Where(c => c.Name.Contains(searchName));
+            }
+
+            if (!string.IsNullOrEmpty(searchAuthor))
+            {
+                courseQuery = courseQuery.Where(c => c.Author.Contains(searchAuthor));
+            }
+
+            if (!string.IsNullOrEmpty(searchCategory))
+            {
+                courseQuery = courseQuery.Where(c => c.Category.Description.Contains(searchCategory));
+            }
+
+            var courses = await courseQuery.ToListAsync();
+
+            ViewData["SearchName"] = searchName;
+            ViewData["SearchAuthor"] = searchAuthor;
+            ViewData["SearchCategory"] = searchCategory;
+
+            return View(courses);
+        }
+
 
         public IActionResult Livros_em_destaque()
         {
@@ -111,12 +141,9 @@ namespace Biblioteca_UniLib.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
-        public async Task<IActionResult> Todoslivros()
-        {
-            var books = await _context.courses.ToListAsync();
-            return View(books);
-        }
+        
+       
+
 
         [Authorize] // Garante que apenas usuários autenticados podem acessar
         public async Task<IActionResult> Historicoreq()
@@ -206,29 +233,7 @@ namespace Biblioteca_UniLib.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [Authorize(Roles = "Admin")]
-        public IActionResult OnlyAdmins()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Bibliotecario")]
-        public IActionResult OnlyBiblio()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Leitor")]
-        public IActionResult OnlyLeitor()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Admin,Bibliotecario")]
-        public IActionResult OnlyAdminsAndBiblio()
-        {
-            return View();
-        }
+        
 
         //imagens para fundo das categorias
         public IActionResult Fantasia()
@@ -281,16 +286,8 @@ namespace Biblioteca_UniLib.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-    }
+    
 
-
-}
-
-//BOLACHAS AKA COOKIES
-
-
-public class HomeController : Controller
-{
     public IActionResult AddCookies()
     {
         var cookieOptions1 = new CookieOptions { Expires = DateTime.Now.AddSeconds(10) };
@@ -341,4 +338,5 @@ public class HomeController : Controller
         return RedirectToAction("Privacy");
 
     }
+}
 }

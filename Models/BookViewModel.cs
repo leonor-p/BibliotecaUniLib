@@ -8,6 +8,7 @@ namespace Biblioteca_UniLib.Models
         [Required(ErrorMessage = "Required field")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "{0} length must be between {2} and {1}")]
         public string? Name { get; set; }
+        public string? ISBN { get; set; }
 
         [Required(ErrorMessage = "Select a Image File")]
         public IFormFile? CoverPhoto { get; set; }
