@@ -15,6 +15,8 @@
     <title>Biblioteca Virtual UNILIB</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <!-- Barra de Navegação -->
@@ -33,6 +35,33 @@
             <a href="/Courses/Index" class="btn btn-custom btn-lg" style="border-radius: 10px; padding: 15px 35px; font-size: 18px;">
                 <i class="fas fa-list" style="margin-right: 10px;"></i> Gerir Livros
             </a>
+                    @if (TempData["OverdueRequests"] != null)
+                    {
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        var overdueRequests = @Html.Raw(TempData["OverdueRequests"]);
+
+                        // Certifique-se de que `overdueRequests` é um array válido
+                        if (Array.isArray(overdueRequests) && overdueRequests.length > 0) {
+                            var message = "Existem requisições de livros com entregas em atraso:\n";
+                            overdueRequests.forEach(function (request) {
+                                message += request.UserName + " - " + request.BookTitle + " (Entrega prevista: " + request.RequestEndDate + ")\n";
+                            });
+
+                            // Exibe o pop-up com SweetAlert2
+                            Swal.fire({
+                                title: 'Notificação de Atraso',
+                                text: message,
+                                icon: 'warning',
+                                confirmButtonText: 'Fechar'
+                            });
+                        } else {
+                            console.warn("Nenhuma requisição de atraso encontrada ou erro nos dados recebidos.");
+                        }
+                    });
+                </script>
+
+                    }
                 }
                 @if (isAdmin)
                 {

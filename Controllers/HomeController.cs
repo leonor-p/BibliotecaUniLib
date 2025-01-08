@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Biblioteca_UniLib.Data;
 using System.Threading.Tasks;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Biblioteca_UniLib.Controllers
 {
@@ -22,8 +23,7 @@ namespace Biblioteca_UniLib.Controllers
             _context = context ?? throw new ArgumentNullException(nameof(context)); // Verifique se _context não é null
         }
 
-       
-        [AllowAnonymous]
+            [AllowAnonymous]
         public async Task<IActionResult> Index(string searchName, string searchAuthor, string searchGenre)
         {
             var courseQuery = _context.courses.AsQueryable();
@@ -233,7 +233,26 @@ namespace Biblioteca_UniLib.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        
+        [HttpPost]
+        public async Task<IActionResult> GetOverdueRequestsAsync()
+        {
+            // Lógica para obter requisições em atraso
+            var overdueRequests = await GetOverdueRequestsFromDatabaseAsync(); // Método que retorna uma lista de requisições
+
+            if (overdueRequests != null && overdueRequests.Any())
+            {
+                TempData["OverdueRequests"] = JsonConvert.SerializeObject(overdueRequests);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        private async Task<List<RequestsController>> GetOverdueRequestsFromDatabaseAsync()
+        {
+            // Simula uma chamada de banco de dados ou lógica para buscar os dados
+            return await Task.FromResult(new List<RequestsController>());
+        }
+
 
         //imagens para fundo das categorias
         public IActionResult Fantasia()

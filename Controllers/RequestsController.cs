@@ -51,6 +51,13 @@ namespace Biblioteca_UniLib.Controllers
             return View(userRequests);
         }
 
+        public async Task<List<BookRequests>> GetOverdueRequestsAsync()
+        {
+            DateTime today = DateTime.Today;
+            return await _context.BookRequests
+                .Where(r => r.RequestEndDate < today && !r.IsReturned)
+                .ToListAsync();
+        }
 
         // POST: Requests/Create
         [HttpPost]
