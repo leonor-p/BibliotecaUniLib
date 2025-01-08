@@ -79,47 +79,72 @@ namespace Biblioteca_UniLib.Controllers
 
             return View(courses);
         }
-
-
-        public IActionResult Livros_em_destaque()
+        public async Task<IActionResult> Livros_em_destaque(string searchName, string searchAuthor, string searchCategory)
         {
-
+            var courseQuery = _context.courses.Include(c => c.Category).AsQueryable();
             var cursos = _context.courses.Where(c => c.Dest == true).ToList();
             if (cursos == null)
             {
                 cursos = new List<Course>();
             }
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                courseQuery = courseQuery.Where(c => c.Name.Contains(searchName));
+            }
 
-            return View(cursos);
+            if (!string.IsNullOrEmpty(searchAuthor))
+            {
+                courseQuery = courseQuery.Where(c => c.Author.Contains(searchAuthor));
+            }
+
+            if (!string.IsNullOrEmpty(searchCategory))
+            {
+                courseQuery = courseQuery.Where(c => c.Category.Description.Contains(searchCategory));
+            }
+
+            var courses = await courseQuery.ToListAsync();
+
+            ViewData["SearchName"] = searchName;
+            ViewData["SearchAuthor"] = searchAuthor;
+            ViewData["SearchCategory"] = searchCategory;
+
+            return View(courses);
         }
 
-        public IActionResult Adicionados_recentemente()
+        [AllowAnonymous]
+        public async Task<IActionResult>Adicionados_recentemente(string searchName, string searchAuthor, string searchCategory)
         {
+            var courseQuery = _context.courses.Include(c => c.Category).AsQueryable();
             var cursos = _context.courses.Where(c => c.Addrec == true).ToList();
-
-            // Verifique se a lista de cursos não é nula
             if (cursos == null)
             {
                 cursos = new List<Course>();
             }
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                courseQuery = courseQuery.Where(c => c.Name.Contains(searchName));
+            }
 
-            return View(cursos);
+            if (!string.IsNullOrEmpty(searchAuthor))
+            {
+                courseQuery = courseQuery.Where(c => c.Author.Contains(searchAuthor));
+            }
+
+            if (!string.IsNullOrEmpty(searchCategory))
+            {
+                courseQuery = courseQuery.Where(c => c.Category.Description.Contains(searchCategory));
+            }
+
+            var courses = await courseQuery.ToListAsync();
+
+            ViewData["SearchName"] = searchName;
+            ViewData["SearchAuthor"] = searchAuthor;
+            ViewData["SearchCategory"] = searchCategory;
+
+            return View(courses);
         }
 
-        public IActionResult Freida_mcfadden()
-        {
-            return View();
-        }
 
-        public IActionResult George_Martin()
-        {
-            return View();
-        }
-
-        public IActionResult Alice_Oseman()
-        {
-            return View();
-        }
 
         [AllowAnonymous]
         public IActionResult Privacy()
@@ -159,72 +184,198 @@ namespace Biblioteca_UniLib.Controllers
             // Retorna a view com os dados das requisições
             return View(userRequests);
         }
-
+        [AllowAnonymous]
         //Páginas das categorias
-        public IActionResult cat_fantasia()
+        public async Task<IActionResult> cat_fantasia(string searchName, string searchAuthor, string searchCategory)
         {
+            var courseQuery = _context.courses.Include(c => c.Category).AsQueryable();
             var cursos = _context.courses.Where(c => c.CategoryID == 1).ToList();
             if (cursos == null)
             {
                 cursos = new List<Course>();
             }
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                courseQuery = courseQuery.Where(c => c.Name.Contains(searchName));
+            }
 
-            return View(cursos);
+            if (!string.IsNullOrEmpty(searchAuthor))
+            {
+                courseQuery = courseQuery.Where(c => c.Author.Contains(searchAuthor));
+            }
+
+            if (!string.IsNullOrEmpty(searchCategory))
+            {
+                courseQuery = courseQuery.Where(c => c.Category.Description.Contains(searchCategory));
+            }
+
+            var courses = await courseQuery.ToListAsync();
+
+            ViewData["SearchName"] = searchName;
+            ViewData["SearchAuthor"] = searchAuthor;
+            ViewData["SearchCategory"] = searchCategory;
+
+            return View(courses);
         }
-        
-        public IActionResult cat_romance()
+        [AllowAnonymous]
+        public async Task<IActionResult> cat_romance(string searchName, string searchAuthor, string searchCategory)
         {
+            var courseQuery = _context.courses.Include(c => c.Category).AsQueryable();
             var cursos = _context.courses.Where(c => c.CategoryID == 4).ToList();
             if (cursos == null)
             {
                 cursos = new List<Course>();
             }
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                courseQuery = courseQuery.Where(c => c.Name.Contains(searchName));
+            }
 
-            return View(cursos);
+            if (!string.IsNullOrEmpty(searchAuthor))
+            {
+                courseQuery = courseQuery.Where(c => c.Author.Contains(searchAuthor));
+            }
+
+            if (!string.IsNullOrEmpty(searchCategory))
+            {
+                courseQuery = courseQuery.Where(c => c.Category.Description.Contains(searchCategory));
+            }
+
+            var courses = await courseQuery.ToListAsync();
+
+            ViewData["SearchName"] = searchName;
+            ViewData["SearchAuthor"] = searchAuthor;
+            ViewData["SearchCategory"] = searchCategory;
+
+            return View(courses);
         }
-
-        public IActionResult cat_ficcao()
+        [AllowAnonymous]
+        public async Task<IActionResult> cat_ficcao(string searchName, string searchAuthor, string searchCategory)
         {
+            var courseQuery = _context.courses.Include(c => c.Category).AsQueryable();
             var cursos = _context.courses.Where(c => c.CategoryID == 5).ToList();
             if (cursos == null)
             {
                 cursos = new List<Course>();
             }
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                courseQuery = courseQuery.Where(c => c.Name.Contains(searchName));
+            }
 
-            return View(cursos);
+            if (!string.IsNullOrEmpty(searchAuthor))
+            {
+                courseQuery = courseQuery.Where(c => c.Author.Contains(searchAuthor));
+            }
+
+            if (!string.IsNullOrEmpty(searchCategory))
+            {
+                courseQuery = courseQuery.Where(c => c.Category.Description.Contains(searchCategory));
+            }
+
+            var courses = await courseQuery.ToListAsync();
+
+            ViewData["SearchName"] = searchName;
+            ViewData["SearchAuthor"] = searchAuthor;
+            ViewData["SearchCategory"] = searchCategory;
+
+            return View(courses);
         }
-
-        public IActionResult cat_arte()
+        [AllowAnonymous]
+        public async Task<IActionResult> cat_arte(string searchName, string searchAuthor, string searchCategory)
         {
+            var courseQuery = _context.courses.Include(c => c.Category).AsQueryable();
             var cursos = _context.courses.Where(c => c.CategoryID == 6).ToList();
             if (cursos == null)
             {
                 cursos = new List<Course>();
             }
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                courseQuery = courseQuery.Where(c => c.Name.Contains(searchName));
+            }
 
-            return View(cursos);
+            if (!string.IsNullOrEmpty(searchAuthor))
+            {
+                courseQuery = courseQuery.Where(c => c.Author.Contains(searchAuthor));
+            }
+
+            if (!string.IsNullOrEmpty(searchCategory))
+            {
+                courseQuery = courseQuery.Where(c => c.Category.Description.Contains(searchCategory));
+            }
+
+            var courses = await courseQuery.ToListAsync();
+
+            ViewData["SearchName"] = searchName;
+            ViewData["SearchAuthor"] = searchAuthor;
+            ViewData["SearchCategory"] = searchCategory;
+
+            return View(courses);
         }
-
-        public IActionResult cat_financas()
+        [AllowAnonymous]
+        public async Task<IActionResult> cat_financas(string searchName, string searchAuthor, string searchCategory)
         {
+            var courseQuery = _context.courses.Include(c => c.Category).AsQueryable();
             var cursos = _context.courses.Where(c => c.CategoryID == 2).ToList();
             if (cursos == null)
             {
                 cursos = new List<Course>();
             }
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                courseQuery = courseQuery.Where(c => c.Name.Contains(searchName));
+            }
 
-            return View(cursos);
+            if (!string.IsNullOrEmpty(searchAuthor))
+            {
+                courseQuery = courseQuery.Where(c => c.Author.Contains(searchAuthor));
+            }
+
+            if (!string.IsNullOrEmpty(searchCategory))
+            {
+                courseQuery = courseQuery.Where(c => c.Category.Description.Contains(searchCategory));
+            }
+
+            var courses = await courseQuery.ToListAsync();
+
+            ViewData["SearchName"] = searchName;
+            ViewData["SearchAuthor"] = searchAuthor;
+            ViewData["SearchCategory"] = searchCategory;
+
+            return View(courses);
         }
-
-        public IActionResult cat_comedia()
+        [AllowAnonymous]
+        public async Task<IActionResult> cat_comedia(string searchName, string searchAuthor, string searchCategory)
         {
+            var courseQuery = _context.courses.Include(c => c.Category).AsQueryable();
             var cursos = _context.courses.Where(c => c.CategoryID == 3).ToList();
             if (cursos == null)
             {
                 cursos = new List<Course>();
             }
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                courseQuery = courseQuery.Where(c => c.Name.Contains(searchName));
+            }
 
-            return View(cursos);
+            if (!string.IsNullOrEmpty(searchAuthor))
+            {
+                courseQuery = courseQuery.Where(c => c.Author.Contains(searchAuthor));
+            }
+
+            if (!string.IsNullOrEmpty(searchCategory))
+            {
+                courseQuery = courseQuery.Where(c => c.Category.Description.Contains(searchCategory));
+            }
+
+            var courses = await courseQuery.ToListAsync();
+
+            ViewData["SearchName"] = searchName;
+            ViewData["SearchAuthor"] = searchAuthor;
+            ViewData["SearchCategory"] = searchCategory;
+
+            return View(courses);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -331,7 +482,7 @@ namespace Biblioteca_UniLib.Controllers
 
     public IActionResult AddSessionVariables() //cria as sessões unicas de ID referenciadas antes no program.cs
 
-    {   //podemos criar do tipo string, int ou byte array
+    {   //podemos criar do tipo string, int ou byte arr
         HttpContext.Session.SetString("StringValue", "Text variable value");
         HttpContext.Session.SetInt32("IntegerValue", 100);
         // uma cookie de sessão '.AspNetCore.Session' é criada e enviada para o cliente
@@ -357,5 +508,11 @@ namespace Biblioteca_UniLib.Controllers
         return RedirectToAction("Privacy");
 
     }
-}
+        public IActionResult Confirmacao()
+        {
+            
+            return View();
+
+        }
+    }
 }

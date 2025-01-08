@@ -21,7 +21,21 @@
    <div class="container_ld">
         <h1 style="font-size: 3rem; font-weight: bold; color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Romance</h1>
         <p style="font-size: 1.5rem; font-weight: bold; color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Descobre os melhores livros sobre Romance</p>
+        <form method="get" class="mb-4">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <input type="text" name="searchName" value="@ViewData["SearchName"]" class="form-control" placeholder="Pesquisar por Título" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" name="searchAuthor" value="@ViewData["SearchAuthor"]" class="form-control" placeholder="Pesquisar por Autor" />
+                </div>
 
+                <div class="col-md-4">
+                    <button type="submit" class="btn-submit">Pesquisar</button>
+
+                </div>
+            </div>
+        </form>
         @if (Model != null && Model.Any())
         {
             <div class="card_grid">
@@ -157,4 +171,19 @@
                 color: #fff;
             }
 
+    .btn-submit {
+        width: 100%;
+        padding: 10px;
+        background-color: #722222;
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 0px;
+    }
+
+        .btn-submit:hover {
+            background-color: #5c1a1a;
+        }
 </style>
