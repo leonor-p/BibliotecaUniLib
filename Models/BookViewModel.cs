@@ -17,6 +17,7 @@ namespace Biblioteca_UniLib.Models
         public string? Description { get; set; } = string.Empty;
         public int CategoryID { get; set; }
         public int Quantidade { get; set; }
+        public int Count { get; set; }
         public string? Author { get; set; }
         public Boolean State { get; set; }
         public Boolean Dest { get; set; }

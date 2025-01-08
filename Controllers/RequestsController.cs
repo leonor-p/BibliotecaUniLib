@@ -79,6 +79,8 @@ namespace Biblioteca_UniLib.Controllers
                 _context.Add(bookRequest);
                 await _context.SaveChangesAsync();
 
+
+
                 return RedirectToAction("ConfirmationScreen", "Requests");
             }
 
@@ -86,8 +88,9 @@ namespace Biblioteca_UniLib.Controllers
         }
 
         // GET: Requests/ConfirmationScreen
-        public IActionResult ConfirmationScreen()
+        public IActionResult ConfirmationScreen(int courseId)
         {
+
             return View();
         }
 
@@ -111,6 +114,7 @@ namespace Biblioteca_UniLib.Controllers
                 if (course != null && course.Quantidade > 0)
                 {
                     course.Quantidade -= 1;
+                    course.Count++;
                     _context.Update(course);
                 }
                 else
@@ -118,7 +122,8 @@ namespace Biblioteca_UniLib.Controllers
                     TempData["ErrorMessage"] = "Não há mais exemplares disponíveis.";
                     return RedirectToAction(nameof(Gerirrequisicoes));
                 }
-
+               
+                
                 _context.Update(request);
                 await _context.SaveChangesAsync();
             }
@@ -126,6 +131,8 @@ namespace Biblioteca_UniLib.Controllers
             {
                 TempData["ErrorMessage"] = "A solicitação está fora do período de aceitação.";
             }
+            
+           
 
             return RedirectToAction(nameof(Gerirrequisicoes));
         }

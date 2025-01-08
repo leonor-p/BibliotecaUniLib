@@ -18,6 +18,7 @@ namespace Biblioteca_UniLib.Models
         [StringLength(256, ErrorMessage = "length can not exceed {1} characters")]
         public string Description { get; set; } = string.Empty;
         public int Quantidade { get; set; }
+        public int Count { get; set; }
         public Boolean State { get; set; }
         public Boolean Dest { get; set; }
         public Boolean Addrec { get; set; }

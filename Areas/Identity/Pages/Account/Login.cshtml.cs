@@ -94,10 +94,17 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
                     // Verifica se a conta está ativa
                     var entry = _context.Entry(user);
                     var activeAcc = entry.Property<bool>("ActiveAcc").CurrentValue;
+                    var accBlocked = entry.Property<bool>("AccBlocked").CurrentValue;
 
                     if (!activeAcc)
                     {
                         ModelState.AddModelError(string.Empty, "Sua conta ainda não está ativada. Por favor, entre em contato com o suporte.");
+                        return Page();
+                    }
+
+                    if (accBlocked)
+                    {
+                        ModelState.AddModelError(string.Empty, "Sua conta está bloqueada. Por favor, entre em contato com o suporte.");
                         return Page();
                     }
                 }
@@ -128,5 +135,6 @@ namespace Biblioteca_UniLib.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
     }
 }
