@@ -1,0 +1,22 @@
+﻿@page
+@model Biblioteca_UniLib.Views.SearchModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Pesquisa</title>
+</head>
+<body>
+    <h1>Resultados da Pesquisa</h1>
+    <ul>
+        @foreach (var result in Model)
+        {
+            <li>@result</li>
+        }
+    </ul>
+</body>
+</html>
