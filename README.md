@@ -72,6 +72,7 @@ The system implements two distinct user types:
 | Role | Permissions |
 | :--- | :--- |
 | **Administrator** | Full system management (CRUD for books, categories, courses). |
+| **Librarian** | Manage book catalog (CRUD), categories, courses, and process book requests. |
 | **User** | View catalog, manage profile, and request books. |
 
 ### Security Features
