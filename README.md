@@ -1,155 +1,172 @@
-# BrainBridge - Accessible & Cooperative Memory Game
+<div align="center">
 
-![WCAG 2.1 AA](https://img.shields.io/badge/WCAG-2.1%20AA-blue)
-![License](https://img.shields.io/badge/license-ISC-green)
-![Node.js](https://img.shields.io/badge/Node.js-v18+-brightgreen)
-![React](https://img.shields.io/badge/React-18-blue)
+# BibliotecaUniLib
+### Digital Library Management System
 
-**BrainBridge** is an innovative memory game developed with a total focus on **web accessibility**, following **WCAG 2.1 AA** guidelines. The project offers two game modes (Individual and Cooperative) with 8 progressive difficulty levels, an authentication system, global rankings, and detailed statistics.
+![.NET](https://img.shields.io/badge/.NET-6.0-purple)
+![C#](https://img.shields.io/badge/C%23-10.0-blue)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-2019-red)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-MVC-green)
 
-## Table of Contents
+**BibliotecaUniLib** is a full-stack digital library platform built with C#, .NET, and SQL Server, allowing users to browse, manage, and access digital books and academic resources through a clean and responsive interface.
 
+</div>
+
+---
+
+### Table of Contents
+
+- [About the Project](#about-the-project)
 - [Key Features](#key-features)
-- [Accessibility and WCAG Compliance](#accessibility-and-wcag-compliance)
-- [Architecture and Technologies](#architecture-and-technologies)
+- [Technology Stack](#technology-stack)
+- [User Roles and Security](#user-roles-and-security)
 - [Installation and Configuration](#installation-and-configuration)
-- [How to Play](#how-to-play)
+- [Project Structure](#project-structure)
+- [Key Models](#key-models)
+
+---
+
+## About the Project
+
+BibliotecaUniLib is a university library management system developed as a Web and Database Laboratory project. The platform offers complete functionalities for book administration, user management, book requests, and organization by categories and academic courses.
 
 ---
 
 ## Key Features
 
-The system was designed to be inclusive and challenging, offering:
+The system provides a comprehensive set of tools for both administrators and students:
 
-* **Individual Mode:** Overcome 8 levels with progressive difficulty.
-* **Cooperative Mode:** Play with a partner on the same device, taking turns.
-* **Progression System:** Automatic level unlocking based on performance.
-* **Global Rankings:** Leaderboards separated by game mode.
-* **Statistics:** Detailed monitoring of average score, best time, and total games played.
-
----
-
-## Accessibility and WCAG Compliance
-
-This project strictly adheres to WCAG 2.1 (Level AA) accessibility principles. The table below details the technical implementations:
-
-| Principle | Technical Implementation | WCAG 2.1 Guideline |
-| :--- | :--- | :--- |
-| **1. Perceivable** | **Color Blind Mode & High Contrast** | Ensures information does not rely solely on color and maintains a contrast ratio greater than 4.5:1 (Criteria 1.4.1 and 1.4.3). |
-| **2. Operable** | **Keyboard Navigation & Skip Links** | The entire game is playable without a mouse. "Skip Links" allow bypassing repetitive navigation (Criteria 2.1.1 and 2.4.1). |
-| **3. Understandable** | **Labels & Error Feedback** | Forms feature clear labels and visible, explanatory error/success messages (Criteria 3.3.2). |
-| **4. Robust** | **ARIA Labels & Semantic HTML** | Full compatibility with screen readers (NVDA, VoiceOver) using correct ARIA attributes (Criterion 4.1.2). |
+* **Book Management:** Add, edit, and remove books from the catalog.
+* **Authentication System:** User registration and login with role support (Admin, User).
+* **Search and Filters:** Search for books by category, course, and other criteria.
+* **Request System:** Management of book loans and requests.
+* **Course Organization:** Categorization of resources by academic areas.
+* **Categories:** Intuitive organization of the bibliographic collection.
+* **User Profiles:** Management of personalized user profiles.
 
 ---
 
-## Architecture and Technologies
-
-The project uses a modern architecture separated into Frontend and Backend:
-
-### Frontend
-* **React 18:** State management and reactive components.
-* **Tailwind CSS:** Utility-first and responsive styling.
-* **Babel:** JSX code transpilation.
+## Technology Stack
 
 ### Backend
-* **Node.js and Express:** RESTful API for data management.
-* **JWT (JSON Web Tokens)::** Secure authentication and session management.
-* **Bcrypt:** Password hashing.
+* **ASP.NET Core MVC:** Web framework for building the application.
+* **Entity Framework Core:** ORM for database operations.
+* **ASP.NET Core Identity:** Authentication and user management.
+* **ASP.NET Core Session:** Session state management.
+
+### Frontend
+* **HTML5 & CSS3:** Structure and styling.
+* **JavaScript:** Client-side interactivity.
 
 ### Database
-* **Microsoft SQL Server:** Relational data storage.
-* **MSSQL Driver:** Native connector for Node.js.
+* **SQL Server:** Relational database management system.
+
+---
+
+## User Roles and Security
+
+### Roles
+
+The system implements two distinct user types:
+
+| Role | Permissions |
+| :--- | :--- |
+| **Administrator** | Full system management (CRUD for books, categories, courses). |
+| **User** | View catalog, manage profile, and request books. |
+
+### Security Features
+
+* **Authentication:** Secure login via ASP.NET Core Identity.
+* **Authorization:** Role-based access control (RBAC).
+* **Account Verification:** Mandatory account confirmation.
+* **Route Protection:** Protection of sensitive routes and controllers.
+* **Session Management:** Secure session handling with a 10-minute timeout.
 
 ---
 
 ## Installation and Configuration
 
 ### Prerequisites
-* Node.js (v18+)
-* Microsoft SQL Server (2019+)
-* Git
+* .NET SDK 6.0 or higher
+* SQL Server
+* Visual Studio 2022 or Visual Studio Code
 
-### 1. Clone and Install Dependencies
-
-```bash
-# Clone the repository
-git clone [https://github.com/Carolpm28/BrainBridge.git](https://github.com/Carolpm28/BrainBridge.git)
-cd BrainBridge/BrainBridgev_final
-
-# Install Backend dependencies
-cd brainbridge-backend
-npm install
-```
-
-### 2. Configure Database
-
-Execute the SQL scripts in the order below to create the necessary structure:
+### 1. Clone the Repository
 
 ```bash
-# Create the Database
-sqlcmd -S localhost -i create-database.sql
-
-# Create Tables
-sqlcmd -S localhost -d BrainBridge -i create-tables.sql
-
-# (Optional) Add Statistics Table
-sqlcmd -S localhost -d BrainBridge -i tabelastatistics.sql
+git clone [https://github.com/leonor-p/BibliotecaUniLib.git](https://github.com/leonor-p/BibliotecaUniLib.git)
+cd BibliotecaUniLib
 ```
 
-### 3. Environment Variables
+### 2. Configure Connection String
 
-Create a `.env` file in the `brainbridge-backend` folder with the following settings:
+Edit the `appsettings.json` file and configure the connection to your SQL Server instance:
 
-```env
-PORT=3000
-DB_SERVER=localhost
-DB_NAME=BrainBridge
-DB_USER=your_user
-DB_PASSWORD=your_password
-JWT_SECRET=define_a_secure_key_here
-NODE_ENV=development
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=BibliotecaUniLib;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+}
 ```
 
-### 4. Run the Project
+### 3. Run Database Migrations
+
+Apply the Entity Framework migrations to create the database schema:
 
 ```bash
-# Terminal 1: Start the Backend
-cd brainbridge-backend
-npm run dev
+dotnet ef database update
+```
 
-# Terminal 2: Serve the Frontend
-# You can use any HTTP server or open index.html directly
-npx http-server -p 8080
+### 4. Run the Application
+
+```bash
+dotnet run
+```
+
+### 5. Access the Application
+
+Open your browser and navigate to: `https://localhost:5001` or `http://localhost:5000`.
+
+---
+
+## Project Structure
+
+```
+BibliotecaUniLib/
+├── Areas/              # Application areas (Identity)
+├── Controllers/        # MVC Controllers
+├── Data/               # Database context and initialization
+├── Models/             # Data models
+│   ├── BookRequests.cs
+│   ├── BookViewModel.cs
+│   ├── Category.cs
+│   ├── Course.cs
+│   └── Perfil.cs
+├── Views/              # Razor Views
+├── wwwroot/            # Static files (CSS, JS, images)
+├── Program.cs          # Application entry point
+└── appsettings.json    # Application configuration
 ```
 
 ---
 
-## How to Play
+## Key Models
 
-The goal is to find all pairs of matching cards. The difficulty increases with each level:
-
-| Level | Name | Cards | Bonus | Time Limit |
-| :--- | :--- | :--- | :--- | :--- |
-| **1** | Beginner | 12 | 500 | No Limit |
-| **2** | Apprentice | 16 | 750 | No Limit |
-| **3** | Intermediate | 20 | 1000 | No Limit |
-| **4** | Advanced | 24 | 1500 | No Limit |
-| **5** | Specialist | 24 | 2000 | 3 min |
-| **6** | Master | 24 | 3000 | 2 min |
-| **7** | Grandmaster | 24 | 5000 | 1.5 min |
-| **8** | Legendary | 24 | 10000 | 1 min |
-
-**Scoring System:**
-* **+100 points** for each correct pair.
-* **-10 points** for each error.
-* **Time Bonus:** Awarded in levels 5 to 8 based on remaining time.
+| Model | Description |
+| :--- | :--- |
+| **BookRequests** | Manages book loan requests and status. |
+| **BookViewModel** | Data Transfer Object (DTO) for displaying books in views. |
+| **Category** | Defines the categories available in the library. |
+| **Course** | Represents academic courses associated with books. |
+| **Perfil** | Stores extended user profile information. |
 
 ---
 
 <div align="center">
 
-**BrainBridge** © 2025 - Memory game developed following WCAG 2.1 AA guidelines.
+**BibliotecaUniLib** - Developed by **leonor-p**
 
-[Back to top](#brainbridge---accessible--cooperative-memory-game)
+[Back to top](#bibliotecaunilib)
 
 </div>
